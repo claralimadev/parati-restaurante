@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pará-Ti Restaurante • Açaí raiz e sabores do Pará em Fortaleza</title>
+<meta name="description" content="Pará-Ti Restaurante na Cidade 2000, Fortaleza. Açaí batido na hora, churrasco, hambúrguer artesanal, self-service no almoço e sabores do Pará." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%234A1D52'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='34' fill='%23FAF4EA'%3EP%3C/text%3E%3C/svg%3E" />
+<style>
+:root{
+  --terra:#A8452A;
+  --terra-esc:#7E2F1B;
+  --areia:#EAD9C2;
+  --creme:#FAF4EA;
+  --creme-2:#F3E8D8;
+  --marrom:#2E1F18;
+  --marrom-suave:#5A4336;
+  --acai:#4A1D52;
+  --acai-claro:#F0E2F2;
+  --dourado:#C8942F;
+  --manga:#C08A45;
+  --buriti:#B45A34;
+  --folha:#4E6B4C;
+  --cupuacu:#EAD9B8;
+  --sombra:0 18px 45px rgba(46,31,24,.12);
+  --sombra-forte:0 24px 60px rgba(46,31,24,.22);
+  --raio:22px;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:linear-gradient(180deg,#FAF4EA 0%,#FBF0DE 45%,#FAF4EA 100%);
+  font-family:"Nunito Sans",system-ui,-apple-system,sans-serif;
+  color:var(--marrom);
+  background:var(--creme);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.12;margin:0;color:var(--marrom)}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer}
+.container{width:min(var(--max),92%);margin-inline:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--terra)}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--terra)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:999px;border:1px solid transparent;font-weight:800;font-size:.92rem;transition:transform .2s,box-shadow .2s,background .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--terra);color:#fff;box-shadow:0 12px 26px rgba(168,69,42,.22)}
+.btn-primary:hover{background:var(--terra-esc)}
+.btn-acai{background:var(--acai);color:#fff;box-shadow:0 12px 26px rgba(74,29,82,.28)}
+.btn-acai:hover{background:#5A2464}
+.btn-outline{background:transparent;border-color:rgba(46,31,24,.22);color:var(--marrom)}
+.btn-outline:hover{border-color:var(--terra);color:var(--terra)}
+.btn svg{width:18px;height:18px}
+.site-header{position:sticky;top:0;z-index:60;background:rgba(250,244,234,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(46,31,24,.08);transition:box-shadow .25s}
+.site-header.scrolled{box-shadow:0 10px 30px rgba(46,31,24,.08)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:76px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:46px;height:46px;border-radius:50%;background:var(--acai);display:grid;place-items:center;color:#fff;font-family:"Fraunces",serif;font-size:1.4rem;box-shadow:0 8px 18px rgba(74,29,82,.28)}
+.brand-text{display:flex;flex-direction:column;line-height:1.08}
+.brand-text strong{font-family:"Fraunces",serif;font-size:1.22rem;font-weight:700;letter-spacing:.01em}
+.brand-text span{font-size:.66rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--terra)}
+.nav{display:flex;align-items:center;gap:26px}
+.nav a{font-size:.9rem;font-weight:700;color:var(--marrom-suave);position:relative;padding:6px 0}
+.nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--terra);transition:width .2s}
+.nav a:hover::after{width:100%}
+.header-actions{display:flex;align-items:center;gap:10px}
+.icon-btn{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid rgba(46,31,24,.14);color:var(--marrom);transition:.2s}
+.icon-btn:hover{border-color:var(--terra);color:var(--terra);transform:translateY(-2px)}
+.icon-btn svg{width:20px;height:20px}
+.hamburger{display:none}
+.drawer-backdrop{position:fixed;inset:0;background:rgba(46,31,24,.45);opacity:0;pointer-events:none;transition:opacity .25s;z-index:70}
+.drawer-backdrop.open{opacity:1;pointer-events:auto}
+.mobile-drawer{position:fixed;top:0;right:0;bottom:0;width:min(330px,86vw);background:var(--creme);z-index:80;padding:26px;transform:translateX(105%);transition:transform .28s;display:flex;flex-direction:column;gap:10px;box-shadow:var(--sombra-forte)}
+.mobile-drawer.open{transform:none}
+.mobile-drawer .drawer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.mobile-drawer a{font-weight:800;padding:13px 4px;border-bottom:1px solid rgba(46,31,24,.1)}
+.mobile-drawer .btn{margin-top:18px}
+.hero{position:relative;overflow:hidden;padding:64px 0 84px;background:
+  radial-gradient(800px 480px at 88% 8%,rgba(74,29,82,.14),transparent 62%),
+  radial-gradient(700px 500px at 6% 92%,rgba(192,138,69,.18),transparent 62%),
+  radial-gradient(500px 400px at 55% 110%,rgba(78,107,76,.10),transparent 65%),
+  var(--creme)}
+.hero::after{content:"";position:absolute;inset:auto -10% -55% 55%;height:70%;border-radius:50%;background:rgba(168,69,42,.06);filter:blur(10px);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;position:relative;z-index:1}
+.hero h1{font-size:clamp(2.6rem,5.2vw,4.35rem);letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--acai)}
+.hero-sub{max-width:520px;margin-top:20px;font-size:1.06rem;color:var(--marrom-suave)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:18px;margin-top:30px;padding-top:24px;border-top:1px solid rgba(46,31,24,.12)}
+.hero-meta div{display:flex;flex-direction:column;gap:2px}
+.hero-meta strong{font-family:"Fraunces",serif;font-size:1.1rem}
+.hero-meta span{font-size:.78rem;color:var(--marrom-suave);font-weight:700}
+.hero-visual{position:relative;max-width:460px;justify-self:end;width:100%}
+.hero-frame{position:relative;border-radius:32px;overflow:hidden;box-shadow:var(--sombra-forte);border:8px solid #fff;aspect-ratio:4/5.2;background:var(--creme-2)}
+.hero-frame img{width:100%;height:100%;object-fit:cover}
+.hero-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(46,31,24,.34),transparent 45%)}
+.hero-card{position:absolute;left:-22px;bottom:26px;background:#fff;border-radius:18px;padding:16px 18px;box-shadow:var(--sombra);display:flex;align-items:center;gap:13px;max-width:250px}
+.hero-card .icon{width:46px;height:46px;border-radius:14px;background:var(--acai-claro);display:grid;place-items:center;color:var(--acai);flex:0 0 auto}
+.hero-card .icon svg{width:24px;height:24px}
+.hero-card strong{display:block;font-family:"Fraunces",serif;font-size:1rem;line-height:1.2}
+.hero-card span{font-size:.75rem;font-weight:700;color:var(--marrom-suave)}
+.hero-seal{position:absolute;top:20px;right:-14px;background:var(--acai);color:#fff;border-radius:18px;padding:14px 18px;text-align:center;box-shadow:var(--sombra);transform:rotate(2deg)}
+.hero-seal strong{display:block;font-family:"Fraunces",serif;font-size:1.35rem;line-height:1}
+.hero-seal span{font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.marquee{background:var(--marrom);color:var(--creme);padding:14px 0;overflow:hidden}
+.marquee-track{display:flex;width:max-content;animation:scroll 30s linear infinite;will-change:transform}
+.marquee-group{display:flex;gap:42px;padding-right:42px;flex:0 0 auto}
+.marquee-track span{font-size:.88rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap;display:flex;align-items:center;gap:42px}
+.marquee-track span::after{content:"";width:8px;height:8px;border-radius:2px;background:var(--cupuacu);transform:rotate(45deg);opacity:.85}
+@keyframes scroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.section{padding:88px 0}
+.section-tinted{background:var(--creme-2)}
+#sobre{background:radial-gradient(600px 300px at 95% 30%,rgba(192,138,69,.10),transparent 70%),linear-gradient(180deg,var(--creme) 0%,#F8EEDD 100%)}
+#vitrine{position:relative;background:radial-gradient(700px 340px at 4% 35%,rgba(74,29,82,.06),transparent 70%),linear-gradient(180deg,#F8EEDD 0%,var(--creme) 45%,#F6EBD9 100%)}
+#comentarios{background:linear-gradient(160deg,#F2E4CF,#F8F0D8 55%,#F3E6D5)}
+.section-acai{background:linear-gradient(160deg,var(--acai),#38143F);color:var(--creme)}
+.section-head{max-width:680px;margin-bottom:44px}
+.section-head h2{font-size:clamp(2rem,3.8vw,3.1rem);margin-top:12px;letter-spacing:-.015em}
+.section-head p{margin-top:14px;color:var(--marrom-suave);font-size:1.02rem}
+.section-acai .section-head p{color:rgba(250,244,234,.78)}
+.section-acai h2{color:var(--creme)}
+.section-acai .eyebrow{color:var(--areia)}
+.section-acai .eyebrow::before{background:var(--areia)}
+.about-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:center}
+.about-media{position:relative}
+.about-media .main-img{border-radius:28px;overflow:hidden;box-shadow:var(--sombra);aspect-ratio:4/4.6;border:7px solid #fff}
+.about-media .main-img img{width:100%;height:100%;object-fit:cover}
+.about-stamp{position:absolute;right:-18px;bottom:-18px;width:132px;height:132px;border-radius:50%;background:var(--buriti);color:#fff;display:grid;place-items:center;text-align:center;box-shadow:var(--sombra);font-weight:800;font-size:.72rem;line-height:1.35;letter-spacing:.08em;text-transform:uppercase;padding:14px}
+.about-text p{color:var(--marrom-suave);margin-top:16px}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+.feature{background:#fff;border:1px solid rgba(46,31,24,.09);border-radius:16px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+.feature:nth-child(1){border-left:4px solid var(--acai)}
+.feature:nth-child(2){border-left:4px solid var(--buriti)}
+.feature:nth-child(3){border-left:4px solid var(--folha)}
+.feature:nth-child(4){border-left:4px solid var(--manga)}
+.feature:nth-child(1) svg{color:var(--acai)}
+.feature:nth-child(2) svg{color:var(--buriti)}
+.feature:nth-child(3) svg{color:var(--folha)}
+.feature:nth-child(4) svg{color:var(--manga)}
+.feature svg{width:22px;height:22px;color:var(--terra);flex:0 0 auto;margin-top:3px}
+.feature strong{display:block;font-size:.92rem}
+.feature span{font-size:.78rem;color:var(--marrom-suave)}
+.dish-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.dish-card{background:#fff;border:1px solid rgba(46,31,24,.09);border-radius:var(--raio);overflow:hidden;box-shadow:0 12px 30px rgba(46,31,24,.06);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.dish-card:hover{transform:translateY(-4px);box-shadow:var(--sombra)}
+.dish-media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--creme-2)}
+.dish-media img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+.dish-card:hover .dish-media img{transform:scale(1.05)}
+.dish-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
+.dish-tag{align-self:flex-start;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--acai);background:var(--acai-claro);padding:5px 10px;border-radius:999px}
+.dish-card:nth-child(3n+1){border-top:5px solid var(--acai)}
+.dish-card:nth-child(3n+2){border-top:5px solid var(--manga)}
+.dish-card:nth-child(3n){border-top:5px solid var(--folha)}
+.dish-card:nth-child(3n+1) .dish-price{color:var(--acai)}
+.dish-card:nth-child(3n+2) .dish-price{color:#A85A12}
+.dish-card:nth-child(3n) .dish-price{color:var(--folha)}
+.dish-body h3{font-size:1.3rem;color:var(--terra-esc)}
+.dish-body p{font-size:.9rem;color:var(--marrom-suave)}
+.dish-price{margin-top:auto;padding-top:6px;font-family:"Fraunces",serif;font-size:1rem;color:var(--acai)}
+.menu-note{margin-top:20px;font-size:.82rem;color:var(--marrom-suave);display:flex;gap:8px;align-items:center}
+.menu-note svg{width:16px;height:16px;flex:0 0 auto;color:var(--terra)}
+.comments-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+.comments-list{display:flex;flex-direction:column;gap:14px}
+.comment-card{background:#fff;border:1px solid rgba(46,31,24,.09);border-radius:18px;padding:20px;box-shadow:0 10px 26px rgba(46,31,24,.05)}
+.comment-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.avatar{width:42px;height:42px;border-radius:50%;background:var(--acai-claro);color:var(--acai);display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:1rem;flex:0 0 auto}
+.comment-top strong{display:block;font-size:.9rem;line-height:1.2}
+.comment-top span{font-size:.72rem;color:var(--marrom-suave)}
+.stars{display:flex;gap:2px;color:var(--dourado);margin-left:auto}
+.stars svg{width:14px;height:14px}
+.comment-card p{font-size:.9rem;color:var(--marrom-suave)}
+.comment-form{background:#fff;border:1px solid rgba(46,31,24,.09);border-radius:var(--raio);padding:26px;box-shadow:var(--sombra);position:sticky;top:96px}
+.comment-form h3{font-size:1.35rem}
+.comment-form .hint{font-size:.8rem;color:var(--marrom-suave);margin:6px 0 18px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label{font-size:.76rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--marrom-suave)}
+.field input,.field textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(46,31,24,.18);background:var(--creme);font:inherit;font-size:.9rem;color:var(--marrom);resize:vertical}
+.field input:focus,.field textarea:focus{outline:2px solid rgba(168,69,42,.35);border-color:var(--terra)}
+.rating{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:4px}
+.rating input{position:absolute;opacity:0;pointer-events:none}
+.rating label{cursor:pointer;color:rgba(46,31,24,.2);transition:color .15s}
+.rating label svg{width:26px;height:26px}
+.rating input:checked ~ label,.rating label:hover,.rating label:hover ~ label{color:var(--dourado)}
+.comment-form .btn{width:100%}
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.contact-list{display:flex;flex-direction:column;gap:18px;margin-top:26px}
+.contact-item{display:flex;gap:14px;align-items:flex-start}
+.contact-item .icon{width:44px;height:44px;border-radius:13px;background:rgba(234,217,194,.14);display:grid;place-items:center;color:var(--areia);flex:0 0 auto}
+.contact-item svg{width:20px;height:20px}
+.contact-item strong{display:block;font-size:.86rem;letter-spacing:.04em}
+.contact-item span,.contact-item a{font-size:.88rem;color:rgba(250,244,234,.78)}
+.contact-item a:hover{color:#fff;text-decoration:underline}
+.contact-info{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.info-box{padding:20px;border-radius:16px;background:rgba(250,244,234,.07);border:1px solid rgba(250,244,234,.12)}
+.info-box:nth-child(1){border-color:rgba(233,161,59,.5)}
+.info-box:nth-child(2){border-color:rgba(201,79,124,.55)}
+.info-box:nth-child(3){border-color:rgba(62,124,74,.6)}
+.info-box:nth-child(4){border-color:rgba(242,217,160,.45)}
+.info-box strong{display:block;font-family:"Fraunces",serif;font-size:1.05rem;margin-bottom:4px}
+.info-box span{font-size:.8rem;color:rgba(250,244,234,.72)}
+.contact-actions .btn-primary{box-shadow:none}
+.contact-actions .btn-primary:hover{box-shadow:none}
+.contact-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.contact-actions .btn-outline{border-color:rgba(250,244,234,.35);color:var(--creme)}
+.contact-actions .btn-outline:hover{border-color:var(--areia);color:#fff}
+.site-footer{background:#241812;color:rgba(250,244,234,.72);padding:30px 0}
+.footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.8rem;align-items:center}
+.footer-inner a{color:var(--areia)}
+.footer-inner a:hover{text-decoration:underline}
+.chat-fab{position:fixed;right:22px;bottom:26px;padding:0;line-height:0;z-index:90;width:60px;height:60px;border-radius:50%;border:0;background:var(--acai);color:#fff;display:grid;place-items:center;box-shadow:0 16px 34px rgba(74,29,82,.4);transition:transform .2s}
+.chat-fab:hover{transform:scale(1.06)}
+.chat-fab svg{width:27px;height:27px;display:block;transform:translateY(-2px)}
+.chat-fab .ping{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:var(--dourado);border:2px solid var(--creme)}
+.chat-panel{position:fixed;right:22px;bottom:94px;z-index:95;width:min(370px,calc(100vw - 32px));height:min(560px,calc(100vh - 130px));background:var(--creme);border-radius:24px;box-shadow:0 30px 70px rgba(46,31,24,.32);display:flex;flex-direction:column;overflow:hidden;opacity:0;pointer-events:none;transform:translateY(16px);transition:.25s}
+.chat-panel.open{opacity:1;pointer-events:auto;transform:none}
+.chat-head{background:var(--acai);color:#fff;padding:16px 18px;display:flex;align-items:center;gap:12px}
+.chat-head .bot{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:0 0 auto}
+.chat-head .bot svg{width:22px;height:22px}
+.chat-head strong{display:block;font-size:.95rem;line-height:1.2}
+.chat-head span{font-size:.72rem;opacity:.8;display:flex;align-items:center;gap:5px}
+.chat-head .status{width:7px;height:7px;border-radius:50%;background:#7FD18B;display:inline-block}
+.chat-close{margin-left:auto;width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;display:grid;place-items:center}
+.chat-close:hover{background:rgba(255,255,255,.24)}
+.chat-close svg{width:16px;height:16px}
+.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(var(--creme),var(--creme-2))}
+.msg{max-width:84%;padding:11px 14px;border-radius:16px;font-size:.86rem;line-height:1.5;animation:fadeUp .25s ease}
+.msg.bot{background:#fff;border:1px solid rgba(46,31,24,.08);border-bottom-left-radius:5px;align-self:flex-start;color:var(--marrom)}
+.msg.user{background:var(--acai);color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
+.msg a{color:var(--acai);font-weight:800;text-decoration:underline}
+.msg.user a{color:#fff}
+.msg .msg-link{display:inline-flex;align-items:center;gap:5px;margin-top:6px;font-weight:800;color:var(--acai);text-decoration:none}
+.msg .msg-link:hover{text-decoration:underline}
+.chat-quick{display:flex;gap:7px;flex-wrap:wrap;padding:10px 12px;background:var(--creme-2);border-top:1px solid rgba(46,31,24,.06)}
+.chat-quick button{border:1px solid rgba(74,29,82,.22);background:#fff;color:var(--acai);border-radius:999px;padding:6px 11px;font-size:.72rem;font-weight:800}
+.chat-quick button:hover{background:var(--acai);color:#fff}
+.chat-form{display:flex;gap:8px;padding:11px;background:#fff;border-top:1px solid rgba(46,31,24,.08)}
+.chat-form input{flex:1;border:1px solid rgba(46,31,24,.15);border-radius:999px;padding:11px 15px;font:inherit;font-size:.86rem;background:var(--creme);color:var(--marrom);min-width:0}
+.chat-form input:focus{outline:2px solid rgba(74,29,82,.25)}
+.chat-form button{width:42px;height:42px;border-radius:50%;border:0;background:var(--acai);color:#fff;display:grid;place-items:center;flex:0 0 auto}
+.chat-form button:hover{background:#5A2464}
+.chat-form button svg{width:18px;height:18px}
+.typing{display:flex;gap:4px;align-items:center;padding:13px 16px}
+.typing span{width:6px;height:6px;border-radius:50%;background:var(--acai);opacity:.4;animation:blink 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-2px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--marrom);color:#fff;padding:12px 20px;border-radius:999px;font-size:.84rem;font-weight:700;box-shadow:var(--sombra);opacity:0;pointer-events:none;transition:.25s;z-index:120}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:none}
+@media (max-width:1040px){
+  .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .hero-visual{max-width:620px;margin-inline:auto;width:100%}
+  .about-media{max-width:520px}
+  .dish-grid{grid-template-columns:1fr 1fr}
+  .comments-wrap{grid-template-columns:1fr}
+  .comment-form{position:static}
+  .contact-info{grid-template-columns:1fr 1fr}
+}
+@media (max-width:820px){
+  .nav{display:none}
+  .hamburger{display:grid}
+  .header-actions .btn{display:none}
+  .section{padding:68px 0}
+  .hero{padding:48px 0 64px}
+  .hero-card{left:10px}
+  .hero-seal{right:6px}
+}
+@media (max-width:620px){
+  .header-inner{min-height:68px}
+  .brand-mark{width:40px;height:40px;font-size:1.2rem}
+  .brand-text strong{font-size:1.05rem}
+  .hero-meta{gap:14px}
+  .dish-grid{grid-template-columns:1fr}
+  .about-features{grid-template-columns:1fr}
+  .contact-info{grid-template-columns:1fr}
+  .hero-frame{aspect-ratio:4/5;border-width:6px}
+  .hero-seal{padding:11px 14px}
+  .hero-seal strong{font-size:1.1rem}
+  .hero-card{bottom:14px;padding:12px 14px;max-width:220px}
+  .chat-panel{right:12px;bottom:86px}
+  .chat-fab{right:16px;bottom:18px}
+  .about-stamp{width:104px;height:104px;font-size:.62rem;right:-6px;bottom:-12px}
+  .comment-form{padding:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *:not(.marquee-track):not(.marquee-group):not(.marquee){scroll-behavior:auto!important;animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a class="brand" href="#inicio" aria-label="Pará-Ti Restaurante — início">
+      <span class="brand-mark" aria-hidden="true">P</span>
+      <span class="brand-text">
+        <strong>Pará-Ti</strong>
+        <span>Restaurante</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="#sobre">Sobre</a>
+      <a href="#vitrine">Vitrine</a>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#comentarios">Comentários</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="header-actions">
+      <a class="icon-btn" href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener" aria-label="Instagram do Pará-Ti">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a class="btn btn-primary" href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener">Pedir pelo Instagram
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
+      <button class="icon-btn hamburger" id="openDrawerBtn" aria-label="Abrir menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true" aria-label="Menu">
+  <div class="drawer-top">
+    <span class="brand-text"><strong>Pará-Ti</strong><span>Restaurante</span></span>
+    <button class="icon-btn" id="closeDrawerBtn" aria-label="Fechar menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <a href="#sobre">Sobre</a>
+  <a href="#vitrine">Vitrine</a>
+  <a href="#cardapio">Cardápio</a>
+  <a href="#comentarios">Comentários</a>
+  <a href="#contato">Contato</a>
+  <a class="btn btn-primary" href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener">Pedir pelo Instagram</a>
+</aside>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h1>Um pedacinho do <em>Pará</em> na sua mesa.</h1>
+        <p class="hero-sub">Açaí raiz batido na hora, churrasco suculento, hambúrguer artesanal e self-service no almoço. Sabores do Pará servidos com o carinho de quem é de lá.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#vitrine">Ver a vitrine
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <button class="btn btn-outline" type="button" data-open-chat>Falar com o assistente
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-6a8 8 0 0 1 8-8h2a8 8 0 0 1 8 3z"/></svg>
+          </button>
+        </div>
+        <div class="hero-meta">
+          <div><strong>Seg. a sáb.</strong><span>11h às 22h</span></div>
+          <div><strong>Domingo</strong><span>11h às 18h</span></div>
+          <div><strong>Açaí raiz</strong><span>batido na hora</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-frame">
+          <img src="assets/hero.jpg" alt="Pará-Ti Restaurante" width="328" height="483" />
+        </div>
+        <div class="hero-card">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c4.4 0 8-3.4 8-7.6C20 8.9 16.5 5.6 12 3 7.5 5.6 4 8.9 4 13.4 4 17.6 7.6 21 12 21Z"/><path d="M12 21V9M12 13c1.8-.4 3-1.6 3.4-3.4M12 16c-1.8-.4-3-1.6-3.4-3.4"/></svg>
+          </span>
+          <div><strong>Açaí batido na hora</strong><span>Puro e fresco, do jeito paraense</span></div>
+        </div>
+        <div class="hero-seal" aria-hidden="true"><strong>12,6 mil</strong><span>seguidores</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <span>Açaí raiz</span><span>Sabores do Pará</span><span>Churrasco</span><span>Hambúrguer artesanal</span><span>Self-service no almoço</span><span>Açaí raiz</span><span>Sabores do Pará</span><span>Churrasco</span><span>Hambúrguer artesanal</span><span>Self-service no almoço</span><span>Açaí raiz</span><span>Sabores do Pará</span><span>Churrasco</span><span>Hambúrguer artesanal</span><span>Self-service no almoço</span>
+      </div>
+      <div class="marquee-group" aria-hidden="true">
+        <span>Açaí raiz</span><span>Sabores do Pará</span><span>Churrasco</span><span>Hambúrguer artesanal</span><span>Self-service no almoço</span><span>Açaí raiz</span><span>Sabores do Pará</span><span>Churrasco</span><span>Hambúrguer artesanal</span><span>Self-service no almoço</span><span>Açaí raiz</span><span>Sabores do Pará</span><span>Churrasco</span><span>Hambúrguer artesanal</span><span>Self-service no almoço</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" id="sobre">
+    <div class="container about-grid">
+      <div class="about-media reveal">
+        <div class="main-img"><img src="assets/sabor-5.jpg" alt="Prato do Pará-Ti Restaurante" loading="lazy" /></div>
+        <div class="about-stamp">Tempero<br />do Norte<br />em Fortaleza</div>
+      </div>
+      <div class="about-text reveal">
+        <span class="eyebrow">Sobre a casa</span>
+        <h2>O Pará é aqui.</h2>
+        <p>O <strong>Pará-Ti Restaurante</strong> fica na Av. Central, 34 — Cidade 2000, em Fortaleza. A proposta é simples: trazer o açaí raiz e os sabores do Pará para quem mora ou passa pela capital cearense.</p>
+        <p>No almoço, o self-service deixa você montar o prato do seu jeito. À tarde e à noite, o churrasco e o hambúrguer artesanal dividem espaço com o açaí batido na hora.</p>
+        <div class="about-features">
+          <div class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c4.4 0 8-3.4 8-7.6C20 8.9 16.5 5.6 12 3 7.5 5.6 4 8.9 4 13.4 4 17.6 7.6 21 12 21Z"/></svg>
+            <div><strong>Açaí raiz</strong><span>Puro, fresco e batido na hora</span></div>
+          </div>
+          <div class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20c0-4 4-6 8-6s8 2 8 6M8 14V5M16 14V5M8 8h8"/></svg>
+            <div><strong>Churrasco</strong><span>Na brasa, do jeito que se gosta</span></div>
+          </div>
+          <div class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11h18M5 11a7 7 0 0 1 14 0M3 15h18M5 19h14"/></svg>
+            <div><strong>Self-service</strong><span>Almoço livre, monte seu prato</span></div>
+          </div>
+          <div class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10h16M6 10l2 10h8l2-10M9 10c0-2 1.3-4 3-4s3 2 3 4"/></svg>
+            <div><strong>Hambúrguer</strong><span>Artesanal, feito na hora</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="vitrine">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Vitrine · Cardápio</span>
+        <h2>Um gostinho do que espera por você.</h2>
+        <p>Fotos direto do restaurante, com uma descrição de cada sabor. Para valores e pedidos, fale com a equipe pelo Instagram.</p>
+      </div>
+      <div class="dish-grid" id="cardapio">
+        <article class="dish-card reveal">
+          <div class="dish-media"><img src="assets/sabor-1.jpg" alt="Açaí raiz do Pará-Ti Restaurante" loading="lazy" /></div>
+          <div class="dish-body">
+            <span class="dish-tag">Açaí raiz</span>
+            <h3>Açaí raiz</h3>
+            <p>Batido na hora, puro e fresco, com o sabor marcante do açaí paraense.</p>
+            <span class="dish-price">R$ 55/kg</span>
+          </div>
+        </article>
+        <article class="dish-card reveal">
+          <div class="dish-media"><img src="assets/sabor-2.jpg" alt="Churrasco suculento do Pará-Ti Restaurante" loading="lazy" /></div>
+          <div class="dish-body">
+            <span class="dish-tag">Churrasco</span>
+            <h3>Churrasco suculento</h3>
+            <p>Carne na brasa, suculenta e no ponto certo, para quem gosta de um churrasco bem servido.</p>
+            <span class="dish-price">Consulte valores</span>
+          </div>
+        </article>
+        <article class="dish-card reveal">
+          <div class="dish-media"><img src="assets/sabor-3.jpg" alt="Hambúrguer artesanal do Pará-Ti Restaurante" loading="lazy" /></div>
+          <div class="dish-body">
+            <span class="dish-tag">Artesanal</span>
+            <h3>Hambúrguer artesanal</h3>
+            <p>Montado na hora, com pão macio e aquele capricho que faz diferença no lanche.</p>
+            <span class="dish-price">Consulte valores</span>
+          </div>
+        </article>
+        <article class="dish-card reveal">
+          <div class="dish-media"><img src="assets/sabor-4.jpg" alt="Self-service do Pará-Ti Restaurante" loading="lazy" /></div>
+          <div class="dish-body">
+            <span class="dish-tag">Almoço</span>
+            <h3>Self-service</h3>
+            <p>Almoço livre: monte seu prato do seu jeito, com as opções do dia no buffet.</p>
+            <span class="dish-price">Consulte o buffet</span>
+          </div>
+        </article>
+        <article class="dish-card reveal">
+          <div class="dish-media"><img src="assets/sabor-5.jpg" alt="Comida paraense do Pará-Ti Restaurante" loading="lazy" /></div>
+          <div class="dish-body">
+            <span class="dish-tag">Sabores do Pará</span>
+            <h3>Comida paraense</h3>
+            <p>Pratos típicos do Pará preparados com o tempero da casa. Pergunte o prato do dia.</p>
+            <span class="dish-price">Consulte o prato do dia</span>
+          </div>
+        </article>
+        <article class="dish-card reveal">
+          <div class="dish-media"><img src="assets/sabor-6.jpg" alt="Açaí com acompanhamentos do Pará-Ti Restaurante" loading="lazy" /></div>
+          <div class="dish-body">
+            <span class="dish-tag">Açaí da casa</span>
+            <h3>Açaí com acompanhamentos</h3>
+            <p>Açaí raiz servido do jeito tradicional, para comer puro ou com seus acompanhamentos preferidos.</p>
+            <span class="dish-price">Consulte valores</span>
+          </div>
+        </article>
+        <article class="dish-card reveal">
+          <div class="dish-media"><img src="assets/sabor-7.jpg" alt="Sabores do Pará do Pará-Ti Restaurante" loading="lazy" /></div>
+          <div class="dish-body">
+            <span class="dish-tag">Prato do dia</span>
+            <h3>Sabores do Pará</h3>
+            <p>Uma seleção especial da cozinha paraense preparada todos os dias. Pergunte a opção do dia.</p>
+            <span class="dish-price">Consulte o prato do dia</span>
+          </div>
+        </article>
+      </div>
+      <p class="menu-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+        Fotos do perfil <a href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener" style="font-weight:800;color:var(--acai)">@paratifortaleza</a>. Valores e disponibilidade pelo Instagram.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-tinted" id="comentarios">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Comentários</span>
+        <h2>Quem provou, conta.</h2>
+        <p>Depoimentos públicos sobre a casa e um espaço para você deixar o seu comentário.</p>
+      </div>
+      <div class="comments-wrap">
+        <div class="comments-list reveal" id="commentsList"></div>
+        <form class="comment-form reveal" id="commentForm">
+          <h3>Deixe seu comentário</h3>
+          <p class="hint">Seu comentário fica salvo neste navegador.</p>
+          <div class="field">
+            <label for="commentName">Seu nome</label>
+            <input id="commentName" name="name" type="text" maxlength="40" placeholder="Como quer ser chamado?" required />
+          </div>
+          <div class="field">
+            <label for="commentText">Comentário</label>
+            <textarea id="commentText" name="text" rows="3" maxlength="280" placeholder="Conte como foi sua experiência..." required></textarea>
+          </div>
+          <div class="field">
+            <span style="font-size:.76rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--marrom-suave);">Sua nota</span>
+            <div class="rating" role="radiogroup" aria-label="Sua nota">
+              <input type="radio" id="star5" name="rating" value="5" checked /><label for="star5" aria-label="5 estrelas"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg></label>
+              <input type="radio" id="star4" name="rating" value="4" /><label for="star4" aria-label="4 estrelas"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg></label>
+              <input type="radio" id="star3" name="rating" value="3" /><label for="star3" aria-label="3 estrelas"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg></label>
+              <input type="radio" id="star2" name="rating" value="2" /><label for="star2" aria-label="2 estrelas"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg></label>
+              <input type="radio" id="star1" name="rating" value="1" /><label for="star1" aria-label="1 estrela"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg></label>
+            </div>
+          </div>
+          <button class="btn btn-acai" type="submit">Publicar comentário</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-acai" id="contato">
+    <div class="container contact-grid">
+      <div>
+        <span class="eyebrow">Contato</span>
+        <h2 style="font-size:clamp(2rem,3.8vw,3.1rem);margin-top:12px;">Venha viver o Pará em Fortaleza.</h2>
+        <div class="contact-list">
+          <div class="contact-item">
+            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+            <div><strong>Endereço</strong><a href="https://www.google.com/maps/search/?api=1&query=Av.+Central,+34+-+Cidade+2000,+Fortaleza+-+CE" target="_blank" rel="noopener">Av. Central, 34 — Cidade 2000, Fortaleza/CE</a></div>
+          </div>
+          <div class="contact-item">
+            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <div><strong>Funcionamento</strong><span>Seg. a sáb.: 11h às 22h · Domingo: 11h às 18h</span></div>
+          </div>
+          <div class="contact-item">
+            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span>
+            <div><strong>Instagram</strong><a href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener">@paratifortaleza</a></div>
+          </div>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener">Pedir pelo Instagram
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+          <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&query=Av.+Central,+34+-+Cidade+2000,+Fortaleza+-+CE" target="_blank" rel="noopener">Ver no mapa</a>
+        </div>
+      </div>
+      <div class="contact-info">
+        <div class="info-box"><strong>191</strong><span>posts no Instagram</span></div>
+        <div class="info-box"><strong>12,6 mil</strong><span>seguidores</span></div>
+        <div class="info-box"><strong>Açaí raiz</strong><span>batido na hora</span></div>
+        <div class="info-box"><strong>Cidade 2000</strong><span>Fortaleza/CE</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> Pará-Ti Restaurante · Av. Central, 34 — Cidade 2000</span>
+    <span>Feito com sabor do Pará · <a href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener">@paratifortaleza</a></span>
+  </div>
+</footer>
+
+<button class="chat-fab" id="chatFab" type="button" aria-label="Abrir assistente virtual" aria-expanded="false">
+  <span class="ping" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-6a8 8 0 0 1 8-8h2a8 8 0 0 1 8 3z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>
+</button>
+
+<section class="chat-panel" id="chatPanel" aria-label="Assistente virtual do Pará-Ti" aria-hidden="true">
+  <div class="chat-head">
+    <span class="bot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c4.4 0 8-3.4 8-7.6C20 8.9 16.5 5.6 12 3 7.5 5.6 4 8.9 4 13.4 4 17.6 7.6 21 12 21Z"/></svg></span>
+    <div>
+      <strong>Assistente Pará-Ti</strong>
+      <span><span class="status"></span> Online agora</span>
+    </div>
+    <button class="chat-close" id="chatClose" type="button" aria-label="Fechar assistente">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
+  <div class="chat-quick" id="chatQuick">
+    <button type="button" data-quick="horario">Horário</button>
+    <button type="button" data-quick="endereco">Endereço</button>
+    <button type="button" data-quick="acai">Açaí</button>
+    <button type="button" data-quick="cardapio">Cardápio</button>
+    <button type="button" data-quick="delivery">Delivery</button>
+  </div>
+  <form class="chat-form" id="chatForm">
+    <label class="sr-only" for="chatInput">Digite sua mensagem</label>
+    <input id="chatInput" type="text" placeholder="Digite sua dúvida..." autocomplete="off" maxlength="200" />
+    <button type="submit" aria-label="Enviar mensagem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+    </button>
+  </form>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const INSTAGRAM = 'https://www.instagram.com/paratifortaleza/';
+const MAPS = 'https://www.google.com/maps/search/?api=1&query=Av.+Central,+34+-+Cidade+2000,+Fortaleza+-+CE';
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const header = document.getElementById('siteHeader');
+addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 8), {passive:true});
+
+const drawer = document.getElementById('mobileDrawer');
+const backdrop = document.getElementById('drawerBackdrop');
+const openDrawerBtn = document.getElementById('openDrawerBtn');
+function setDrawer(open){
+  drawer.classList.toggle('open', open);
+  backdrop.classList.toggle('open', open);
+  drawer.setAttribute('aria-hidden', String(!open));
+  openDrawerBtn.setAttribute('aria-expanded', String(open));
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+openDrawerBtn.addEventListener('click', () => setDrawer(true));
+document.getElementById('closeDrawerBtn').addEventListener('click', () => setDrawer(false));
+backdrop.addEventListener('click', () => setDrawer(false));
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setDrawer(false)));
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+}, {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+addEventListener('keydown', e => { if(e.key === 'Escape'){ setDrawer(false); closeChat(); } });
+
+const seedComments = [
+  {name:'@vlogdeviagemoficial', text:'É um pedacinho do Pará em Fortaleza! O destaque é o açaí batido na hora, do jeito tradicional: puro, fresco e com aquele sabor marcante do açaí paraense.', rating:5, source:'Instagram'},
+  {name:'Avaliação no Instagram', text:'Jamais havia comido uma comida tão saborosa! Além de uma culinária nordestina extremamente rica, é um lugar aconchegante e lindamente decorado.', rating:5, source:'Instagram'}
+];
+const STORAGE_KEY = 'parati_comments_v1';
+
+function loadComments(){
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { return []; }
+}
+function allComments(){ return [...seedComments, ...loadComments()]; }
+function starRow(n){
+  let out = '';
+  for(let i=0;i<5;i++){
+    out += '<svg viewBox="0 0 24 24" fill="' + (i < n ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="1.5"><path d="m12 2 3 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg>';
+  }
+  return out;
+}
+function initials(name){
+  const clean = name.replace('@','').trim();
+  const parts = clean.split(/\s+/).filter(Boolean);
+  return ((parts[0]?.[0] || 'P') + (parts[1]?.[0] || '')).toUpperCase();
+}
+function renderComments(){
+  const list = document.getElementById('commentsList');
+  list.innerHTML = '';
+  allComments().forEach(c => {
+    const card = document.createElement('article');
+    card.className = 'comment-card';
+    card.innerHTML = '<div class="comment-top"><span class="avatar"></span><div><strong></strong><span></span></div><span class="stars" aria-label="' + c.rating + ' de 5 estrelas"></span></div><p></p>';
+    card.querySelector('.avatar').textContent = initials(c.name);
+    card.querySelector('strong').textContent = c.name;
+    card.querySelector('.comment-top div span').textContent = c.source || 'Visitante';
+    card.querySelector('.stars').innerHTML = starRow(c.rating);
+    card.querySelector('p').textContent = c.text;
+    list.appendChild(card);
+  });
+}
+renderComments();
+
+const commentForm = document.getElementById('commentForm');
+commentForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('commentName').value.trim();
+  const text = document.getElementById('commentText').value.trim();
+  const rating = Number(commentForm.querySelector('input[name="rating"]:checked')?.value || 5);
+  if(!name || !text) return;
+  const saved = loadComments();
+  saved.unshift({name, text, rating, source:'Visitante', date:new Date().toISOString()});
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(saved.slice(0,30)));
+  commentForm.reset();
+  document.getElementById('star5').checked = true;
+  renderComments();
+  toast('Comentário publicado. Obrigado!');
+});
+
+let toastTimer;
+function toast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
+}
+
+const chatPanel = document.getElementById('chatPanel');
+const chatFab = document.getElementById('chatFab');
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+let chatStarted = false;
+let chatOpen = false;
+
+function normalize(t){
+  return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w\s?]/g,' ').replace(/\s+/g,' ').trim();
+}
+function addMessage(text, who = 'bot', html = ''){
+  const div = document.createElement('div');
+  div.className = 'msg ' + who;
+  div.textContent = text;
+  if(html){
+    const wrap = document.createElement('div');
+    wrap.innerHTML = html;
+    div.appendChild(wrap);
+  }
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+function linkHtml(url, label){
+  const external = url.indexOf('#') !== 0;
+  return '<a class="msg-link" href="' + url + '"' + (external ? ' target="_blank" rel="noopener"' : '') + '>' + label + ' ↗</a>';
+}
+function botReply(text, link){
+  const typing = document.createElement('div');
+  typing.className = 'msg bot typing';
+  typing.innerHTML = '<span></span><span></span><span></span>';
+  chatMessages.appendChild(typing);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  setTimeout(() => {
+    typing.remove();
+    addMessage(text, 'bot', link || '');
+  }, 550);
+}
+function answer(raw){
+  const t = normalize(raw);
+  const has = (...words) => words.some(w => t.includes(w));
+
+  if(has('oi','ola','bom dia','boa tarde','boa noite','eai','hey','tudo bem')){
+    return {text:'Oi! Bem-vindo ao Pará-Ti. Posso te ajudar com horário, endereço, cardápio, açaí, delivery e mais. O que você quer saber?', link:linkHtml(INSTAGRAM,'Ver Instagram')};
+  }
+  if(has('horario','hora','abre','fecha','funciona','funcionamento','aberto')){
+    return {text:'Funcionamos de segunda a sábado, das 11h às 22h, e domingo das 11h às 18h.', link:''};
+  }
+  if(has('endereco','onde','local','localizacao','fica','chegar','mapa')){
+    return {text:'Estamos na Av. Central, 34 — Cidade 2000, Fortaleza/CE.', link:linkHtml(MAPS,'Abrir no Google Maps')};
+  }
+  if(has('acai','açaí')){
+    return {text:'Nosso açaí é raiz e batido na hora, puro e fresco. O valor divulgado pela casa é R$ 55/kg. Para saber a disponibilidade do dia, fale com a equipe.', link:linkHtml(INSTAGRAM,'Pedir pelo Instagram')};
+  }
+  if(has('churrasco','carne','espeto')){
+    return {text:'Tem churrasco suculento na casa. Os valores e as opções do dia são confirmados com a equipe pelo Instagram.', link:linkHtml(INSTAGRAM,'Ver no Instagram')};
+  }
+  if(has('hamburguer','lanche','burger')){
+    return {text:'Nosso hambúrguer é artesanal. Para ver as opções e valores, chama a gente no Instagram.', link:linkHtml(INSTAGRAM,'Ver no Instagram')};
+  }
+  if(has('self','buffet','almoco','almoço','prato','paraense','tacaca','tucupi','manicoba','vatapa','tipico','tipica')){
+    return {text:'No almoço temos self-service para montar seu prato, além dos sabores do Pará. Para saber o prato do dia e o valor do buffet, consulte a equipe pelo Instagram.', link:linkHtml(INSTAGRAM,'Perguntar no Instagram')};
+  }
+  if(has('cardapio','menu','opcoes','comida','o que tem')){
+    return {text:'Nossos destaques: açaí raiz batido na hora, churrasco, hambúrguer artesanal, sabores do Pará e self-service no almoço. Veja a vitrine aqui no site ou fale com a equipe para os valores.', link:linkHtml('#vitrine','Ver vitrine')};
+  }
+  if(has('delivery','entrega','pedir','pedido','ifood','encomenda')){
+    return {text:'Para pedidos, entrega e disponibilidade, fale diretamente com a equipe pelo Instagram. Eles confirmam as opções do dia.', link:linkHtml(INSTAGRAM,'Falar no Instagram')};
+  }
+  if(has('reserva','mesa','evento','aniversario','grupo','festa')){
+    return {text:'Para reservas, grupos e eventos, o contato é pela DM do Instagram. A equipe confirma a disponibilidade.', link:linkHtml(INSTAGRAM,'Falar no Instagram')};
+  }
+  if(has('instagram','insta','perfil','rede','social')){
+    return {text:'Nosso Instagram é @paratifortaleza. Lá você vê as novidades, fotos e fala direto com a equipe.', link:linkHtml(INSTAGRAM,'Abrir Instagram')};
+  }
+  if(has('preco','valor','quanto custa','quanto e','quanto é','barato','caro')){
+    return {text:'O açaí está divulgado a R$ 55/kg. Os demais valores (churrasco, hambúrguer e buffet) são confirmados com a equipe pelo Instagram.', link:linkHtml(INSTAGRAM,'Consultar valores')};
+  }
+  if(has('estacionamento','estacionar','carro')){
+    return {text:'Essa informação não está disponível por aqui. A equipe do restaurante pode te orientar pelo Instagram.', link:linkHtml(INSTAGRAM,'Falar no Instagram')};
+  }
+  if(has('obrigado','obrigada','valeu','vlw','tchau','ate mais')){
+    return {text:'Por nada! Esperamos você no Pará-Ti. Um abraço e até breve.', link:''};
+  }
+  return {text:'Ainda não tenho essa informação por aqui. A equipe do Pará-Ti pode te ajudar pelo Instagram.', link:linkHtml(INSTAGRAM,'Falar no Instagram')};
+}
+
+function startChat(){
+  if(chatStarted) return;
+  chatStarted = true;
+  addMessage('Olá! Eu sou o assistente virtual do Pará-Ti. Posso te ajudar com horário, endereço, cardápio, açaí e delivery. Como posso ajudar?', 'bot');
+}
+function openChat(){
+  chatOpen = true;
+  chatPanel.classList.add('open');
+  chatPanel.setAttribute('aria-hidden','false');
+  chatFab.setAttribute('aria-expanded','true');
+  startChat();
+  setTimeout(() => chatInput.focus(), 250);
+}
+function closeChat(){
+  chatOpen = false;
+  chatPanel.classList.remove('open');
+  chatPanel.setAttribute('aria-hidden','true');
+  chatFab.setAttribute('aria-expanded','false');
+}
+chatFab.addEventListener('click', () => chatOpen ? closeChat() : openChat());
+document.getElementById('chatClose').addEventListener('click', closeChat);
+document.querySelectorAll('[data-open-chat]').forEach(b => b.addEventListener('click', openChat));
+
+document.getElementById('chatForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const text = chatInput.value.trim();
+  if(!text) return;
+  addMessage(text, 'user');
+  chatInput.value = '';
+  const r = answer(text);
+  botReply(r.text, r.link);
+});
+document.querySelectorAll('#chatQuick button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const q = btn.dataset.quick;
+    const question = btn.textContent;
+    addMessage(question, 'user');
+    let r;
+    if(q === 'horario') r = answer('horario');
+    else if(q === 'endereco') r = answer('endereco');
+    else if(q === 'acai') r = answer('acai');
+    else if(q === 'cardapio') r = answer('cardapio');
+    else r = answer('delivery');
+    botReply(r.text, r.link);
+  });
+});
+</script>
+</body>
+</html>
