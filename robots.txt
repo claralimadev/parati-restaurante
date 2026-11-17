@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://claralimadev.github.io/parati-restaurante/sitemap.xml
