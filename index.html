@@ -3,30 +3,30 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Pará-Ti Restaurante • Açaí raiz e sabores do Pará em Fortaleza</title>
-<meta name="description" content="Pará-Ti Restaurante na Cidade 2000, Fortaleza. Açaí batido na hora, churrasco, hambúrguer artesanal, self-service no almoço e sabores do Pará." />
+<title>Pará-Ti Restaurante • Açaí artesanal e sabores do Pará em Fortaleza</title>
+<meta name="description" content="Pará-Ti Restaurante na Cidade 2000, Fortaleza. Cardápio com açaí artesanal, produtos do Pará, peixes, chapas e bebidas. Monte sua comanda e finalize pelo WhatsApp." />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="https://claralimadev.github.io/parati-restaurante/" />
 <meta property="og:type" content="restaurant.restaurant" />
 <meta property="og:site_name" content="Pará-Ti Restaurante" />
-<meta property="og:title" content="Pará-Ti Restaurante • Açaí raiz e sabores do Pará em Fortaleza" />
-<meta property="og:description" content="Açaí batido na hora, churrasco, hambúrguer artesanal e self-service no almoço. Av. Central, 34 — Cidade 2000, Fortaleza/CE." />
+<meta property="og:title" content="Pará-Ti Restaurante • Açaí artesanal e sabores do Pará em Fortaleza" />
+<meta property="og:description" content="Açaí artesanal, culinária paraense e um cardápio variado. Av. Central, 34 — Cidade 2000, Fortaleza/CE." />
 <meta property="og:url" content="https://claralimadev.github.io/parati-restaurante/" />
 <meta property="og:image" content="https://claralimadev.github.io/parati-restaurante/assets/hero.jpg" />
 <meta property="og:locale" content="pt_BR" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Pará-Ti Restaurante • Açaí raiz e sabores do Pará em Fortaleza" />
-<meta name="twitter:description" content="Açaí batido na hora, churrasco, hambúrguer artesanal e self-service no almoço em Fortaleza/CE." />
+<meta name="twitter:title" content="Pará-Ti Restaurante • Açaí artesanal e sabores do Pará em Fortaleza" />
+<meta name="twitter:description" content="Açaí artesanal e sabores do Pará em Fortaleza/CE. Monte sua comanda no site." />
 <meta name="twitter:image" content="https://claralimadev.github.io/parati-restaurante/assets/hero.jpg" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Restaurant",
   "name": "Pará-Ti Restaurante",
-  "description": "Açaí batido na hora, churrasco, hambúrguer artesanal, self-service no almoço e sabores do Pará na Cidade 2000, Fortaleza.",
+  "description": "Culinária paraense, açaí artesanal, peixes, chapas e bebidas na Cidade 2000, Fortaleza.",
   "url": "https://claralimadev.github.io/parati-restaurante/",
   "image": "https://claralimadev.github.io/parati-restaurante/assets/hero.jpg",
-  "servesCuisine": ["Paraense", "Açaí", "Churrasco", "Hambúrguer", "Self-service"],
+  "servesCuisine": ["Paraense", "Açaí", "Churrasco", "Hambúrguer"],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Av. Central, 34",
@@ -55,9 +55,7 @@
   --acai:#4A1D52;
   --acai-claro:#F0E2F2;
   --dourado:#C8942F;
-  --manga:#C08A45;
   --buriti:#B45A34;
-  --folha:#4E6B4C;
   --cupuacu:#EAD9B8;
   --sombra:0 18px 45px rgba(46,31,24,.12);
   --sombra-forte:0 24px 60px rgba(46,31,24,.22);
@@ -67,14 +65,14 @@
 *{box-sizing:border-box}
 body{
   margin:0;
-  background:linear-gradient(180deg,#FAF4EA 0%,#FBF0DE 45%,#FAF4EA 100%);
+  background:var(--creme);
   font-family:"Nunito Sans",system-ui,-apple-system,sans-serif;
   color:var(--marrom);
-  background:var(--creme);
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
 }
-h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.12;margin:0;color:var(--marrom)}
+h1,h2{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.12;margin:0;color:var(--marrom)}
+h3,h4{margin:0}
 p{margin:0}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -100,14 +98,20 @@ button{font:inherit;cursor:pointer}
 .brand-text{display:flex;flex-direction:column;line-height:1.08}
 .brand-text strong{font-family:"Fraunces",serif;font-size:1.22rem;font-weight:700;letter-spacing:.01em}
 .brand-text span{font-size:.66rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--terra)}
-.nav{display:flex;align-items:center;gap:26px}
-.nav a,.nav button{font-size:.9rem;font-weight:700;color:var(--marrom-suave);position:relative;padding:6px 0;background:none;border:0}
+.nav{display:flex;align-items:center;gap:22px}
+.nav a,.nav button{font-size:1rem;font-weight:700;color:var(--marrom-suave);position:relative;padding:6px 0;background:none;border:0}
 .nav a::after,.nav button::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--terra);transition:width .2s}
 .nav a:hover::after,.nav button:hover::after{width:100%}
 .header-actions{display:flex;align-items:center;gap:10px}
 .icon-btn{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid rgba(46,31,24,.14);color:var(--marrom);transition:.2s}
 .icon-btn:hover{border-color:var(--terra);color:var(--terra);transform:translateY(-2px)}
 .icon-btn svg{width:20px;height:20px}
+.icon-btn.instagram,.icon-btn.whatsapp{color:#fff;background:var(--terra);border-color:var(--terra)}
+.icon-btn.instagram:hover,.icon-btn.whatsapp:hover{background:var(--terra-esc);border-color:var(--terra-esc);color:#fff}
+.bag-btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;background:var(--acai);color:#fff;padding:11px 13px 11px 15px;font-weight:800;font-size:.82rem;white-space:nowrap;box-shadow:0 10px 22px rgba(74,29,82,.26);transition:transform .2s,background .2s}
+.bag-btn:hover{background:#5A2464;transform:translateY(-2px)}
+.bag-btn svg{width:18px;height:18px;color:var(--areia)}
+.bag-count{display:grid;place-items:center;min-width:22px;height:22px;padding:0 5px;border-radius:999px;background:var(--terra);color:#fff;font-size:.74rem;font-weight:800}
 .hamburger{display:none}
 .drawer-backdrop{position:fixed;inset:0;background:rgba(46,31,24,.45);opacity:0;pointer-events:none;transition:opacity .25s;z-index:70}
 .drawer-backdrop.open{opacity:1;pointer-events:auto}
@@ -116,12 +120,7 @@ button{font:inherit;cursor:pointer}
 .mobile-drawer .drawer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
 .mobile-drawer a{font-weight:800;padding:13px 4px;border-bottom:1px solid rgba(46,31,24,.1)}
 .mobile-drawer .btn{margin-top:18px}
-.hero{position:relative;overflow:hidden;padding:64px 0 84px;background:
-  radial-gradient(800px 480px at 88% 8%,rgba(74,29,82,.14),transparent 62%),
-  radial-gradient(700px 500px at 6% 92%,rgba(192,138,69,.18),transparent 62%),
-  radial-gradient(500px 400px at 55% 110%,rgba(78,107,76,.10),transparent 65%),
-  var(--creme)}
-.hero::after{content:"";position:absolute;inset:auto -10% -55% 55%;height:70%;border-radius:50%;background:rgba(168,69,42,.06);filter:blur(10px);pointer-events:none}
+.hero{position:relative;overflow:hidden;padding:64px 0 84px;background:var(--creme)}
 .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;position:relative;z-index:1}
 .hero h1{font-size:clamp(2.6rem,5.2vw,4.35rem);letter-spacing:-.02em}
 .hero h1 em{font-style:italic;color:var(--acai)}
@@ -140,9 +139,6 @@ button{font:inherit;cursor:pointer}
 .hero-card .icon svg{width:24px;height:24px}
 .hero-card strong{display:block;font-family:"Fraunces",serif;font-size:1rem;line-height:1.2}
 .hero-card span{font-size:.75rem;font-weight:700;color:var(--marrom-suave)}
-.hero-seal{position:absolute;top:20px;right:-14px;background:var(--acai);color:#fff;border-radius:18px;padding:14px 18px;text-align:center;box-shadow:var(--sombra);transform:rotate(2deg)}
-.hero-seal strong{display:block;font-family:"Fraunces",serif;font-size:1.35rem;line-height:1}
-.hero-seal span{font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
 .marquee{background:var(--marrom);color:var(--creme);padding:14px 0;overflow:hidden}
 .marquee-track{display:flex;width:max-content;animation:scroll 30s linear infinite}
 .marquee-group{display:flex;gap:42px;padding-right:42px;flex:0 0 auto}
@@ -151,55 +147,43 @@ button{font:inherit;cursor:pointer}
 @keyframes scroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 .section{padding:88px 0}
 .section-tinted{background:var(--creme-2)}
-#sobre{background:radial-gradient(600px 300px at 95% 30%,rgba(192,138,69,.10),transparent 70%),linear-gradient(180deg,var(--creme) 0%,#F8EEDD 100%)}
-#vitrine{position:relative;background:radial-gradient(700px 340px at 4% 35%,rgba(74,29,82,.06),transparent 70%),linear-gradient(180deg,#F8EEDD 0%,var(--creme) 45%,#F6EBD9 100%)}
-#comentarios{background:linear-gradient(160deg,#F2E4CF,#F8F0D8 55%,#F3E6D5)}
-.section.section-acai{background:linear-gradient(160deg,var(--acai),#38143F);color:var(--creme);padding:48px 0}
-.section-head{max-width:680px;margin-bottom:44px}
+#cardapio{position:relative;background:linear-gradient(180deg,var(--creme) 0%,#F9F1E4 100%)}
+#sobre{position:relative;background:linear-gradient(180deg,#F9F1E4 0%,var(--creme) 100%)}
+#comentarios{position:relative;background:linear-gradient(180deg,var(--creme) 0%,var(--creme-2) 100%)}
+.section-head{max-width:700px;margin-bottom:40px}
 .section-head h2{font-size:clamp(2rem,3.8vw,3.1rem);margin-top:12px;letter-spacing:-.015em}
 .section-head p{margin-top:14px;color:var(--marrom-suave);font-size:1.02rem}
-.section-acai .section-head p{color:rgba(250,244,234,.78)}
-.section-acai h2{color:var(--creme)}
-.section-acai .eyebrow{color:var(--areia)}
-.section-acai .eyebrow::before{background:var(--areia)}
+#cardapio,#sobre,#comentarios,#rodape{scroll-margin-top:94px}
+.menu-quick{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:0 auto 34px;max-width:900px}
+.menu-quick a{display:inline-flex;align-items:center;border:1px solid rgba(74,29,82,.22);border-radius:999px;background:#fff;color:var(--acai);padding:9px 16px;font-size:.82rem;font-weight:800;transition:background .18s,color .18s,border-color .18s}
+.menu-quick a:hover{background:var(--acai);border-color:var(--acai);color:#fff}
+.menu-wrap{display:flex;flex-direction:column;gap:26px;max-width:860px;margin-inline:auto}
+.menu-group{width:100%;background:#fff;border:1px solid rgba(46,31,24,.08);border-radius:22px;padding:28px 32px;box-shadow:0 12px 30px rgba(46,31,24,.05);scroll-margin-top:100px}
+.menu-category{font-family:"Nunito Sans",sans-serif;font-size:.9rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--acai);padding-bottom:12px;border-bottom:2px solid var(--acai);margin-bottom:8px}
+.menu-note{font-size:.88rem;color:var(--marrom-suave);margin:10px 0 4px}
+.menu-list{list-style:none;margin:0;padding:0}
+.menu-item{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding:17px 0;border-bottom:1px dashed rgba(46,31,24,.14)}
+.menu-item:last-child{border-bottom:0;padding-bottom:0}
+.menu-info{min-width:0;overflow-wrap:anywhere}
+.menu-info h4{font-family:"Nunito Sans",sans-serif;font-weight:800;font-size:1.06rem;line-height:1.35;color:var(--terra-esc)}
+.menu-info p{font-size:.9rem;line-height:1.5;color:var(--marrom-suave);margin-top:5px}
+.menu-action{display:flex;flex-direction:column;align-items:flex-end;gap:9px;flex:0 0 auto;min-width:132px}
+.menu-price{font-family:"Fraunces",serif;font-weight:700;font-size:1.12rem;color:var(--acai);white-space:nowrap}
+.add-btn{border:1px solid var(--terra);background:transparent;color:var(--terra);border-radius:999px;padding:8px 16px;font-size:.82rem;font-weight:800;white-space:nowrap;transition:background .18s,color .18s}
+.add-btn:hover{background:var(--terra);color:#fff}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--acai);border-radius:999px;overflow:hidden;background:#fff}
+.qty-btn{width:27px;height:27px;border:0;background:transparent;color:var(--acai);font-weight:800;font-size:.95rem;line-height:1}
+.qty-btn:hover{background:var(--acai-claro)}
+.qty-num{min-width:22px;text-align:center;font-size:.82rem;font-weight:800;color:var(--acai)}
+.menu-tip{margin-top:22px;font-size:.82rem;color:var(--marrom-suave);display:flex;gap:8px;align-items:center}
+.menu-tip svg{width:16px;height:16px;flex:0 0 auto;color:var(--terra)}
 .about-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:center}
 .about-media{position:relative}
 .about-media .main-img{border-radius:28px;overflow:hidden;box-shadow:var(--sombra);aspect-ratio:4/4.6;border:7px solid #fff}
 .about-media .main-img img{width:100%;height:100%;object-fit:cover}
 .about-stamp{position:absolute;right:-18px;bottom:-18px;width:132px;height:132px;border-radius:50%;background:var(--buriti);color:#fff;display:grid;place-items:center;text-align:center;box-shadow:var(--sombra);font-weight:800;font-size:.72rem;line-height:1.35;letter-spacing:.08em;text-transform:uppercase;padding:14px}
-.about-text p{color:var(--marrom-suave);margin-top:16px}
-.about-features{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
-.feature{background:#fff;border:1px solid rgba(46,31,24,.09);border-radius:16px;padding:16px;display:flex;gap:12px;align-items:flex-start}
-.feature:nth-child(1){border-left:4px solid var(--acai)}
-.feature:nth-child(2){border-left:4px solid var(--buriti)}
-.feature:nth-child(3){border-left:4px solid var(--folha)}
-.feature:nth-child(4){border-left:4px solid var(--manga)}
-.feature:nth-child(1) svg{color:var(--acai)}
-.feature:nth-child(2) svg{color:var(--buriti)}
-.feature:nth-child(3) svg{color:var(--folha)}
-.feature:nth-child(4) svg{color:var(--manga)}
-.feature svg{width:22px;height:22px;color:var(--terra);flex:0 0 auto;margin-top:3px}
-.feature strong{display:block;font-size:.92rem}
-.feature span{font-size:.78rem;color:var(--marrom-suave)}
-.dish-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.dish-card{background:#fff;border:1px solid rgba(46,31,24,.09);border-radius:var(--raio);overflow:hidden;box-shadow:0 12px 30px rgba(46,31,24,.06);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
-.dish-card:hover{transform:translateY(-4px);box-shadow:var(--sombra)}
-.dish-media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--creme-2)}
-.dish-media img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
-.dish-card:hover .dish-media img{transform:scale(1.05)}
-.dish-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
-.dish-tag{align-self:flex-start;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--acai);background:var(--acai-claro);padding:5px 10px;border-radius:999px}
-.dish-card:nth-child(3n+1){border-top:5px solid var(--acai)}
-.dish-card:nth-child(3n+2){border-top:5px solid var(--manga)}
-.dish-card:nth-child(3n){border-top:5px solid var(--folha)}
-.dish-card:nth-child(3n+1) .dish-price{color:var(--acai)}
-.dish-card:nth-child(3n+2) .dish-price{color:#A85A12}
-.dish-card:nth-child(3n) .dish-price{color:var(--folha)}
-.dish-body h3{font-size:1.3rem;color:var(--terra-esc)}
-.dish-body p{font-size:.9rem;color:var(--marrom-suave)}
-.dish-price{margin-top:auto;padding-top:6px;font-family:"Fraunces",serif;font-size:1rem;color:var(--acai)}
-.menu-note{margin-top:20px;font-size:.82rem;color:var(--marrom-suave);display:flex;gap:8px;align-items:center}
-.menu-note svg{width:16px;height:16px;flex:0 0 auto;color:var(--terra)}
+.about-text p{color:var(--marrom-suave);margin-top:18px;font-size:1rem}
+.about-text p + p{margin-top:14px}
 .comments-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
 .comments-list{display:flex;flex-direction:column;gap:14px}
 .comment-card{background:#fff;border:1px solid rgba(46,31,24,.09);border-radius:18px;padding:20px;box-shadow:0 10px 26px rgba(46,31,24,.05)}
@@ -211,10 +195,10 @@ button{font:inherit;cursor:pointer}
 .stars svg{width:14px;height:14px}
 .comment-card p{font-size:.9rem;color:var(--marrom-suave)}
 .comment-form{background:#fff;border:1px solid rgba(46,31,24,.09);border-radius:var(--raio);padding:26px;box-shadow:var(--sombra);position:sticky;top:96px}
-.comment-form h3{font-size:1.35rem}
+.comment-form h3{font-size:1.35rem;font-family:"Fraunces",serif}
 .comment-form .hint{font-size:.8rem;color:var(--marrom-suave);margin:6px 0 18px}
 .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-.field label{font-size:.76rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--marrom-suave)}
+.field label,.field-label{font-size:.76rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--marrom-suave)}
 .field input,.field textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(46,31,24,.18);background:var(--creme);font:inherit;font-size:.9rem;color:var(--marrom);resize:vertical}
 .field input:focus,.field textarea:focus{outline:2px solid rgba(168,69,42,.35);border-color:var(--terra)}
 .rating{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:4px}
@@ -223,27 +207,40 @@ button{font:inherit;cursor:pointer}
 .rating label svg{width:26px;height:26px}
 .rating input:checked ~ label,.rating label:hover,.rating label:hover ~ label{color:var(--dourado)}
 .comment-form .btn{width:100%}
-.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-.contact-list{display:flex;flex-direction:column;gap:12px;margin-top:18px}
-.contact-item{display:flex;gap:14px;align-items:flex-start}
-.contact-item .icon{width:44px;height:44px;border-radius:13px;background:rgba(234,217,194,.14);display:grid;place-items:center;color:var(--areia);flex:0 0 auto}
-.contact-item svg{width:20px;height:20px}
-.contact-item strong{display:block;font-size:.86rem;letter-spacing:.04em}
-.contact-item span,.contact-item a{font-size:.88rem;color:rgba(250,244,234,.78)}
-.contact-item a:hover{color:#fff;text-decoration:underline}
-.contact-info{display:flex;flex-direction:column;align-items:flex-start}
-.contact-info h3{font-family:"Fraunces",serif;font-size:1.3rem;color:var(--creme);margin-bottom:12px}
-.contact-info a,.contact-info button{width:100%;text-align:left;padding:6px 0;font-size:.88rem;color:rgba(250,244,234,.78);background:none;border:0;border-bottom:1px solid rgba(250,244,234,.12)}
-.contact-info a:hover,.contact-info button:hover{color:#fff}
-.contact-actions .btn-primary{box-shadow:none}
-.contact-actions .btn-primary:hover{box-shadow:none}
-.contact-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
-.contact-actions .btn-outline{border-color:rgba(250,244,234,.35);color:var(--creme)}
-.contact-actions .btn-outline:hover{border-color:var(--areia);color:#fff}
-.site-footer{background:#241812;color:rgba(250,244,234,.72);padding:30px 0;box-shadow:0 -12px 0 #38143F}
-.footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.8rem;align-items:center}
-.footer-inner a{color:var(--areia)}
-.footer-inner a:hover{text-decoration:underline}
+.site-footer{background:var(--creme-2);border-top:1px solid rgba(180,90,52,.18);color:var(--marrom-suave);padding:44px 0 20px}
+.footer-grid{display:grid;grid-template-columns:1.25fr .75fr 1fr;gap:40px}
+.footer-brand{display:flex;align-items:center;gap:11px;font-family:"Nunito Sans",sans-serif;font-weight:800;font-size:1.05rem;color:var(--acai)}
+.footer-brand .brand-mark{width:38px;height:38px;font-size:1.15rem;box-shadow:none}
+.footer-brand p{font-size:.82rem;font-weight:400;color:var(--marrom-suave);margin-top:10px;max-width:270px}
+.footer-col h3{font-family:"Nunito Sans",sans-serif;font-size:.74rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);margin-bottom:12px}
+.footer-col p,.footer-col a{font-size:.82rem;color:var(--marrom-suave)}
+.footer-col a{display:block;padding:3px 0}
+.footer-col a:hover{color:var(--acai);text-decoration:underline}
+.footer-col .social-links{display:flex;align-items:center;gap:10px;margin-top:14px}
+.footer-col .social-links a{display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid var(--terra);border-radius:50%;background:var(--terra);color:#fff;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.footer-col .social-links a:hover{background:var(--terra-esc);border-color:var(--terra-esc);color:#fff;text-decoration:none;transform:translateY(-2px)}
+.footer-col .social-links a svg{width:19px;height:19px}
+.footer-bottom{border-top:1px solid rgba(180,90,52,.18);margin-top:32px;padding-top:16px;font-size:.76rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;color:var(--marrom-suave)}
+.modal-backdrop{position:fixed;inset:0;background:rgba(46,31,24,.55);opacity:0;pointer-events:none;transition:opacity .22s;z-index:110}
+.modal-backdrop.open{opacity:1;pointer-events:auto}
+.order-modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-46%) scale(.98);opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;z-index:115;width:min(460px,calc(100vw - 28px));max-height:calc(100vh - 28px);overflow:auto;background:var(--creme);border-radius:22px;box-shadow:var(--sombra-forte);padding:24px}
+.order-modal.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+.order-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+.order-head h2{font-size:1.5rem}
+.order-head p{font-size:.8rem;color:var(--marrom-suave);margin-top:4px}
+.order-close{width:34px;height:34px;border-radius:50%;border:0;background:rgba(46,31,24,.08);color:var(--marrom);display:grid;place-items:center;flex:0 0 auto}
+.order-close:hover{background:rgba(46,31,24,.16)}
+.order-close svg{width:16px;height:16px}
+.order-summary{background:#fff;border:1px solid rgba(46,31,24,.08);border-radius:14px;padding:12px 14px;margin-bottom:16px;max-height:150px;overflow:auto;font-size:.8rem;color:var(--marrom-suave)}
+.order-summary div + div{margin-top:3px}
+.order-summary strong{color:var(--terra-esc)}
+.mode-title{font-size:.76rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--marrom-suave);margin-bottom:8px}
+.mode-group{display:flex;gap:10px;margin-bottom:16px}
+.mode-option{flex:1;display:flex;align-items:center;gap:8px;border:1px solid rgba(46,31,24,.18);border-radius:12px;padding:10px;background:#fff;font-size:.8rem;font-weight:800;cursor:pointer}
+.mode-option input{accent-color:var(--terra);width:16px;height:16px;margin:0}
+.order-total{display:flex;justify-content:space-between;align-items:center;font-size:.86rem;font-weight:800;margin:6px 0 14px}
+.order-total strong{font-family:"Fraunces",serif;font-size:1.2rem;color:var(--acai)}
+.order-modal .btn{width:100%}
 .fab-anchor{position:sticky;bottom:26px;height:0;margin-bottom:12px;z-index:90;pointer-events:none}
 .chat-fab{position:absolute;right:22px;bottom:0;padding:0;line-height:0;width:60px;height:60px;border-radius:50%;border:0;background:var(--acai);color:#fff;display:grid;place-items:center;box-shadow:0 16px 34px rgba(74,29,82,.4);pointer-events:auto;transition:transform .2s}
 .chat-fab:hover{transform:scale(1.06)}
@@ -288,13 +285,11 @@ button{font:inherit;cursor:pointer}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
 .reveal.visible{opacity:1;transform:none}
 @media (max-width:1040px){
-  .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .hero-grid,.about-grid{grid-template-columns:1fr;gap:40px}
   .hero-visual{max-width:620px;margin-inline:auto;width:100%}
   .about-media{max-width:520px}
-  .dish-grid{grid-template-columns:1fr 1fr}
   .comments-wrap{grid-template-columns:1fr}
   .comment-form{position:static}
-
 }
 @media (max-width:820px){
   .nav{display:none}
@@ -303,28 +298,42 @@ button{font:inherit;cursor:pointer}
   .section{padding:68px 0}
   .hero{padding:48px 0 64px}
   .hero-card{left:10px}
-  .hero-seal{right:6px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:26px}
 }
 @media (max-width:620px){
   .header-inner{min-height:68px}
   .brand-mark{width:40px;height:40px;font-size:1.2rem}
   .brand-text strong{font-size:1.05rem}
   .hero-meta{gap:14px}
-   .dish-grid{grid-template-columns:1fr 1fr;gap:12px}
-   .dish-body{padding:14px}
-   .dish-body h3{font-size:1.05rem}
-
-  .about-features{grid-template-columns:1fr}
-
   .hero-frame{aspect-ratio:4/5;border-width:6px}
-  .hero-seal{padding:11px 14px}
-  .hero-seal strong{font-size:1.1rem}
   .hero-card{bottom:14px;padding:12px 14px;max-width:220px}
-   .chat-panel{right:12px;bottom:86px}
-   .fab-anchor{bottom:18px}
-   .chat-fab{right:16px}
+  .chat-panel{right:12px;bottom:86px}
+  .fab-anchor{bottom:18px}
+  .chat-fab{right:16px}
   .about-stamp{width:104px;height:104px;font-size:.62rem;right:-6px;bottom:-12px}
   .comment-form{padding:20px}
+  .menu-quick{gap:7px;margin-bottom:26px}
+  .menu-quick a{padding:8px 12px;font-size:.78rem}
+  .menu-group{padding:22px 18px;border-radius:18px}
+  .menu-item{gap:14px;padding:15px 0}
+  .menu-info h4{font-size:1rem}
+  .menu-info p{font-size:.84rem}
+  .menu-action{min-width:116px}
+  .menu-price{font-size:1.02rem}
+  .add-btn{padding:7px 12px;font-size:.76rem}
+  .bag-btn{padding:9px 11px;gap:6px;font-size:.76rem}
+  .bag-btn svg{width:16px;height:16px}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{margin-top:26px}
+}
+@media (max-width:460px){
+  .header-inner{gap:10px}
+  .brand-text span{display:none}
+  .header-actions{gap:6px}
+  .header-actions .icon-btn{width:40px;height:40px}
+  .bag-label{display:none}
+  .bag-btn{padding:10px}
+  .menu-action{min-width:100px}
 }
 @media (prefers-reduced-motion:reduce){
   *:not(.marquee-track):not(.marquee-group):not(.marquee){scroll-behavior:auto!important;animation:none!important;transition:none!important}
@@ -343,20 +352,24 @@ button{font:inherit;cursor:pointer}
       </span>
     </a>
     <nav class="nav" aria-label="Navegação principal">
-      <a href="#sobre">Sobre</a>
-      <a href="#vitrine">Vitrine</a>
       <a href="#cardapio">Cardápio</a>
+      <a href="#sobre">Sobre</a>
       <a href="#comentarios">Comentários</a>
-      <a href="#contato">Contato</a>
+      <a href="#rodape">Contato</a>
       <button type="button" data-open-chat>Assistente</button>
     </nav>
     <div class="header-actions">
-      <a class="icon-btn" href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener" aria-label="Instagram do Pará-Ti">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      <a class="icon-btn instagram" href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener noreferrer" aria-label="Pedir pelo Instagram do Pará-Ti">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
       </a>
-      <a class="btn btn-primary" href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener">Pedir pelo Instagram
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      <a class="icon-btn whatsapp" href="https://wa.me/5585997103698" target="_blank" rel="noopener noreferrer" aria-label="Falar com o Pará-Ti no WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
       </a>
+      <button class="bag-btn" id="bagBtn" type="button" aria-controls="orderModal" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16l-1.5 12h-13L4 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+        <span class="bag-label">Sua Sacola</span>
+        <span class="bag-count" id="bagCount">0</span>
+      </button>
       <button class="icon-btn hamburger" id="openDrawerBtn" aria-label="Abrir menu" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
@@ -372,12 +385,12 @@ button{font:inherit;cursor:pointer}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
   </div>
-  <a href="#sobre">Sobre</a>
-  <a href="#vitrine">Vitrine</a>
   <a href="#cardapio">Cardápio</a>
+  <a href="#sobre">Sobre</a>
   <a href="#comentarios">Comentários</a>
-  <a href="#contato">Contato</a>
-  <a class="btn btn-primary" href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener">Pedir pelo Instagram</a>
+  <a href="#rodape">Contato</a>
+  <a class="btn btn-primary" href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener noreferrer">Instagram</a>
+  <a class="btn btn-outline" href="https://wa.me/5585997103698" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
   <button class="btn btn-outline" type="button" data-open-chat>Assistente virtual</button>
 </aside>
 
@@ -386,9 +399,9 @@ button{font:inherit;cursor:pointer}
     <div class="container hero-grid">
       <div>
         <h1>Um pedacinho do <em>Pará</em> na sua mesa.</h1>
-        <p class="hero-sub">Açaí raiz batido na hora, churrasco suculento, hambúrguer artesanal e self-service no almoço. Sabores do Pará servidos com o carinho de quem é de lá.</p>
+        <p class="hero-sub">Açaí artesanal, comidas do Pará, peixes, chapas e hambúrguer artesanal. Monte sua comanda aqui no site e finalize pelo WhatsApp.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#vitrine">Ver a vitrine
+          <a class="btn btn-primary" href="#cardapio">Ver cardápio
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
           <button class="btn btn-outline" type="button" data-open-chat>Falar com o assistente
@@ -398,7 +411,6 @@ button{font:inherit;cursor:pointer}
         <div class="hero-meta">
           <div><strong>Seg. a sáb.</strong><span>11h às 22h</span></div>
           <div><strong>Domingo</strong><span>11h às 18h</span></div>
-          <div><strong>Açaí raiz</strong><span>batido na hora</span></div>
         </div>
       </div>
       <div class="hero-visual">
@@ -409,7 +421,7 @@ button{font:inherit;cursor:pointer}
           <span class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c4.4 0 8-3.4 8-7.6C20 8.9 16.5 5.6 12 3 7.5 5.6 4 8.9 4 13.4 4 17.6 7.6 21 12 21Z"/><path d="M12 21V9M12 13c1.8-.4 3-1.6 3.4-3.4M12 16c-1.8-.4-3-1.6-3.4-3.4"/></svg>
           </span>
-          <div><strong>Açaí batido na hora</strong><span>Puro e fresco, do jeito paraense</span></div>
+          <div><strong>Açaí da casa</strong><span>Puro e fresco, do jeito paraense</span></div>
         </div>
       </div>
     </div>
@@ -418,13 +430,164 @@ button{font:inherit;cursor:pointer}
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
       <div class="marquee-group">
-        <span>Açaí raiz</span><span>Sabores do Pará</span><span>Churrasco</span><span>Hambúrguer artesanal</span><span>Self-service no almoço</span><span>Açaí raiz</span><span>Sabores do Pará</span><span>Churrasco</span><span>Hambúrguer artesanal</span><span>Self-service no almoço</span><span>Açaí raiz</span><span>Sabores do Pará</span><span>Churrasco</span><span>Hambúrguer artesanal</span><span>Self-service no almoço</span>
+        <span>Açaí artesanal</span><span>Sabores do Pará</span><span>Peixes</span><span>Chapas</span><span>Pratos executivos</span><span>Açaí artesanal</span><span>Sabores do Pará</span><span>Peixes</span><span>Chapas</span><span>Pratos executivos</span><span>Açaí artesanal</span><span>Sabores do Pará</span><span>Peixes</span><span>Chapas</span><span>Pratos executivos</span>
       </div>
       <div class="marquee-group" aria-hidden="true">
-        <span>Açaí raiz</span><span>Sabores do Pará</span><span>Churrasco</span><span>Hambúrguer artesanal</span><span>Self-service no almoço</span><span>Açaí raiz</span><span>Sabores do Pará</span><span>Churrasco</span><span>Hambúrguer artesanal</span><span>Self-service no almoço</span><span>Açaí raiz</span><span>Sabores do Pará</span><span>Churrasco</span><span>Hambúrguer artesanal</span><span>Self-service no almoço</span>
+        <span>Açaí artesanal</span><span>Sabores do Pará</span><span>Peixes</span><span>Chapas</span><span>Pratos executivos</span><span>Açaí artesanal</span><span>Sabores do Pará</span><span>Peixes</span><span>Chapas</span><span>Pratos executivos</span><span>Açaí artesanal</span><span>Sabores do Pará</span><span>Peixes</span><span>Chapas</span><span>Pratos executivos</span>
       </div>
     </div>
   </div>
+
+  <section class="section" id="cardapio">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Cardápio</span>
+        <h2>Escolha os seus sabores.</h2>
+        <p>Monte sua comanda: toque em “+ Adicionar” e ajuste a quantidade. No fechamento, enviamos o pedido pelo WhatsApp para retirada no balcão.</p>
+      </div>
+
+      <nav class="menu-quick" aria-label="Atalhos para as categorias do cardápio">
+        <a href="#cat-acai">Açaí</a>
+        <a href="#cat-produtos">Produtos do Pará</a>
+        <a href="#cat-entradas">Entradas e Petiscos</a>
+        <a href="#cat-peixes">Peixes</a>
+        <a href="#cat-chapas">Chapas</a>
+        <a href="#cat-executivos">Pratos Executivos</a>
+        <a href="#cat-bebidas">Bebidas</a>
+        <a href="#cat-sucos">Sucos</a>
+        <a href="#cat-cervejas">Cervejas</a>
+        <a href="#cat-adicionais">Adicionais</a>
+      </nav>
+
+      <div class="menu-wrap">
+        <div class="menu-group reveal" id="cat-acai">
+          <h3 class="menu-category">Açaí artesanal</h3>
+          <ul class="menu-list">
+            <li class="menu-item" data-id="acai-100" data-name="Açaí Natural 100g" data-price="5.50"><div class="menu-info"><h4>Açaí Natural 100g</h4><p>Açaí puro e cremoso, em porção individual.</p></div><div class="menu-action"><span class="menu-price">R$ 5,50</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="acai-1l" data-name="Açaí Natural 1 litro" data-price="55.00"><div class="menu-info"><h4>Açaí Natural 1 litro</h4><p>Açaí puro e cremoso, para compartilhar.</p></div><div class="menu-action"><span class="menu-price">R$ 55,00</span><div class="add-holder"></div></div></li>
+          </ul>
+        </div>
+
+        <div class="menu-group reveal" id="cat-produtos">
+          <h3 class="menu-category">Produtos do Pará</h3>
+          <ul class="menu-list">
+            <li class="menu-item" data-id="cupuacu-kg" data-name="Cupuaçu Kg" data-price="30.00"><div class="menu-info"><h4>Cupuaçu Kg</h4><p>Polpa de cupuaçu vendida por quilo.</p></div><div class="menu-action"><span class="menu-price">R$ 30,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="farinha-tapioca" data-name="Farinha de Tapioca Litro" data-price="7.50"><div class="menu-info"><h4>Farinha de Tapioca Litro</h4><p>Farinha de tapioca tradicional, por litro.</p></div><div class="menu-action"><span class="menu-price">R$ 7,50</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="farinha-amarela" data-name="Farinha Amarela Litro" data-price="15.00"><div class="menu-info"><h4>Farinha Amarela Litro</h4><p>Farinha amarela da casa, por litro.</p></div><div class="menu-action"><span class="menu-price">R$ 15,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="pimenta-330" data-name="Pimenta 330ml" data-price="13.00"><div class="menu-info"><h4>Pimenta 330ml</h4><p>Pimenta da casa, frasco de 330 ml.</p></div><div class="menu-action"><span class="menu-price">R$ 13,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="bare-1l" data-name="Refrigerante Baré 1 Litro" data-price="15.00"><div class="menu-info"><h4>Refrigerante Baré 1 Litro</h4><p>Refrigerante Baré, garrafa de 1 litro.</p></div><div class="menu-action"><span class="menu-price">R$ 15,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="bare-2l" data-name="Refrigerante Baré 2 Litros" data-price="20.00"><div class="menu-info"><h4>Refrigerante Baré 2 Litros</h4><p>Refrigerante Baré, garrafa de 2 litros.</p></div><div class="menu-action"><span class="menu-price">R$ 20,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="tucupi-1l" data-name="Tucupi 1 Litro" data-price="14.00"><div class="menu-info"><h4>Tucupi 1 Litro</h4><p>Tucupi tradicional, por litro.</p></div><div class="menu-action"><span class="menu-price">R$ 14,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="tucupi-2l" data-name="Tucupi 2 Litros" data-price="25.00"><div class="menu-info"><h4>Tucupi 2 Litros</h4><p>Tucupi tradicional, por 2 litros.</p></div><div class="menu-action"><span class="menu-price">R$ 25,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="pirarucu-cru" data-name="Pirarucu Cru Kg" data-price="90.00"><div class="menu-info"><h4>Pirarucu Cru Kg</h4><p>Pirarucu cru, vendido por quilo.</p></div><div class="menu-action"><span class="menu-price">R$ 90,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="filhote-cru" data-name="Pirarucu Filhote Cru Kg" data-price="80.00"><div class="menu-info"><h4>Pirarucu Filhote Cru Kg</h4><p>Filhote de pirarucu cru, vendido por quilo.</p></div><div class="menu-action"><span class="menu-price">R$ 80,00</span><div class="add-holder"></div></div></li>
+          </ul>
+        </div>
+
+        <div class="menu-group reveal" id="cat-entradas">
+          <h3 class="menu-category">Entrada e petiscos</h3>
+          <ul class="menu-list">
+            <li class="menu-item" data-id="batata-500" data-name="Batata Frita 500g" data-price="25.00"><div class="menu-info"><h4>Batata Frita 500g</h4><p>Porção de batata frita crocante, 500 g.</p></div><div class="menu-action"><span class="menu-price">R$ 25,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="macaxeira-500" data-name="Macaxeira Frita 500g" data-price="25.00"><div class="menu-info"><h4>Macaxeira Frita 500g</h4><p>Macaxeira frita dourada, porção de 500 g.</p></div><div class="menu-action"><span class="menu-price">R$ 25,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="frango-passarinho" data-name="Frango a Passarinho 500g" data-price="25.00"><div class="menu-info"><h4>Frango a Passarinho 500g</h4><p>Frango a passarinho, porção de 500 g.</p></div><div class="menu-action"><span class="menu-price">R$ 25,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="calabresa" data-name="Calabresa" data-price="45.00"><div class="menu-info"><h4>Calabresa</h4><p>Calabresa grelhada, porção da casa.</p></div><div class="menu-action"><span class="menu-price">R$ 45,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="isca-peixe" data-name="Isca de Peixe 300g" data-price="40.00"><div class="menu-info"><h4>Isca de Peixe 300g</h4><p>Isca de peixe frita, porção de 300 g.</p></div><div class="menu-action"><span class="menu-price">R$ 40,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="pastel" data-name="Pastel de camarão/Arraia/Queijo" data-price="35.00"><div class="menu-info"><h4>Pastel de camarão/Arraia/Queijo</h4><p>Pastel frito de camarão, arraia ou queijo.</p></div><div class="menu-action"><span class="menu-price">R$ 35,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="camarao-alho" data-name="Camarão ao Alho e Óleo 500g" data-price="45.00"><div class="menu-info"><h4>Camarão ao Alho e Óleo 500g</h4><p>Camarão ao alho e óleo, porção de 500 g.</p></div><div class="menu-action"><span class="menu-price">R$ 45,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="camarao-empanado" data-name="Camarão Empanado 500g" data-price="60.00"><div class="menu-info"><h4>Camarão Empanado 500g</h4><p>Camarão empanado crocante, porção de 500 g.</p></div><div class="menu-action"><span class="menu-price">R$ 60,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="baiao" data-name="Baião de dois" data-price="15.00"><div class="menu-info"><h4>Baião de dois</h4><p>Baião de dois cremoso, porção individual.</p></div><div class="menu-action"><span class="menu-price">R$ 15,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="feijao" data-name="Feijão" data-price="12.00"><div class="menu-info"><h4>Feijão</h4><p>Feijão da casa, porção individual.</p></div><div class="menu-action"><span class="menu-price">R$ 12,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="arroz" data-name="Arroz" data-price="12.00"><div class="menu-info"><h4>Arroz</h4><p>Arroz branco soltinho, porção individual.</p></div><div class="menu-action"><span class="menu-price">R$ 12,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="bisteca" data-name="Bisteca unid." data-price="12.00"><div class="menu-info"><h4>Bisteca unid.</h4><p>Bisteca frita, por unidade.</p></div><div class="menu-action"><span class="menu-price">R$ 12,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="burger-batata" data-name="Hambúrguer Artesanal 200g (batata frita)" data-price="33.00"><div class="menu-info"><h4>Hambúrguer Artesanal 200g (batata frita)</h4><p>Hambúrguer artesanal de 200 g com batata frita.</p></div><div class="menu-action"><span class="menu-price">R$ 33,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="burger-queijo" data-name="Hambúrguer Artesanal 200g (Só queijo e batata frita)" data-price="30.00"><div class="menu-info"><h4>Hambúrguer Artesanal 200g (Só queijo e batata frita)</h4><p>Hambúrguer artesanal de 200 g com queijo e batata frita.</p></div><div class="menu-action"><span class="menu-price">R$ 30,00</span><div class="add-holder"></div></div></li>
+          </ul>
+        </div>
+
+        <div class="menu-group reveal" id="cat-peixes">
+          <h3 class="menu-category">Peixes</h3>
+          <ul class="menu-list">
+            <li class="menu-item" data-id="tambaqui" data-name="Tambaqui em Banda (Acompanha arroz branco ou baião de dois)" data-price="150.00"><div class="menu-info"><h4>Tambaqui em Banda (Acompanha arroz branco ou baião de dois)</h4><p>Tambaqui em banda, com arroz branco ou baião de dois.</p></div><div class="menu-action"><span class="menu-price">R$ 150,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="pirarucu-200" data-name="Pirarucu 200g (Acompanha arroz branco e batata fritas)" data-price="35.00"><div class="menu-info"><h4>Pirarucu 200g (Acompanha arroz branco e batata fritas)</h4><p>Pirarucu de 200 g com arroz branco e batata frita.</p></div><div class="menu-action"><span class="menu-price">R$ 35,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="filhote-200" data-name="Filhote 200g (Acompanha arroz branco e batata fritas)" data-price="35.00"><div class="menu-info"><h4>Filhote 200g (Acompanha arroz branco e batata fritas)</h4><p>Filhote de 200 g com arroz branco e batata frita.</p></div><div class="menu-action"><span class="menu-price">R$ 35,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="filhote-pirarucu-200" data-name="Filhote ou Pirarucu 200g" data-price="28.00"><div class="menu-info"><h4>Filhote ou Pirarucu 200g</h4><p>Filhote ou pirarucu em porção de 200 g.</p></div><div class="menu-action"><span class="menu-price">R$ 28,00</span><div class="add-holder"></div></div></li>
+          </ul>
+        </div>
+
+        <div class="menu-group reveal" id="cat-chapas">
+          <h3 class="menu-category">Chapas</h3>
+          <p class="menu-note">Acompanha arroz branco ou baião de dois, batata frita, macaxeira frita, vinagrete e farofa.</p>
+          <ul class="menu-list">
+            <li class="menu-item" data-id="picanha-500" data-name="Picanha 500g" data-price="140.00"><div class="menu-info"><h4>Picanha 500g</h4><p>Picanha na chapa, porção de 500 g.</p></div><div class="menu-action"><span class="menu-price">R$ 140,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="contra-500" data-name="Contra Filé 500g" data-price="120.00"><div class="menu-info"><h4>Contra Filé 500g</h4><p>Contra filé na chapa, porção de 500 g.</p></div><div class="menu-action"><span class="menu-price">R$ 120,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="maminha-500" data-name="Maminha 500g" data-price="110.00"><div class="menu-info"><h4>Maminha 500g</h4><p>Maminha na chapa, porção de 500 g.</p></div><div class="menu-action"><span class="menu-price">R$ 110,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="fraldinha-500" data-name="Fraldinha 500g" data-price="110.00"><div class="menu-info"><h4>Fraldinha 500g</h4><p>Fraldinha na chapa, porção de 500 g.</p></div><div class="menu-action"><span class="menu-price">R$ 110,00</span><div class="add-holder"></div></div></li>
+          </ul>
+        </div>
+
+        <div class="menu-group reveal" id="cat-executivos">
+          <h3 class="menu-category">Pratos executivos</h3>
+          <p class="menu-note">Acompanhamentos: arroz ou baião e fritas.</p>
+          <ul class="menu-list">
+            <li class="menu-item" data-id="maminha-200" data-name="Maminha 200g" data-price="35.00"><div class="menu-info"><h4>Maminha 200g</h4><p>Maminha grelhada, porção de 200 g.</p></div><div class="menu-action"><span class="menu-price">R$ 35,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="fraldinha-200" data-name="Fraldinha 200g" data-price="35.00"><div class="menu-info"><h4>Fraldinha 200g</h4><p>Fraldinha grelhada, porção de 200 g.</p></div><div class="menu-action"><span class="menu-price">R$ 35,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="contra-200" data-name="Contra Filé 200g" data-price="50.00"><div class="menu-info"><h4>Contra Filé 200g</h4><p>Contra filé grelhado, porção de 200 g.</p></div><div class="menu-action"><span class="menu-price">R$ 50,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="picanha-200" data-name="Picanha 200g" data-price="55.00"><div class="menu-info"><h4>Picanha 200g</h4><p>Picanha grelhada, porção de 200 g.</p></div><div class="menu-action"><span class="menu-price">R$ 55,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="frango-parmegiana" data-name="Frango à Parmegiana 200g" data-price="38.00"><div class="menu-info"><h4>Frango à Parmegiana 200g</h4><p>Frango à parmegiana, porção de 200 g.</p></div><div class="menu-action"><span class="menu-price">R$ 38,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="bife-parmegiana" data-name="Bife à Parmegiana 200g" data-price="50.00"><div class="menu-info"><h4>Bife à Parmegiana 200g</h4><p>Bife à parmegiana, porção de 200 g.</p></div><div class="menu-action"><span class="menu-price">R$ 50,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="file-frango" data-name="Filé de Frango" data-price="28.00"><div class="menu-info"><h4>Filé de Frango</h4><p>Filé de frango grelhado da casa.</p></div><div class="menu-action"><span class="menu-price">R$ 28,00</span><div class="add-holder"></div></div></li>
+          </ul>
+        </div>
+
+        <div class="menu-group reveal" id="cat-bebidas">
+          <h3 class="menu-category">Bebidas · Refrigerantes e outros</h3>
+          <ul class="menu-list">
+            <li class="menu-item" data-id="refri-lata" data-name="Refrigerante Lata" data-price="7.00"><div class="menu-info"><h4>Refrigerante Lata</h4><p>Refrigerante gelado em lata.</p></div><div class="menu-action"><span class="menu-price">R$ 7,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="refri-litro" data-name="Refrigerante Litro" data-price="12.00"><div class="menu-info"><h4>Refrigerante Litro</h4><p>Refrigerante gelado, garrafa de 1 litro.</p></div><div class="menu-action"><span class="menu-price">R$ 12,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="refri-600" data-name="Refrigerante 600ml" data-price="9.00"><div class="menu-info"><h4>Refrigerante 600ml</h4><p>Refrigerante gelado, garrafa de 600 ml.</p></div><div class="menu-action"><span class="menu-price">R$ 9,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="refri-2l" data-name="Refrigerante 2 litros" data-price="15.00"><div class="menu-info"><h4>Refrigerante 2 litros</h4><p>Refrigerante gelado, garrafa de 2 litros.</p></div><div class="menu-action"><span class="menu-price">R$ 15,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="agua-gas" data-name="Água c/ gás" data-price="4.00"><div class="menu-info"><h4>Água c/ gás</h4><p>Água com gás, gelada.</p></div><div class="menu-action"><span class="menu-price">R$ 4,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="agua-sem-gas" data-name="Água s/ gás" data-price="3.50"><div class="menu-info"><h4>Água s/ gás</h4><p>Água sem gás, gelada.</p></div><div class="menu-action"><span class="menu-price">R$ 3,50</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="caipirosca" data-name="Caipirosca" data-price="15.00"><div class="menu-info"><h4>Caipirosca</h4><p>Caipirosca da casa, dose única.</p></div><div class="menu-action"><span class="menu-price">R$ 15,00</span><div class="add-holder"></div></div></li>
+          </ul>
+        </div>
+
+        <div class="menu-group reveal" id="cat-sucos">
+          <h3 class="menu-category">Bebidas · Sucos</h3>
+          <p class="menu-note">Sabores: acerola, graviola, cupuaçu, cajú, maracujá, laranja, limão e cajá.</p>
+          <ul class="menu-list">
+            <li class="menu-item" data-id="suco-copo" data-name="Suco Copo" data-price="10.00"><div class="menu-info"><h4>Suco Copo</h4><p>Suco natural gelado, em copo.</p></div><div class="menu-action"><span class="menu-price">R$ 10,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="suco-jarra" data-name="Suco Jarra" data-price="20.00"><div class="menu-info"><h4>Suco Jarra</h4><p>Suco natural gelado, em jarra para compartilhar.</p></div><div class="menu-action"><span class="menu-price">R$ 20,00</span><div class="add-holder"></div></div></li>
+          </ul>
+        </div>
+
+        <div class="menu-group reveal" id="cat-cervejas">
+          <h3 class="menu-category">Bebidas · Cervejas</h3>
+          <ul class="menu-list">
+            <li class="menu-item" data-id="heineken" data-name="Heineken 600ml" data-price="15.00"><div class="menu-info"><h4>Heineken 600ml</h4><p>Cerveja Heineken gelada, 600 ml.</p></div><div class="menu-action"><span class="menu-price">R$ 15,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="amstel" data-name="Amstel 600ml" data-price="11.00"><div class="menu-info"><h4>Amstel 600ml</h4><p>Cerveja Amstel gelada, 600 ml.</p></div><div class="menu-action"><span class="menu-price">R$ 11,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="skol" data-name="Skol 600ml" data-price="10.00"><div class="menu-info"><h4>Skol 600ml</h4><p>Cerveja Skol gelada, 600 ml.</p></div><div class="menu-action"><span class="menu-price">R$ 10,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="stella" data-name="Stella 600ml" data-price="14.00"><div class="menu-info"><h4>Stella 600ml</h4><p>Cerveja Stella Artois gelada, 600 ml.</p></div><div class="menu-action"><span class="menu-price">R$ 14,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="brahma" data-name="Brahma 600ml" data-price="11.00"><div class="menu-info"><h4>Brahma 600ml</h4><p>Cerveja Brahma gelada, 600 ml.</p></div><div class="menu-action"><span class="menu-price">R$ 11,00</span><div class="add-holder"></div></div></li>
+          </ul>
+        </div>
+
+        <div class="menu-group reveal" id="cat-adicionais">
+          <h3 class="menu-category">Adicionais / Outros</h3>
+          <ul class="menu-list">
+            <li class="menu-item" data-id="embalagem" data-name="Embalagem para viagem" data-price="2.00"><div class="menu-info"><h4>Embalagem para viagem</h4><p>Embalagem para levar seu pedido.</p></div><div class="menu-action"><span class="menu-price">R$ 2,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="taxa-desperdicio" data-name="Taxa de desperdício" data-price="5.00"><div class="menu-info"><h4>Taxa de desperdício</h4><p>Contribuição informada pela casa.</p></div><div class="menu-action"><span class="menu-price">R$ 5,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="biscoito-cocada" data-name="Biscoito caseiro cocada (cada)" data-price="1.50"><div class="menu-info"><h4>Biscoito caseiro cocada (cada)</h4><p>Biscoito caseiro de cocada, por unidade.</p></div><div class="menu-action"><span class="menu-price">R$ 1,50</span><div class="add-holder"></div></div></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="menu-tip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>
+        Os valores podem sofrer alteração. Confirme a disponibilidade no fechamento do pedido.
+      </p>
+    </div>
+  </section>
 
   <section class="section" id="sobre">
     <div class="container about-grid">
@@ -434,102 +597,9 @@ button{font:inherit;cursor:pointer}
       </div>
       <div class="about-text reveal">
         <span class="eyebrow">Sobre a casa</span>
-        <h2>O Pará é aqui.</h2>
-        <p>O <strong>Pará-Ti Restaurante</strong> fica na Av. Central, 34 — Cidade 2000, em Fortaleza. A proposta é simples: trazer o açaí raiz e os sabores do Pará para quem mora ou passa pela capital cearense.</p>
-        <p>No almoço, o self-service deixa você montar o prato do seu jeito. À tarde e à noite, o churrasco e o hambúrguer artesanal dividem espaço com o açaí batido na hora.</p>
-        <div class="about-features">
-          <div class="feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c4.4 0 8-3.4 8-7.6C20 8.9 16.5 5.6 12 3 7.5 5.6 4 8.9 4 13.4 4 17.6 7.6 21 12 21Z"/></svg>
-            <div><strong>Açaí raiz</strong><span>Puro, fresco e batido na hora</span></div>
-          </div>
-          <div class="feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20c0-4 4-6 8-6s8 2 8 6M8 14V5M16 14V5M8 8h8"/></svg>
-            <div><strong>Churrasco</strong><span>Na brasa, do jeito que se gosta</span></div>
-          </div>
-          <div class="feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11h18M5 11a7 7 0 0 1 14 0M3 15h18M5 19h14"/></svg>
-            <div><strong>Self-service</strong><span>Almoço livre, monte seu prato</span></div>
-          </div>
-          <div class="feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10h16M6 10l2 10h8l2-10M9 10c0-2 1.3-4 3-4s3 2 3 4"/></svg>
-            <div><strong>Hambúrguer</strong><span>Artesanal, feito na hora</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="vitrine">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Vitrine · Cardápio</span>
-        <h2>Um gostinho do que espera por você.</h2>
-        <p>Fotos direto do restaurante, com uma descrição de cada sabor. Para valores e pedidos, fale com a equipe pelo Instagram.</p>
-      </div>
-      <div class="dish-grid" id="cardapio">
-        <article class="dish-card reveal">
-          <div class="dish-media"><img src="assets/sabor-1.jpg" alt="Açaí raiz do Pará-Ti Restaurante" loading="lazy" /></div>
-          <div class="dish-body">
-            <span class="dish-tag">Açaí raiz</span>
-            <h3>Açaí raiz</h3>
-            <p>Batido na hora, puro e fresco, com o sabor marcante do açaí paraense.</p>
-            <span class="dish-price">R$ 55/kg</span>
-          </div>
-        </article>
-        <article class="dish-card reveal">
-          <div class="dish-media"><img src="assets/sabor-2.jpg" alt="Churrasco suculento do Pará-Ti Restaurante" loading="lazy" /></div>
-          <div class="dish-body">
-            <span class="dish-tag">Churrasco</span>
-            <h3>Churrasco suculento</h3>
-            <p>Carne na brasa, suculenta e no ponto certo, para quem gosta de um churrasco bem servido.</p>
-            <span class="dish-price">Consulte valores</span>
-          </div>
-        </article>
-        <article class="dish-card reveal">
-          <div class="dish-media"><img src="assets/sabor-3.jpg" alt="Hambúrguer artesanal do Pará-Ti Restaurante" loading="lazy" /></div>
-          <div class="dish-body">
-            <span class="dish-tag">Artesanal</span>
-            <h3>Hambúrguer artesanal</h3>
-            <p>Montado na hora, com pão macio e aquele capricho que faz diferença no lanche.</p>
-            <span class="dish-price">Consulte valores</span>
-          </div>
-        </article>
-        <article class="dish-card reveal">
-          <div class="dish-media"><img src="assets/sabor-4.jpg" alt="Self-service do Pará-Ti Restaurante" loading="lazy" /></div>
-          <div class="dish-body">
-            <span class="dish-tag">Almoço</span>
-            <h3>Self-service</h3>
-            <p>Almoço livre: monte seu prato do seu jeito, com as opções do dia no buffet.</p>
-            <span class="dish-price">Consulte o buffet</span>
-          </div>
-        </article>
-        <article class="dish-card reveal">
-          <div class="dish-media"><img src="assets/sabor-5.jpg" alt="Comida paraense do Pará-Ti Restaurante" loading="lazy" /></div>
-          <div class="dish-body">
-            <span class="dish-tag">Sabores do Pará</span>
-            <h3>Comida paraense</h3>
-            <p>Pratos típicos do Pará preparados com o tempero da casa. Pergunte o prato do dia.</p>
-            <span class="dish-price">Consulte o prato do dia</span>
-          </div>
-        </article>
-        <article class="dish-card reveal">
-          <div class="dish-media"><img src="assets/sabor-6.jpg" alt="Açaí com acompanhamentos do Pará-Ti Restaurante" loading="lazy" /></div>
-          <div class="dish-body">
-            <span class="dish-tag">Açaí da casa</span>
-            <h3>Açaí com acompanhamentos</h3>
-            <p>Açaí raiz servido do jeito tradicional, para comer puro ou com seus acompanhamentos preferidos.</p>
-            <span class="dish-price">Consulte valores</span>
-          </div>
-        </article>
-        <article class="dish-card reveal">
-          <div class="dish-media"><img src="assets/sabor-7.jpg" alt="Sabores do Pará do Pará-Ti Restaurante" loading="lazy" /></div>
-          <div class="dish-body">
-            <span class="dish-tag">Prato do dia</span>
-            <h3>Sabores do Pará</h3>
-            <p>Uma seleção especial da cozinha paraense preparada todos os dias. Pergunte a opção do dia.</p>
-            <span class="dish-price">Consulte o prato do dia</span>
-          </div>
-        </article>
+        <h2>A Pará-Ti.</h2>
+        <p>A Pará-Ti é um restaurante especializado na culinária paraense, trazendo para seus clientes um pouco da cultura e da gastronomia do estado do Pará. Seu principal destaque é o açaí batido e servido da maneira tradicional, assim como é consumido pelos paraenses, preservando o sabor e os costumes da região.</p>
+        <p>Além do açaí, o restaurante oferece diversas opções de comidas, incluindo outros pratos e hambúrgueres, proporcionando aos clientes um cardápio variado. Apesar da diversidade de opções, sua principal especialidade continua sendo o açaí tradicional paraense, que representa a identidade e a cultura do estabelecimento.</p>
       </div>
     </div>
   </section>
@@ -555,7 +625,7 @@ button{font:inherit;cursor:pointer}
             <textarea id="commentText" name="text" rows="3" maxlength="280" placeholder="Conte como foi sua experiência..." required></textarea>
           </div>
           <div class="field">
-            <span style="font-size:.76rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--marrom-suave);">Sua nota</span>
+            <span class="field-label">Sua nota</span>
             <div class="rating" role="radiogroup" aria-label="Sua nota">
               <input type="radio" id="star5" name="rating" value="5" checked /><label for="star5" aria-label="5 estrelas"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg></label>
               <input type="radio" id="star4" name="rating" value="4" /><label for="star4" aria-label="4 estrelas"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg></label>
@@ -570,44 +640,37 @@ button{font:inherit;cursor:pointer}
     </div>
   </section>
 
-  <section class="section section-acai" id="contato">
-    <div class="container contact-grid">
-      <div>
-        <span class="eyebrow">Contato</span>
-        <h2 style="font-size:clamp(2rem,3.8vw,3.1rem);margin-top:12px;">Venha viver o Pará em Fortaleza.</h2>
-        <div class="contact-list">
-          <div class="contact-item">
-            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-            <div><strong>Endereço</strong><a href="https://www.google.com/maps/search/?api=1&query=Av.+Central,+34+-+Cidade+2000,+Fortaleza+-+CE" target="_blank" rel="noopener">Av. Central, 34 — Cidade 2000, Fortaleza/CE</a></div>
-          </div>
-          <div class="contact-item">
-            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <div><strong>Funcionamento</strong><span>Seg. a sáb.: 11h às 22h · Domingo: 11h às 18h</span></div>
-          </div>
-          <div class="contact-item">
-            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span>
-            <div><strong>Instagram</strong><a href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener">@paratifortaleza</a></div>
-          </div>
-        </div>
-        <div class="contact-actions">
-          <a class="btn btn-primary" href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener">Pedir pelo Instagram
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </a>
-          <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&query=Av.+Central,+34+-+Cidade+2000,+Fortaleza+-+CE" target="_blank" rel="noopener">Ver no mapa</a>
-        </div>
-      </div>
-      <div class="contact-info">
-        <h3>Navegação</h3>
-        <a href="#inicio">Início</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#vitrine">Vitrine</a>
-        <a href="#cardapio">Cardápio</a>
-        <a href="#comentarios">Comentários</a>
-        <button type="button" data-open-chat>Assistente virtual</button>
-      </div>
-    </div>
-  </section>
 </main>
+
+<div class="modal-backdrop" id="orderBackdrop"></div>
+<section class="order-modal" id="orderModal" role="dialog" aria-modal="true" aria-labelledby="orderTitle" aria-hidden="true">
+  <div class="order-head">
+    <div>
+      <h2 id="orderTitle">Fechar pedido</h2>
+      <p>Revise sua comanda e envie pelo WhatsApp.</p>
+    </div>
+    <button class="order-close" id="orderClose" type="button" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <form id="orderForm">
+    <div class="order-summary" id="orderSummary"></div>
+    <p class="mode-title">Forma de retirada</p>
+    <div class="mode-group">
+      <label class="mode-option"><input type="radio" name="mode" value="Retirada no balcão" checked /> Retirada no balcão</label>
+    </div>
+    <div class="field">
+      <label for="customerName">Seu nome</label>
+      <input id="customerName" name="customerName" type="text" maxlength="50" placeholder="Como podemos te chamar?" autocomplete="name" required />
+    </div>
+    <div class="field">
+      <label for="customerNotes">Observações (opcional)</label>
+      <textarea id="customerNotes" name="customerNotes" rows="2" maxlength="300" placeholder="Ex.: ponto da carne, sem cebola..."></textarea>
+    </div>
+    <p class="order-total"><span>Total</span><strong id="orderTotal">R$ 0,00</strong></p>
+    <button class="btn btn-primary" type="submit">Enviar pedido no WhatsApp</button>
+  </form>
+</section>
 
 <div class="fab-anchor">
   <button class="chat-fab" id="chatFab" type="button" aria-label="Abrir assistente virtual" aria-expanded="false">
@@ -616,9 +679,40 @@ button{font:inherit;cursor:pointer}
   </button>
 </div>
 
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <span>© <span id="year"></span> Pará-Ti Restaurante · Av. Central, 34 — Cidade 2000</span>
+<footer class="site-footer" id="rodape">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand"><span class="brand-mark" aria-hidden="true">P</span><span>Pará-Ti Restaurante</span></div>
+        <p>Culinária paraense e açaí artesanal em Fortaleza. Feito com o sabor e os costumes do Pará.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Navegação</h3>
+        <a href="#cardapio">Cardápio</a>
+        <a href="#sobre">Sobre a casa</a>
+        <a href="#comentarios">Comentários</a>
+        <a href="#rodape">Contato</a>
+      </div>
+      <div class="footer-col">
+        <h3>Contato</h3>
+        <p>Av. Central, 34 — Cidade 2000<br />Fortaleza/CE</p>
+        <p>Seg. a sáb., 11h às 22h<br />Domingo, 11h às 18h</p>
+        <a href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener noreferrer">@paratifortaleza</a>
+        <a href="https://wa.me/5585997103698" target="_blank" rel="noopener noreferrer">WhatsApp (85) 99710-3698</a>
+        <div class="social-links">
+          <a href="https://www.instagram.com/paratifortaleza/" target="_blank" rel="noopener noreferrer" aria-label="Instagram do Pará-Ti">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a class="whatsapp" href="https://wa.me/5585997103698" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp do Pará-Ti">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Pará-Ti Restaurante. Todos os direitos reservados.</span>
+      <span>Feito em Fortaleza, com sabor do Pará.</span>
+    </div>
   </div>
 </footer>
 
@@ -635,11 +729,11 @@ button{font:inherit;cursor:pointer}
   </div>
   <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
   <div class="chat-quick" id="chatQuick">
+    <button type="button" data-quick="cardapio">O que tem no cardápio?</button>
+    <button type="button" data-quick="acai">Quanto custa o açaí?</button>
+    <button type="button" data-quick="pedido">Como faço o pedido?</button>
     <button type="button" data-quick="horario">Qual é o horário?</button>
     <button type="button" data-quick="endereco">Onde vocês ficam?</button>
-    <button type="button" data-quick="acai">Quanto custa o açaí?</button>
-    <button type="button" data-quick="cardapio">O que tem no cardápio?</button>
-    <button type="button" data-quick="delivery">Vocês fazem delivery?</button>
   </div>
   <form class="chat-form" id="chatForm">
     <label class="sr-only" for="chatInput">Digite sua mensagem</label>
@@ -655,11 +749,46 @@ button{font:inherit;cursor:pointer}
 <script>
 const INSTAGRAM = 'https://www.instagram.com/paratifortaleza/';
 const MAPS = 'https://www.google.com/maps/search/?api=1&query=Av.+Central,+34+-+Cidade+2000,+Fortaleza+-+CE';
+const WHATSAPP = 'https://wa.me/5585997103698?text=';
 
-document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('year').textContent = String(new Date().getFullYear());
 
 const header = document.getElementById('siteHeader');
 addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 8), {passive:true});
+
+function sanitizeText(value, max){
+  return String(value == null ? '' : value)
+    .normalize('NFKC')
+    .replace(/[\u0000-\u001F\u007F\u200B-\u200D\uFEFF]/g, ' ')
+    .replace(/[^\p{L}\p{N}\p{M}\s.,!?:;\/@'_"-]/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, max);
+}
+function safeUrl(url){
+  const value = String(url || '');
+  if(value.startsWith('#') && /^#[\w-]+$/.test(value)) return value;
+  try {
+    const parsed = new URL(value, location.href);
+    return parsed.protocol === 'https:' ? parsed.href : '#';
+  } catch { return '#'; }
+}
+document.querySelectorAll('input[type="text"], textarea').forEach(field => {
+  field.addEventListener('blur', () => {
+    field.value = sanitizeText(field.value, Number(field.maxLength) || 300);
+  });
+});
+function money(value){
+  return 'R$ ' + Number(value).toFixed(2).replace('.', ',');
+}
+let toastTimer;
+function toast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
+}
 
 const drawer = document.getElementById('mobileDrawer');
 const backdrop = document.getElementById('drawerBackdrop');
@@ -678,45 +807,69 @@ drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setD
 
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
-}, {threshold:.12});
+}, {threshold:.08});
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-addEventListener('keydown', e => { if(e.key === 'Escape'){ setDrawer(false); closeChat(); } });
-
 const seedComments = [
-  {name:'@vlogdeviagemoficial', text:'É um pedacinho do Pará em Fortaleza! O destaque é o açaí batido na hora, do jeito tradicional: puro, fresco e com aquele sabor marcante do açaí paraense.', rating:5, source:'Instagram'},
+  {name:'@vlogdeviagemoficial', text:'É um pedacinho do Pará em Fortaleza! O destaque é o açaí artesanal, do jeito tradicional: puro, fresco e com aquele sabor marcante do açaí paraense.', rating:5, source:'Instagram'},
   {name:'Avaliação no Instagram', text:'Jamais havia comido uma comida tão saborosa! Além de uma culinária nordestina extremamente rica, é um lugar aconchegante e lindamente decorado.', rating:5, source:'Instagram'}
 ];
 const STORAGE_KEY = 'parati_comments_v1';
-
 function loadComments(){
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { return []; }
+  try {
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if(!Array.isArray(data)) return [];
+    return data.slice(0,30).filter(c => c && typeof c === 'object').map(c => ({
+      name: sanitizeText(c.name, 40) || 'Visitante',
+      text: sanitizeText(c.text, 280),
+      rating: Math.min(5, Math.max(1, Math.trunc(Number(c.rating)) || 5)),
+      source: sanitizeText(c.source, 40) || 'Visitante'
+    })).filter(c => c.text);
+  } catch { return []; }
 }
 function allComments(){ return [...seedComments, ...loadComments()]; }
 function starRow(n){
-  let out = '';
+  const row = document.createElement('span');
+  row.className = 'stars';
+  row.setAttribute('aria-label', n + ' de 5 estrelas');
   for(let i=0;i<5;i++){
-    out += '<svg viewBox="0 0 24 24" fill="' + (i < n ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="1.5"><path d="m12 2 3 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg>';
+    const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('viewBox','0 0 24 24');
+    svg.setAttribute('fill', i < n ? 'currentColor' : 'none');
+    svg.setAttribute('stroke','currentColor');
+    svg.setAttribute('stroke-width','1.5');
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d','m12 2 3 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.9 6.9-1L12 2Z');
+    svg.appendChild(path);
+    row.appendChild(svg);
   }
-  return out;
+  return row;
 }
 function initials(name){
-  const clean = name.replace('@','').trim();
-  const parts = clean.split(/\s+/).filter(Boolean);
+  const parts = sanitizeText(name, 40).replace('@','').split(/\s+/).filter(Boolean);
   return ((parts[0]?.[0] || 'P') + (parts[1]?.[0] || '')).toUpperCase();
 }
 function renderComments(){
   const list = document.getElementById('commentsList');
-  list.innerHTML = '';
+  list.replaceChildren();
   allComments().forEach(c => {
     const card = document.createElement('article');
     card.className = 'comment-card';
-    card.innerHTML = '<div class="comment-top"><span class="avatar"></span><div><strong></strong><span></span></div><span class="stars" aria-label="' + c.rating + ' de 5 estrelas"></span></div><p></p>';
-    card.querySelector('.avatar').textContent = initials(c.name);
-    card.querySelector('strong').textContent = c.name;
-    card.querySelector('.comment-top div span').textContent = c.source || 'Visitante';
-    card.querySelector('.stars').innerHTML = starRow(c.rating);
-    card.querySelector('p').textContent = c.text;
+    const top = document.createElement('div');
+    top.className = 'comment-top';
+    const avatar = document.createElement('span');
+    avatar.className = 'avatar';
+    avatar.textContent = initials(c.name);
+    const info = document.createElement('div');
+    const strong = document.createElement('strong');
+    strong.textContent = c.name;
+    const source = document.createElement('span');
+    source.textContent = c.source;
+    info.append(strong, source);
+    top.append(avatar, info, starRow(c.rating));
+    const body = document.createElement('p');
+    body.textContent = c.text;
+    card.append(top, body);
     list.appendChild(card);
   });
 }
@@ -725,12 +878,12 @@ renderComments();
 const commentForm = document.getElementById('commentForm');
 commentForm.addEventListener('submit', e => {
   e.preventDefault();
-  const name = document.getElementById('commentName').value.trim();
-  const text = document.getElementById('commentText').value.trim();
-  const rating = Number(commentForm.querySelector('input[name="rating"]:checked')?.value || 5);
+  const name = sanitizeText(document.getElementById('commentName').value, 40);
+  const text = sanitizeText(document.getElementById('commentText').value, 280);
+  const rating = Math.min(5, Math.max(1, Number(commentForm.querySelector('input[name="rating"]:checked')?.value) || 5));
   if(!name || !text) return;
   const saved = loadComments();
-  saved.unshift({name, text, rating, source:'Visitante', date:new Date().toISOString()});
+  saved.unshift({name, text, rating, source:'Visitante'});
   localStorage.setItem(STORAGE_KEY, JSON.stringify(saved.slice(0,30)));
   commentForm.reset();
   document.getElementById('star5').checked = true;
@@ -738,108 +891,105 @@ commentForm.addEventListener('submit', e => {
   toast('Comentário publicado. Obrigado!');
 });
 
-let toastTimer;
-function toast(msg){
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
-}
-
 const chatPanel = document.getElementById('chatPanel');
 const chatFab = document.getElementById('chatFab');
 const chatMessages = document.getElementById('chatMessages');
 const chatInput = document.getElementById('chatInput');
 let chatStarted = false;
 let chatOpen = false;
-
 function normalize(t){
-  return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w\s?]/g,' ').replace(/\s+/g,' ').trim();
+  return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w\s]/g,' ').replace(/\s+/g,' ').trim();
 }
-function addMessage(text, who = 'bot', html = ''){
+function addMessage(text, who, link){
   const div = document.createElement('div');
-  div.className = 'msg ' + who;
-  div.textContent = text;
-  if(html){
-    const wrap = document.createElement('div');
-    wrap.innerHTML = html;
-    div.appendChild(wrap);
+  div.className = 'msg ' + (who || 'bot');
+  const span = document.createElement('span');
+  span.textContent = text;
+  div.appendChild(span);
+  if(link){
+    const a = document.createElement('a');
+    const url = safeUrl(link.url);
+    a.className = 'msg-link';
+    a.href = url;
+    a.textContent = sanitizeText(link.label, 40) + ' ↗';
+    if(url.indexOf('https://') === 0){
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+    }
+    div.appendChild(a);
   }
   chatMessages.appendChild(div);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
-function linkHtml(url, label){
-  const external = url.indexOf('#') !== 0;
-  return '<a class="msg-link" href="' + url + '"' + (external ? ' target="_blank" rel="noopener"' : '') + '>' + label + ' ↗</a>';
-}
 function botReply(text, link){
   const typing = document.createElement('div');
   typing.className = 'msg bot typing';
-  typing.innerHTML = '<span></span><span></span><span></span>';
+  for(let i=0;i<3;i++) typing.appendChild(document.createElement('span'));
   chatMessages.appendChild(typing);
   chatMessages.scrollTop = chatMessages.scrollHeight;
-  setTimeout(() => {
-    typing.remove();
-    addMessage(text, 'bot', link || '');
-  }, 550);
+  setTimeout(() => { typing.remove(); addMessage(text, 'bot', link); }, 550);
 }
 function answer(raw){
   const t = normalize(raw);
   const has = (...words) => words.some(w => t.includes(w));
-
-  if(has('oi','ola','bom dia','boa tarde','boa noite','eai','hey','tudo bem')){
-    return {text:'Oi! Bem-vindo ao Pará-Ti. Posso te ajudar com horário, endereço, cardápio, açaí, delivery e mais. O que você quer saber?', link:linkHtml(INSTAGRAM,'Ver Instagram')};
+  if(has('oi','ola','bom dia','boa tarde','boa noite','hey','tudo bem')){
+    return {text:'Oi! Bem-vindo ao Pará-Ti. Posso ajudar com cardápio, preços, pedidos, horário e endereço. O que você quer saber?', link:{url:INSTAGRAM,label:'Ver Instagram'}};
   }
   if(has('horario','hora','abre','fecha','funciona','funcionamento','aberto')){
-    return {text:'Funcionamos de segunda a sábado, das 11h às 22h, e domingo das 11h às 18h.', link:''};
+    return {text:'Funcionamos de segunda a sábado, das 11h às 22h, e domingo das 11h às 18h.', link:null};
   }
   if(has('endereco','onde','local','localizacao','fica','chegar','mapa')){
-    return {text:'Estamos na Av. Central, 34 — Cidade 2000, Fortaleza/CE.', link:linkHtml(MAPS,'Abrir no Google Maps')};
+    return {text:'Estamos na Av. Central, 34 — Cidade 2000, Fortaleza/CE.', link:{url:MAPS,label:'Abrir no Google Maps'}};
   }
   if(has('acai','açaí')){
-    return {text:'Nosso açaí é raiz e batido na hora, puro e fresco. O valor divulgado pela casa é R$ 55/kg. Para saber a disponibilidade do dia, fale com a equipe.', link:linkHtml(INSTAGRAM,'Pedir pelo Instagram')};
+    return {text:'O açaí é artesanal, no estilo paraense: R$ 5,50 (100g) e R$ 55,00 (1 litro).', link:{url:'#cardapio',label:'Ver cardápio'}};
   }
-  if(has('churrasco','carne','espeto')){
-    return {text:'Tem churrasco suculento na casa. Os valores e as opções do dia são confirmados com a equipe pelo Instagram.', link:linkHtml(INSTAGRAM,'Ver no Instagram')};
+  if(has('pedido','pedir','comanda','finalizar','fazer o pedido','enviar pedido')){
+    return {text:'Escolha os itens no cardápio e toque em “Sua Sacola” para revisar e enviar o pedido pelo WhatsApp. A retirada é feita no balcão.', link:{url:'#cardapio',label:'Ir para o cardápio'}};
+  }
+  if(has('entrega','delivery','ifood')){
+    return {text:'Não trabalhamos com entrega. Monte sua sacola no cardápio e finalize o pedido pelo WhatsApp para retirada no balcão.', link:{url:'#cardapio',label:'Ver cardápio'}};
+  }
+  if(has('cardapio','menu','opcoes','comida','o que tem','prato')){
+    return {text:'Temos açaí artesanal, produtos do Pará, entradas e petiscos, peixes, chapas, pratos executivos, bebidas e adicionais. Monte sua comanda aqui no site.', link:{url:'#cardapio',label:'Ver cardápio'}};
+  }
+  if(has('peixe','pirarucu','tambaqui','filhote')){
+    return {text:'No cardápio tem tambaqui em banda, pirarucu e filhote. Os valores e a disponibilidade estão no cardápio do site.', link:{url:'#cardapio',label:'Ver peixes'}};
+  }
+  if(has('chapa','picanha','carne','churrasco')){
+    return {text:'As chapas são de picanha, contra filé, maminha e fraldinha, com acompanhamentos. Confira os valores no cardápio.', link:{url:'#cardapio',label:'Ver chapas'}};
   }
   if(has('hamburguer','lanche','burger')){
-    return {text:'Nosso hambúrguer é artesanal. Para ver as opções e valores, chama a gente no Instagram.', link:linkHtml(INSTAGRAM,'Ver no Instagram')};
+    return {text:'Temos hambúrguer artesanal de 200g, com batata frita ou com queijo e batata frita. Veja o cardápio.', link:{url:'#cardapio',label:'Ver cardápio'}};
   }
-  if(has('self','buffet','almoco','almoço','prato','paraense','tacaca','tucupi','manicoba','vatapa','tipico','tipica')){
-    return {text:'No almoço temos self-service para montar seu prato, além dos sabores do Pará. Para saber o prato do dia e o valor do buffet, consulte a equipe pelo Instagram.', link:linkHtml(INSTAGRAM,'Perguntar no Instagram')};
+  if(has('suco','bebida','refrigerante','cerveja')){
+    return {text:'Temos refrigerantes, águas, caipirosca, sucos de vários sabores e cervejas. Veja valores e opções no cardápio.', link:{url:'#cardapio',label:'Ver bebidas'}};
   }
-  if(has('cardapio','menu','opcoes','comida','o que tem')){
-    return {text:'Nossos destaques: açaí raiz batido na hora, churrasco, hambúrguer artesanal, sabores do Pará e self-service no almoço. Veja a vitrine aqui no site ou fale com a equipe para os valores.', link:linkHtml('#vitrine','Ver vitrine')};
+  if(has('sobre','historia','origem','restaurante')){
+    return {text:'A Pará-Ti é especializada na culinária paraense e tem no açaí artesanal sua principal especialidade.', link:{url:'#sobre',label:'Conheça a casa'}};
   }
-  if(has('delivery','entrega','pedir','pedido','ifood','encomenda')){
-    return {text:'Para pedidos, entrega e disponibilidade, fale diretamente com a equipe pelo Instagram. Eles confirmam as opções do dia.', link:linkHtml(INSTAGRAM,'Falar no Instagram')};
-  }
-  if(has('reserva','mesa','evento','aniversario','grupo','festa')){
-    return {text:'Para reservas, grupos e eventos, o contato é pela DM do Instagram. A equipe confirma a disponibilidade.', link:linkHtml(INSTAGRAM,'Falar no Instagram')};
+  if(has('reserva','mesa','evento','aniversario','grupo')){
+    return {text:'Para reservas, grupos e eventos, fale com a equipe pelo Instagram.', link:{url:INSTAGRAM,label:'Falar no Instagram'}};
   }
   if(has('instagram','insta','perfil','rede','social')){
-    return {text:'Nosso Instagram é @paratifortaleza. Lá você vê as novidades, fotos e fala direto com a equipe.', link:linkHtml(INSTAGRAM,'Abrir Instagram')};
+    return {text:'Nosso Instagram é @paratifortaleza. Lá você vê novidades e fala direto com a equipe.', link:{url:INSTAGRAM,label:'Abrir Instagram'}};
   }
-  if(has('preco','valor','quanto custa','quanto e','quanto é','barato','caro')){
-    return {text:'O açaí está divulgado a R$ 55/kg. Os demais valores (churrasco, hambúrguer e buffet) são confirmados com a equipe pelo Instagram.', link:linkHtml(INSTAGRAM,'Consultar valores')};
+  if(has('preco','valor','quanto custa','quanto e','barato','caro')){
+    return {text:'O açaí custa R$ 5,50 (100g) e R$ 55,00 (1 litro). Os demais valores estão no cardápio do site.', link:{url:'#cardapio',label:'Ver preços'}};
   }
-  if(has('estacionamento','estacionar','carro')){
-    return {text:'Essa informação não está disponível por aqui. A equipe do restaurante pode te orientar pelo Instagram.', link:linkHtml(INSTAGRAM,'Falar no Instagram')};
+  if(has('obrigado','obrigada','valeu','vlw','tchau')){
+    return {text:'Por nada! Esperamos você no Pará-Ti. Até breve.', link:null};
   }
-  if(has('obrigado','obrigada','valeu','vlw','tchau','ate mais')){
-    return {text:'Por nada! Esperamos você no Pará-Ti. Um abraço e até breve.', link:''};
-  }
-  return {text:'Ainda não tenho essa informação por aqui. A equipe do Pará-Ti pode te ajudar pelo Instagram.', link:linkHtml(INSTAGRAM,'Falar no Instagram')};
+  return {text:'Ainda não tenho essa informação por aqui. A equipe do Pará-Ti pode te ajudar pelo Instagram.', link:{url:INSTAGRAM,label:'Falar no Instagram'}};
 }
-
 function startChat(){
   if(chatStarted) return;
   chatStarted = true;
-  addMessage('Olá! Eu sou o assistente virtual do Pará-Ti. Posso te ajudar com horário, endereço, cardápio, açaí e delivery. Como posso ajudar?', 'bot');
+  addMessage('Olá! Eu sou o assistente do Pará-Ti. Posso ajudar com o cardápio, preços, pedidos, horário e endereço. Como posso ajudar?', 'bot');
 }
 function openChat(){
   chatOpen = true;
+  closeOrder();
   chatPanel.classList.add('open');
   chatPanel.setAttribute('aria-hidden','false');
   chatFab.setAttribute('aria-expanded','true');
@@ -855,10 +1005,9 @@ function closeChat(){
 chatFab.addEventListener('click', () => chatOpen ? closeChat() : openChat());
 document.getElementById('chatClose').addEventListener('click', closeChat);
 document.querySelectorAll('[data-open-chat]').forEach(b => b.addEventListener('click', () => { setDrawer(false); openChat(); }));
-
 document.getElementById('chatForm').addEventListener('submit', e => {
   e.preventDefault();
-  const text = chatInput.value.trim();
+  const text = sanitizeText(chatInput.value, 200);
   if(!text) return;
   addMessage(text, 'user');
   chatInput.value = '';
@@ -867,17 +1016,132 @@ document.getElementById('chatForm').addEventListener('submit', e => {
 });
 document.querySelectorAll('#chatQuick button').forEach(btn => {
   btn.addEventListener('click', () => {
-    const q = btn.dataset.quick;
     const question = btn.textContent;
     addMessage(question, 'user');
-    let r;
-    if(q === 'horario') r = answer('horario');
-    else if(q === 'endereco') r = answer('endereco');
-    else if(q === 'acai') r = answer('acai');
-    else if(q === 'cardapio') r = answer('cardapio');
-    else r = answer('delivery');
+    const r = answer(btn.dataset.quick === 'pedido' ? 'como faço o pedido' : btn.dataset.quick);
     botReply(r.text, r.link);
   });
+});
+
+const cart = new Map();
+const menuItems = Array.from(document.querySelectorAll('.menu-item'));
+function makeAddButton(item){
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'add-btn';
+  btn.textContent = '+ Adicionar';
+  btn.setAttribute('aria-label','Adicionar ' + item.dataset.name);
+  btn.addEventListener('click', () => changeQty(item, 1));
+  return btn;
+}
+function makeStepper(item, qty){
+  const wrap = document.createElement('div');
+  wrap.className = 'qty';
+  const minus = document.createElement('button');
+  minus.type = 'button';
+  minus.className = 'qty-btn';
+  minus.textContent = '−';
+  minus.setAttribute('aria-label','Diminuir quantidade de ' + item.dataset.name);
+  minus.addEventListener('click', () => changeQty(item, -1));
+  const number = document.createElement('span');
+  number.className = 'qty-num';
+  number.textContent = String(qty);
+  number.setAttribute('aria-label','Quantidade: ' + qty);
+  const plus = document.createElement('button');
+  plus.type = 'button';
+  plus.className = 'qty-btn';
+  plus.textContent = '+';
+  plus.setAttribute('aria-label','Aumentar quantidade de ' + item.dataset.name);
+  plus.addEventListener('click', () => changeQty(item, 1));
+  wrap.append(minus, number, plus);
+  return wrap;
+}
+function renderMenuControls(){
+  menuItems.forEach(item => {
+    const holder = item.querySelector('.add-holder');
+    const qty = cart.get(item.dataset.id)?.qty || 0;
+    holder.replaceChildren(qty ? makeStepper(item, qty) : makeAddButton(item));
+  });
+}
+function changeQty(item, delta){
+  const id = item.dataset.id;
+  const current = cart.get(id) || {name:item.dataset.name, price:Number(item.dataset.price), qty:0};
+  current.qty = Math.min(99, current.qty + delta);
+  if(current.qty <= 0) cart.delete(id);
+  else cart.set(id, current);
+  renderMenuControls();
+  updateBag();
+}
+function cartTotal(){
+  let total = 0;
+  cart.forEach(item => { total += item.price * item.qty; });
+  return total;
+}
+function updateBag(){
+  let count = 0;
+  cart.forEach(item => { count += item.qty; });
+  document.getElementById('bagCount').textContent = String(count);
+}
+renderMenuControls();
+updateBag();
+
+const bagBtn = document.getElementById('bagBtn');
+
+const orderModal = document.getElementById('orderModal');
+const orderBackdrop = document.getElementById('orderBackdrop');
+function openOrder(){
+  if(cart.size === 0){ toast('Adicione itens ao cardápio antes de fechar o pedido.'); return; }
+  closeChat();
+  setDrawer(false);
+  const summary = document.getElementById('orderSummary');
+  summary.replaceChildren();
+  cart.forEach(item => {
+    const line = document.createElement('div');
+    const strong = document.createElement('strong');
+    strong.textContent = item.qty + 'x ';
+    line.append(strong, document.createTextNode(item.name + ' — ' + money(item.price * item.qty)));
+    summary.appendChild(line);
+  });
+  document.getElementById('orderTotal').textContent = money(cartTotal());
+  orderModal.classList.add('open');
+  orderModal.setAttribute('aria-hidden','false');
+  orderBackdrop.classList.add('open');
+  bagBtn.setAttribute('aria-expanded','true');
+  setTimeout(() => document.getElementById('customerName').focus(), 200);
+}
+function closeOrder(){
+  orderModal.classList.remove('open');
+  orderModal.setAttribute('aria-hidden','true');
+  orderBackdrop.classList.remove('open');
+  bagBtn.setAttribute('aria-expanded','false');
+}
+bagBtn.addEventListener('click', openOrder);
+document.getElementById('orderClose').addEventListener('click', closeOrder);
+orderBackdrop.addEventListener('click', closeOrder);
+addEventListener('keydown', e => {
+  if(e.key !== 'Escape') return;
+  setDrawer(false);
+  closeChat();
+  closeOrder();
+});
+
+document.getElementById('orderForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = sanitizeText(document.getElementById('customerName').value, 50);
+  const notes = sanitizeText(document.getElementById('customerNotes').value, 300);
+  if(!name || cart.size === 0) return;
+  const mode = sanitizeText(document.querySelector('input[name="mode"]:checked')?.value || 'Retirada no balcão', 40);
+  const lines = ['Olá! Gostaria de fazer um pedido no Pará-Ti.', mode, '', '*Comanda:*'];
+  cart.forEach(item => lines.push(item.qty + 'x ' + item.name + ' — ' + money(item.price * item.qty)));
+  lines.push('', '*Total: ' + money(cartTotal()) + '*', '', 'Nome: ' + name);
+  if(notes) lines.push('Observações: ' + notes);
+  closeOrder();
+  cart.clear();
+  renderMenuControls();
+  updateBag();
+  document.getElementById('orderForm').reset();
+  window.open(WHATSAPP + encodeURIComponent(lines.join('\n')), '_blank', 'noopener,noreferrer');
+  toast('Pedido pronto! Confira a mensagem no WhatsApp.');
 });
 </script>
 </body>
