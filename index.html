@@ -56,7 +56,6 @@
   --acai-claro:#F0E2F2;
   --dourado:#C8942F;
   --buriti:#B45A34;
-  --cupuacu:#EAD9B8;
   --sombra:0 18px 45px rgba(46,31,24,.12);
   --sombra-forte:0 24px 60px rgba(46,31,24,.22);
   --raio:22px;
@@ -139,11 +138,11 @@ button{font:inherit;cursor:pointer}
 .hero-card .icon svg{width:24px;height:24px}
 .hero-card strong{display:block;font-family:"Fraunces",serif;font-size:1rem;line-height:1.2}
 .hero-card span{font-size:.75rem;font-weight:700;color:var(--marrom-suave)}
-.marquee{background:var(--marrom);color:var(--creme);padding:14px 0;overflow:hidden}
+.marquee{background:var(--creme);color:var(--marrom);padding:14px 0;overflow:hidden}
 .marquee-track{display:flex;width:max-content;animation:scroll 30s linear infinite}
 .marquee-group{display:flex;gap:42px;padding-right:42px;flex:0 0 auto}
 .marquee-track span{font-size:.88rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap;display:flex;align-items:center;gap:42px}
-.marquee-track span::after{content:"";width:8px;height:8px;border-radius:2px;background:var(--cupuacu);transform:rotate(45deg);opacity:.85}
+.marquee-track span::after{content:"";width:8px;height:8px;border-radius:2px;background:var(--terra);transform:rotate(45deg);opacity:.85}
 @keyframes scroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 .section{padding:88px 0}
 .section-tinted{background:var(--creme-2)}
@@ -155,7 +154,7 @@ button{font:inherit;cursor:pointer}
 .section-head p{margin-top:14px;color:var(--marrom-suave);font-size:1.02rem}
 #cardapio,#sobre,#comentarios,#rodape{scroll-margin-top:94px}
 .menu-quick{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:0 auto 34px;max-width:900px}
-.menu-quick a{display:inline-flex;align-items:center;border:1px solid rgba(74,29,82,.22);border-radius:999px;background:#fff;color:var(--acai);padding:9px 16px;font-size:.82rem;font-weight:800;transition:background .18s,color .18s,border-color .18s}
+.menu-quick a{display:inline-flex;align-items:center;border:1px solid rgba(74,29,82,.22);border-radius:999px;background:var(--creme);color:var(--acai);padding:9px 16px;font-size:.82rem;font-weight:800;transition:background .18s,color .18s,border-color .18s}
 .menu-quick a:hover{background:var(--acai);border-color:var(--acai);color:#fff}
 .menu-wrap{display:flex;flex-direction:column;gap:26px;max-width:860px;margin-inline:auto}
 .menu-group{width:100%;background:#fff;border:1px solid rgba(46,31,24,.08);border-radius:22px;padding:28px 32px;box-shadow:0 12px 30px rgba(46,31,24,.05);scroll-margin-top:100px}
