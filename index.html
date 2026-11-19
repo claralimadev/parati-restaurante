@@ -294,8 +294,8 @@ button{font:inherit;cursor:pointer}
 .comanda-mobile{display:none}
 .comanda-close{display:none;width:28px;height:28px;margin-left:2px;border:0;border-radius:50%;background:rgba(74,29,82,.1);color:var(--acai);place-items:center;cursor:pointer}
 .comanda-close svg{width:15px;height:15px}
-.comanda-mobile-open{display:flex;align-items:center;gap:8px;padding:0;border:0;background:none;color:var(--marrom);font:inherit;text-align:left;cursor:pointer}
-.comanda-mobile-label{color:var(--acai);font-weight:800;white-space:nowrap}
+.comanda-mobile-info{display:flex;align-items:center;gap:8px;min-width:0}
+.comanda-mobile-open{margin-left:auto;background:var(--acai);color:#fff;border:0;border-radius:999px;padding:7px 12px;font-size:.72rem;font-weight:800;white-space:nowrap;cursor:pointer}
 .chat-head{background:var(--acai);color:#fff;padding:16px 18px;display:flex;align-items:center;gap:12px}
 .chat-head .bot{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:0 0 auto}
 .chat-head .bot svg{width:22px;height:22px}
@@ -351,8 +351,6 @@ button{font:inherit;cursor:pointer}
   .comanda-close{display:grid}
   .comanda-mobile{display:flex;align-items:center;gap:8px;padding:9px 12px;background:var(--creme-2);border-bottom:1px solid rgba(46,31,24,.08);font-size:.74rem;color:var(--marrom)}
   .comanda-mobile strong{color:var(--acai)}
-  .comanda-mobile a{margin-left:auto;background:var(--acai);color:#fff;border-radius:999px;padding:7px 10px;font-size:.7rem;font-weight:800;text-decoration:none;white-space:nowrap}
-  .comanda-mobile a.disabled{opacity:.45;pointer-events:none}
   .section{padding:68px 0}
   .hero{padding:calc(var(--header-h) + 64px) 0 56px}
   .hero-bg{background-position:62% center}
@@ -773,12 +771,11 @@ button{font:inherit;cursor:pointer}
     </button>
   </div>
   <div class="comanda-mobile">
-    <button class="comanda-mobile-open" id="comandaMobileOpen" type="button">
+    <div class="comanda-mobile-info">
       <strong id="comandaMobileCount">0 itens</strong>
       <span id="comandaMobileTotal">R$ 0,00</span>
-      <span class="comanda-mobile-label">Ver comanda →</span>
-    </button>
-    <a id="comandaMobileCheckout" href="#" aria-disabled="true" class="disabled" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+    <button class="comanda-mobile-open" id="comandaMobileOpen" type="button">Ver comanda</button>
   </div>
   <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
   <div class="chat-quick" id="chatQuick">
@@ -1214,14 +1211,11 @@ function renderComanda(){
   document.getElementById('comandaSubtotal').textContent = total;
   document.getElementById('comandaTotal').textContent = total;
   document.getElementById('comandaMobileTotal').textContent = total;
-  const href = count ? WHATSAPP + encodeURIComponent(orderMessage()) : '#';
-  ['comandaCheckout', 'comandaMobileCheckout'].forEach(id => {
-    const el = document.getElementById(id);
-    el.href = href;
-    el.classList.toggle('disabled', !count);
-    if(count) el.removeAttribute('aria-disabled');
-    else el.setAttribute('aria-disabled', 'true');
-  });
+  const checkout = document.getElementById('comandaCheckout');
+  checkout.href = count ? WHATSAPP + encodeURIComponent(orderMessage()) : '#';
+  checkout.classList.toggle('disabled', !count);
+  if(count) checkout.removeAttribute('aria-disabled');
+  else checkout.setAttribute('aria-disabled', 'true');
 }
 function changeCartQty(id, delta){
   const item = cart.get(id);
@@ -1414,7 +1408,6 @@ addEventListener('keydown', e => {
   closeChat();
 });
 document.getElementById('comandaCheckout').addEventListener('click', () => toast('Pedido pronto! Confira a mensagem no WhatsApp.'));
-document.getElementById('comandaMobileCheckout').addEventListener('click', () => toast('Pedido pronto! Confira a mensagem no WhatsApp.'));
 </script>
 </body>
 </html>
