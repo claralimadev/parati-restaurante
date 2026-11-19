@@ -127,7 +127,7 @@ button{font:inherit;cursor:pointer}
 .hero{position:relative;isolation:isolate;overflow:hidden;min-height:100vh;display:flex;align-items:center;margin-top:calc(-1 * var(--header-h));padding:calc(var(--header-h) + 96px) 0 76px;background:#1E0E18;color:#FFFDF7}
 .hero-bg{position:absolute;inset:-12% 0;z-index:0;background:url("assets/hero-mesa.jpg") center right/cover no-repeat;transform:translate3d(0,var(--hero-parallax,0px),0) scale(1.04);will-change:transform;pointer-events:none}
 .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(20,12,10,.88) 0%,rgba(20,12,10,.62) 50%,rgba(20,12,10,.22) 100%);pointer-events:none}
-.hero::after{content:"";position:absolute;inset:auto 0 0;height:140px;z-index:3;background:linear-gradient(180deg,rgba(35,17,28,0) 0%,rgba(35,17,28,.55) 55%,#23111C 100%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:auto 0 0;height:140px;z-index:5;background:linear-gradient(180deg,rgba(35,17,28,0) 0%,rgba(35,17,28,.55) 55%,#23111C 100%);pointer-events:none}
 .hero-grid{position:relative;z-index:2;width:100%;max-width:none;margin:0;padding-left:clamp(48px,5.5vw,84px);padding-right:clamp(48px,5.5vw,84px)}
 .hero-content{max-width:660px;margin-left:0;margin-right:auto}
 .hero-tag{display:inline-flex;align-items:center;gap:10px;color:#FACC15;font-family:"Plus Jakarta Sans",sans-serif;font-size:.78rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
@@ -145,18 +145,18 @@ button{font:inherit;cursor:pointer}
 .hero-meta div{display:flex;flex-direction:column;gap:2px}
 .hero-meta strong{font-size:.92rem;color:#FFFDF7}
 .hero-meta span{font-size:.78rem;color:rgba(255,253,247,.78);font-weight:600}
-.marquee{position:relative;z-index:4;background:var(--marrom);color:var(--creme);padding:14px 0;overflow:hidden;box-shadow:0 -20px 40px rgba(28,12,24,.85),0 24px 48px rgba(34,13,42,.9);border-top:1px solid rgba(255,253,247,.08);border-bottom:1px solid rgba(255,253,247,.08)}
-.marquee-track{display:flex;width:max-content;animation:scroll 30s linear infinite;will-change:transform}
+.marquee{position:relative;z-index:15;width:100%;overflow:hidden;background:rgba(34,13,36,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;padding:14px 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 -20px 40px rgba(28,12,24,.85),0 24px 48px rgba(34,13,42,.9)}
+.marquee-track{display:flex;width:max-content;animation:marquee 30s linear infinite;will-change:transform}
 .marquee:hover .marquee-track{animation-play-state:paused}
-.marquee-group{display:flex;gap:42px;padding-right:42px;flex:0 0 auto}
-.marquee-track span{font-size:.88rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap;display:flex;align-items:center;gap:42px}
-.marquee-track span::after{content:"";width:8px;height:8px;border-radius:2px;background:var(--cupuacu);transform:rotate(45deg);opacity:.85}
-@keyframes scroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.marquee-group{display:flex;align-items:center;gap:26px;padding-right:26px;flex:0 0 auto}
+.marquee-track span{font-size:.85rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;color:#fff}
+.marquee-track .diamond{color:#D6C29F;font-weight:800;letter-spacing:0}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .section{padding:88px 0}
 .section-tinted{background:transparent}
 #cardapio{position:relative;background:transparent}
-#cardapio::before{content:"";position:absolute;inset:0 0 auto;height:140px;z-index:0;background:linear-gradient(180deg,rgba(34,13,42,.95) 0%,rgba(34,13,42,0) 100%);pointer-events:none}
-#cardapio > .container{position:relative;z-index:1}
+#cardapio::before{content:"";position:absolute;inset:0 0 auto;height:140px;z-index:5;background:linear-gradient(180deg,rgba(34,13,42,.95) 0%,rgba(34,13,42,0) 100%);pointer-events:none}
+#cardapio > .container{position:relative;z-index:6}
 #sobre{position:relative;width:100%;min-height:80vh;margin:0;border-radius:0;display:flex;align-items:center;background:#0c3016 url("assets/fachada-verde.jpg") left center/cover no-repeat}
 #comentarios{position:relative;background:transparent}
 .section-transition{position:relative;z-index:5;height:180px;margin:-90px 0;pointer-events:none;background:linear-gradient(180deg,rgba(74,29,82,0) 0%,rgba(74,29,82,.62) 45%,rgba(90,36,100,.62) 55%,rgba(42,15,54,0) 100%);box-shadow:0 0 70px rgba(74,29,82,.32);backdrop-filter:blur(34px) saturate(1.25);-webkit-backdrop-filter:blur(34px) saturate(1.25);filter:blur(10px);-webkit-mask-image:linear-gradient(180deg,transparent,#000 20%,#000 80%,transparent);mask-image:linear-gradient(180deg,transparent,#000 20%,#000 80%,transparent)}
@@ -472,10 +472,10 @@ button{font:inherit;cursor:pointer}
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
       <div class="marquee-group">
-        <span>Açaí artesanal</span><span>Sabores do Pará</span><span>Peixes</span><span>Chapas</span><span>Pratos executivos</span><span>Açaí artesanal</span><span>Sabores do Pará</span><span>Peixes</span><span>Chapas</span><span>Pratos executivos</span><span>Açaí artesanal</span><span>Sabores do Pará</span><span>Peixes</span><span>Chapas</span><span>Pratos executivos</span>
+        <span class="diamond">♦</span><span>Chapas</span><span class="diamond">♦</span><span>Pratos executivos</span><span class="diamond">♦</span><span>Açaí artesanal</span><span class="diamond">♦</span><span>Sabores do Pará</span><span class="diamond">♦</span><span>Peixes</span><span class="diamond">♦</span><span>Entradas e petiscos</span><span class="diamond">♦</span><span>Bebidas</span>
       </div>
       <div class="marquee-group" aria-hidden="true">
-        <span>Açaí artesanal</span><span>Sabores do Pará</span><span>Peixes</span><span>Chapas</span><span>Pratos executivos</span><span>Açaí artesanal</span><span>Sabores do Pará</span><span>Peixes</span><span>Chapas</span><span>Pratos executivos</span><span>Açaí artesanal</span><span>Sabores do Pará</span><span>Peixes</span><span>Chapas</span><span>Pratos executivos</span>
+        <span class="diamond">♦</span><span>Chapas</span><span class="diamond">♦</span><span>Pratos executivos</span><span class="diamond">♦</span><span>Açaí artesanal</span><span class="diamond">♦</span><span>Sabores do Pará</span><span class="diamond">♦</span><span>Peixes</span><span class="diamond">♦</span><span>Entradas e petiscos</span><span class="diamond">♦</span><span>Bebidas</span>
       </div>
     </div>
   </div>
