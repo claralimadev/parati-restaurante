@@ -158,7 +158,7 @@ button{font:inherit;cursor:pointer}
 #cardapio > .container{position:relative;z-index:1}
 #sobre{position:relative;width:100%;min-height:80vh;margin:0;border-radius:0;display:flex;align-items:center;background:#0c3016 url("assets/fachada-verde.jpg") left center/cover no-repeat}
 #comentarios{position:relative;background:transparent}
-#cardapio::after,#sobre::after,#comentarios::after{content:"";position:absolute;left:0;right:0;bottom:0;height:110px;z-index:2;pointer-events:none;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);-webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
+.section-transition{position:relative;z-index:5;height:180px;margin:-90px 0;pointer-events:none;background:linear-gradient(180deg,rgba(74,29,82,0) 0%,rgba(74,29,82,.62) 45%,rgba(90,36,100,.62) 55%,rgba(42,15,54,0) 100%);box-shadow:0 0 70px rgba(74,29,82,.32);backdrop-filter:blur(34px) saturate(1.25);-webkit-backdrop-filter:blur(34px) saturate(1.25);filter:blur(10px);-webkit-mask-image:linear-gradient(180deg,transparent,#000 20%,#000 80%,transparent);mask-image:linear-gradient(180deg,transparent,#000 20%,#000 80%,transparent)}
 .section-head{max-width:700px;margin-bottom:40px}
 .section-head h2{font-size:clamp(2rem,3.8vw,3.1rem);margin-top:12px;letter-spacing:0;color:#FFFDF7;text-shadow:0 3px 16px rgba(20,8,26,.45)}
 .section-head p{margin-top:14px;color:rgba(255,253,247,.84);font-size:1.02rem}
@@ -166,7 +166,6 @@ button{font:inherit;cursor:pointer}
 .section-head .eyebrow::before{background:#FACC15}
 #cardapio,#sobre,#comentarios,#rodape{scroll-margin-top:94px}
 .category-tabs{position:sticky;top:var(--header-h);z-index:40;display:flex;align-items:center;gap:10px;margin:0 0 34px;padding:8px clamp(16px,5.5vw,84px);background:#230d2b;border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 12px 30px rgba(20,8,26,.28)}
-.tabs-icon{flex:0 0 auto;color:#FACC15;font-size:1.05rem;line-height:1;padding:6px 2px}
 .tabs-track{flex:1;min-width:0;display:flex;flex-wrap:nowrap;gap:12px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;padding:4px 0 6px}
 .tabs-track::-webkit-scrollbar{display:none}
 .tabs-track.dragging{cursor:grabbing;scroll-behavior:auto;user-select:none}
@@ -469,6 +468,8 @@ button{font:inherit;cursor:pointer}
     </div>
   </section>
 
+  <div class="section-transition" aria-hidden="true"></div>
+
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
       <div class="marquee-group">
@@ -479,6 +480,8 @@ button{font:inherit;cursor:pointer}
       </div>
     </div>
   </div>
+
+  <div class="section-transition" aria-hidden="true"></div>
 
   <section class="section" id="cardapio">
     <div class="container">
@@ -491,7 +494,6 @@ button{font:inherit;cursor:pointer}
     </div>
 
     <nav class="category-tabs" aria-label="Categorias do cardápio">
-      <span class="tabs-icon" aria-hidden="true">☰</span>
       <div class="tabs-track" id="categoryTabs">
         <a class="category-tab is-active" href="#cat-acai" data-category="cat-acai">Açaí</a>
         <a class="category-tab" href="#cat-produtos" data-category="cat-produtos">Produtos do Pará</a>
@@ -637,6 +639,8 @@ button{font:inherit;cursor:pointer}
     </div>
   </section>
 
+  <div class="section-transition" aria-hidden="true"></div>
+
   <section class="section" id="sobre">
     <div class="about-text reveal">
       <span class="eyebrow">— SOBRE A CASA</span>
@@ -645,6 +649,8 @@ button{font:inherit;cursor:pointer}
       <p>Além do açaí, o restaurante oferece diversas opções de comidas, incluindo outros pratos e hambúrgueres, proporcionando aos clientes um cardápio variado. Apesar da diversidade de opções, sua principal especialidade continua sendo o açaí tradicional paraense, que representa a identidade e a cultura do estabelecimento.</p>
     </div>
   </section>
+
+  <div class="section-transition" aria-hidden="true"></div>
 
   <section class="section section-tinted" id="comentarios">
     <div class="container">
@@ -683,6 +689,8 @@ button{font:inherit;cursor:pointer}
   </section>
 
 </main>
+
+<div class="section-transition" aria-hidden="true"></div>
 
 <div class="fab-anchor">
   <button class="chat-fab" id="chatFab" type="button" aria-label="Abrir assistente virtual" aria-expanded="false">
