@@ -41,8 +41,8 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%234A1D52'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='34' fill='%23FAF4EA'%3EP%3C/text%3E%3C/svg%3E" />
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%234A1D52'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='sans-serif' font-size='34' fill='%23FAF4EA'%3EP%3C/text%3E%3C/svg%3E" />
 <style>
 :root{
   --terra:#A8452A;
@@ -59,20 +59,24 @@
   --buriti:#B45A34;
   --sombra:0 18px 45px rgba(46,31,24,.12);
   --sombra-forte:0 24px 60px rgba(46,31,24,.22);
+  --creme-card:#FDFBF7;
+  --sombra-card:0 12px 32px rgba(20,8,26,.24);
   --raio:22px;
   --max:1180px;
+  --header-h:76px;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   margin:0;
-  background:var(--creme);
-  font-family:"Nunito Sans",system-ui,-apple-system,sans-serif;
+  background:#2A0F36;
+  font-family:"Plus Jakarta Sans",system-ui,-apple-system,sans-serif;
   color:var(--marrom);
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
 }
-h1,h2{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.12;margin:0;color:var(--marrom)}
-h3,h4{margin:0}
+h1,h2,h3{font-family:"Kalam",cursive;font-weight:700;line-height:1.12;margin:0;color:var(--marrom)}
+h4{margin:0}
 p{margin:0}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -90,24 +94,24 @@ button{font:inherit;cursor:pointer}
 .btn-outline{background:transparent;border-color:rgba(46,31,24,.22);color:var(--marrom)}
 .btn-outline:hover{border-color:var(--terra);color:var(--terra)}
 .btn svg{width:18px;height:18px}
-.site-header{position:sticky;top:0;z-index:60;background:rgba(250,244,234,.96);border-bottom:1px solid rgba(46,31,24,.08);transition:box-shadow .25s}
-.site-header.scrolled{box-shadow:0 10px 30px rgba(46,31,24,.08)}
-.header-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:76px}
+.site-header{position:sticky;top:0;z-index:60;background:transparent;border-bottom:1px solid rgba(255,253,247,.16);color:#FFFDF7;transition:background .25s,border-color .25s,box-shadow .25s}
+.site-header.scrolled{background:rgba(28,18,15,.94);border-bottom-color:rgba(255,253,247,.12);box-shadow:0 10px 30px rgba(0,0,0,.24)}
+.header-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:var(--header-h);width:100%;max-width:none;margin:0;padding-inline:clamp(48px,5.5vw,84px)}
 .brand{display:flex;align-items:center;gap:12px}
-.brand-mark{width:46px;height:46px;border-radius:50%;background:var(--acai);display:grid;place-items:center;color:#fff;font-family:"Fraunces",serif;font-size:1.4rem;box-shadow:0 8px 18px rgba(74,29,82,.28)}
+.brand-mark{width:46px;height:46px;border-radius:50%;background:#FACC15;display:grid;place-items:center;color:#2E1F18;font-family:"Kalam",cursive;font-size:1.4rem;box-shadow:0 8px 18px rgba(0,0,0,.28)}
 .brand-text{display:flex;flex-direction:column;line-height:1.08}
-.brand-text strong{font-family:"Fraunces",serif;font-size:1.22rem;font-weight:700;letter-spacing:.01em}
-.brand-text span{font-size:.66rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--terra)}
-.nav{display:flex;align-items:center;gap:22px}
-.nav a,.nav button{font-size:1rem;font-weight:700;color:var(--marrom-suave);position:relative;padding:6px 0;background:none;border:0}
-.nav a::after,.nav button::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--terra);transition:width .2s}
+.brand-text strong{font-family:"Kalam",cursive;font-size:1.22rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#FFFDF7}
+.brand-text span{font-size:.66rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#FACC15}
+.nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:22px}
+.nav a,.nav button{font-size:1rem;font-weight:700;color:rgba(255,253,247,.9);position:relative;padding:6px 0;background:none;border:0}
+.nav a::after,.nav button::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:#FACC15;transition:width .2s}
 .nav a:hover::after,.nav button:hover::after{width:100%}
 .header-actions{display:flex;align-items:center;gap:10px}
-.icon-btn{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid rgba(46,31,24,.14);color:var(--marrom);transition:.2s}
-.icon-btn:hover{border-color:var(--terra);color:var(--terra);transform:translateY(-2px)}
+.icon-btn{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(255,253,247,.12);border:1px solid rgba(255,253,247,.28);color:#FFFDF7;transition:.2s}
+.icon-btn:hover{border-color:#FACC15;color:#FACC15;transform:translateY(-2px)}
 .icon-btn svg{width:20px;height:20px}
-.icon-btn.instagram,.icon-btn.whatsapp{color:#fff;background:var(--terra);border-color:var(--terra)}
-.icon-btn.instagram:hover,.icon-btn.whatsapp:hover{background:var(--terra-esc);border-color:var(--terra-esc);color:#fff}
+.icon-btn.instagram,.icon-btn.whatsapp{color:#2E1F18;background:#FACC15;border-color:#FACC15}
+.icon-btn.instagram:hover,.icon-btn.whatsapp:hover{background:#F59E0B;border-color:#F59E0B;color:#2E1F18}
 .bag-btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;background:var(--acai);color:#fff;padding:11px 13px 11px 15px;font-weight:800;font-size:.82rem;white-space:nowrap;box-shadow:0 10px 22px rgba(74,29,82,.26);transition:transform .2s,background .2s}
 .bag-btn:hover{background:#5A2464;transform:translateY(-2px)}
 .bag-btn svg{width:18px;height:18px;color:var(--areia)}
@@ -120,82 +124,93 @@ button{font:inherit;cursor:pointer}
 .mobile-drawer .drawer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
 .mobile-drawer a{font-weight:800;padding:13px 4px;border-bottom:1px solid rgba(46,31,24,.1)}
 .mobile-drawer .btn{margin-top:18px}
-.hero{position:relative;overflow:hidden;padding:64px 0 84px;background:var(--creme)}
-.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;position:relative;z-index:1}
-.hero h1{font-size:clamp(2.6rem,5.2vw,4.35rem);letter-spacing:-.02em}
-.hero h1 em{font-style:italic;color:var(--acai)}
-.hero-sub{max-width:520px;margin-top:20px;font-size:1.06rem;color:var(--marrom-suave)}
-.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.hero-meta{display:flex;flex-wrap:wrap;gap:18px;margin-top:30px;padding-top:24px;border-top:1px solid rgba(46,31,24,.12)}
+.hero{position:relative;isolation:isolate;overflow:hidden;min-height:100vh;display:flex;align-items:center;margin-top:calc(-1 * var(--header-h));padding:calc(var(--header-h) + 96px) 0 76px;background:#1E0E18;color:#FFFDF7}
+.hero-bg{position:absolute;inset:-12% 0;z-index:0;background:url("assets/hero-mesa.jpg") center right/cover no-repeat;transform:translate3d(0,var(--hero-parallax,0px),0) scale(1.04);will-change:transform;pointer-events:none}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(20,12,10,.88) 0%,rgba(20,12,10,.62) 50%,rgba(20,12,10,.22) 100%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:auto 0 0;height:140px;z-index:3;background:linear-gradient(180deg,rgba(35,17,28,0) 0%,rgba(35,17,28,.55) 55%,#23111C 100%);pointer-events:none}
+.hero-grid{position:relative;z-index:2;width:100%;max-width:none;margin:0;padding-left:clamp(48px,5.5vw,84px);padding-right:clamp(48px,5.5vw,84px)}
+.hero-content{max-width:660px;margin-left:0;margin-right:auto}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;color:#FACC15;font-family:"Plus Jakarta Sans",sans-serif;font-size:.78rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+.hero-tag::before{content:"";width:34px;height:3px;background:#FACC15;border-radius:3px}
+.hero h1{margin-top:18px;font-family:"Kalam",cursive;font-weight:700;text-transform:uppercase;letter-spacing:1px;line-height:1.02;font-size:clamp(2.8rem,5.5vw,4.8rem);color:#FFFDF7;text-shadow:0 3px 0 rgba(20,12,10,.55),0 12px 28px rgba(0,0,0,.35)}
+.hero h1 .destaque{color:#FACC15}
+.hero-sub{max-width:480px;margin-top:22px;font-family:"Plus Jakarta Sans",sans-serif;font-size:1.05rem;color:rgba(255,253,247,.88)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-cta .btn{font-family:"Plus Jakarta Sans",sans-serif}
+.btn-hero-primary{background:#FACC15;color:#2E1F18;box-shadow:0 14px 30px rgba(0,0,0,.28)}
+.btn-hero-primary:hover{background:#F59E0B}
+.btn-hero-outline{background:rgba(255,253,247,.08);border-color:rgba(255,253,247,.75);color:#FFFDF7}
+.btn-hero-outline:hover{background:rgba(255,253,247,.18);border-color:#FFFDF7;color:#FFFDF7}
+.hero-meta{display:flex;flex-wrap:wrap;gap:26px;margin-top:38px;padding-top:22px;border-top:1px solid rgba(255,253,247,.24);font-family:"Plus Jakarta Sans",sans-serif}
 .hero-meta div{display:flex;flex-direction:column;gap:2px}
-.hero-meta strong{font-family:"Fraunces",serif;font-size:1.1rem}
-.hero-meta span{font-size:.78rem;color:var(--marrom-suave);font-weight:700}
-.hero-visual{position:relative;max-width:460px;justify-self:end;width:100%}
-.hero-frame{position:relative;border-radius:32px;overflow:hidden;box-shadow:var(--sombra-forte);border:8px solid #fff;aspect-ratio:4/5.2;background:var(--creme-2)}
-.hero-frame img{width:100%;height:100%;object-fit:cover}
-.hero-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(46,31,24,.34),transparent 45%)}
-.hero-card{position:absolute;left:-22px;bottom:26px;background:#fff;border-radius:18px;padding:16px 18px;box-shadow:var(--sombra);display:flex;align-items:center;gap:13px;max-width:250px}
-.hero-card .icon{width:46px;height:46px;border-radius:14px;background:var(--acai-claro);display:grid;place-items:center;color:var(--acai);flex:0 0 auto}
-.hero-card .icon svg{width:24px;height:24px}
-.hero-card strong{display:block;font-family:"Fraunces",serif;font-size:1rem;line-height:1.2}
-.hero-card span{font-size:.75rem;font-weight:700;color:var(--marrom-suave)}
-.marquee{background:var(--marrom);color:var(--creme);padding:14px 0;overflow:hidden}
+.hero-meta strong{font-size:.92rem;color:#FFFDF7}
+.hero-meta span{font-size:.78rem;color:rgba(255,253,247,.78);font-weight:600}
+.marquee{position:relative;z-index:4;background:rgba(36,16,28,.82);color:var(--creme);padding:14px 0;overflow:hidden;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 -20px 40px rgba(28,12,24,.85),0 24px 48px rgba(34,13,42,.9);border-top:1px solid rgba(255,253,247,.08);border-bottom:1px solid rgba(255,253,247,.08)}
 .marquee-track{display:flex;width:max-content;animation:scroll 30s linear infinite}
 .marquee-group{display:flex;gap:42px;padding-right:42px;flex:0 0 auto}
 .marquee-track span{font-size:.88rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap;display:flex;align-items:center;gap:42px}
 .marquee-track span::after{content:"";width:8px;height:8px;border-radius:2px;background:var(--cupuacu);transform:rotate(45deg);opacity:.85}
 @keyframes scroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 .section{padding:88px 0}
-.section-tinted{background:var(--creme-2)}
-#cardapio{position:relative;background:linear-gradient(180deg,var(--creme) 0%,#F9F1E4 100%)}
-#sobre{position:relative;background:linear-gradient(180deg,#F9F1E4 0%,var(--creme) 100%)}
-#comentarios{position:relative;background:var(--creme)}
+.section-tinted{background:transparent}
+#cardapio{position:relative;background:transparent}
+#cardapio::before{content:"";position:absolute;inset:0 0 auto;height:140px;z-index:0;background:linear-gradient(180deg,rgba(34,13,42,.95) 0%,rgba(34,13,42,0) 100%);pointer-events:none}
+#cardapio > .container{position:relative;z-index:1}
+#sobre{position:relative;width:100%;min-height:80vh;margin:0;border-radius:0;display:flex;align-items:center;background:#0c3016 url("assets/fachada-verde.jpg") left center/cover no-repeat}
+#comentarios{position:relative;background:transparent}
+#cardapio::after,#sobre::after,#comentarios::after{content:"";position:absolute;left:0;right:0;bottom:0;height:110px;z-index:2;pointer-events:none;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);-webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
 .section-head{max-width:700px;margin-bottom:40px}
-.section-head h2{font-size:clamp(2rem,3.8vw,3.1rem);margin-top:12px;letter-spacing:-.015em}
-.section-head p{margin-top:14px;color:var(--marrom-suave);font-size:1.02rem}
+.section-head h2{font-size:clamp(2rem,3.8vw,3.1rem);margin-top:12px;letter-spacing:0;color:#FFFDF7;text-shadow:0 3px 16px rgba(20,8,26,.45)}
+.section-head p{margin-top:14px;color:rgba(255,253,247,.84);font-size:1.02rem}
+.section-head .eyebrow{color:#FACC15}
+.section-head .eyebrow::before{background:#FACC15}
 #cardapio,#sobre,#comentarios,#rodape{scroll-margin-top:94px}
-.menu-quick{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:0 auto 34px;max-width:900px}
-.menu-quick a{display:inline-flex;align-items:center;border:1px solid rgba(74,29,82,.22);border-radius:999px;background:#fff;color:var(--acai);padding:9px 16px;font-size:.82rem;font-weight:800;transition:background .18s,color .18s,border-color .18s}
-.menu-quick a:hover{background:var(--acai);border-color:var(--acai);color:#fff}
+.category-tabs{position:sticky;top:var(--header-h);z-index:40;display:flex;align-items:center;gap:10px;margin:0 0 34px;padding:8px clamp(16px,5.5vw,84px);background:#230d2b;border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 12px 30px rgba(20,8,26,.28)}
+.tabs-icon{flex:0 0 auto;color:#FACC15;font-size:1.05rem;line-height:1;padding:6px 2px}
+.tabs-track{flex:1;min-width:0;display:flex;flex-wrap:nowrap;gap:12px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;padding:4px 0 6px}
+.tabs-track::-webkit-scrollbar{display:none}
+.tabs-track.dragging{cursor:grabbing;scroll-behavior:auto;user-select:none}
+.category-tab{flex:0 0 auto;white-space:nowrap;border:0;border-bottom:3px solid transparent;background:transparent;color:rgba(255,255,255,.72);padding:7px 3px 8px;font-size:.88rem;font-weight:800;text-decoration:none;transition:color .18s,border-color .18s}
+.category-tab:hover{color:#fff}
+.category-tab.is-active{color:#FACC15;border-bottom-color:#FACC15}
 .menu-wrap{display:flex;flex-direction:column;gap:26px;max-width:860px;margin-inline:auto}
-.menu-group{width:100%;background:#fff;border:1px solid rgba(46,31,24,.08);border-radius:22px;padding:28px 32px;box-shadow:0 12px 30px rgba(46,31,24,.05);scroll-margin-top:100px}
-.menu-category{font-family:"Nunito Sans",sans-serif;font-size:.9rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--acai);padding-bottom:12px;border-bottom:2px solid var(--acai);margin-bottom:8px}
+.menu-group{width:100%;background:var(--creme-card);border:1px solid rgba(255,253,247,.5);border-radius:22px;padding:28px 32px;box-shadow:var(--sombra-card);scroll-margin-top:140px}
+.menu-category{font-family:"Kalam",cursive;font-size:1.02rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--acai);padding-bottom:12px;border-bottom:2px solid var(--acai);margin-bottom:8px}
 .menu-note{font-size:.88rem;color:var(--marrom-suave);margin:10px 0 4px}
 .menu-list{list-style:none;margin:0;padding:0}
-.menu-item{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding:17px 0;border-bottom:1px dashed rgba(46,31,24,.14)}
+.menu-item{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:17px 0;border-bottom:1px dashed rgba(46,31,24,.14)}
 .menu-item:last-child{border-bottom:0;padding-bottom:0}
 .menu-info{min-width:0;overflow-wrap:anywhere}
-.menu-info h4{font-family:"Nunito Sans",sans-serif;font-weight:800;font-size:1.06rem;line-height:1.35;color:var(--terra-esc)}
+.menu-info h4{font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:1.06rem;line-height:1.35;color:var(--terra-esc)}
 .menu-info p{font-size:.9rem;line-height:1.5;color:var(--marrom-suave);margin-top:5px}
 .menu-action{display:flex;flex-direction:column;align-items:flex-end;gap:9px;flex:0 0 auto;min-width:132px}
-.menu-price{font-family:"Fraunces",serif;font-weight:700;font-size:1.12rem;color:var(--acai);white-space:nowrap}
+.menu-price{display:none}
 .add-btn{border:1px solid var(--terra);background:transparent;color:var(--terra);border-radius:999px;padding:8px 16px;font-size:.82rem;font-weight:800;white-space:nowrap;transition:background .18s,color .18s}
 .add-btn:hover{background:var(--terra);color:#fff}
 .qty{display:inline-flex;align-items:center;border:1px solid var(--acai);border-radius:999px;overflow:hidden;background:#fff}
 .qty-btn{width:27px;height:27px;border:0;background:transparent;color:var(--acai);font-weight:800;font-size:.95rem;line-height:1}
 .qty-btn:hover{background:var(--acai-claro)}
 .qty-num{min-width:22px;text-align:center;font-size:.82rem;font-weight:800;color:var(--acai)}
-.menu-tip{margin-top:22px;font-size:.82rem;color:var(--marrom-suave);display:flex;gap:8px;align-items:center}
-.menu-tip svg{width:16px;height:16px;flex:0 0 auto;color:var(--terra)}
-.about-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:center}
-.about-media{position:relative}
-.about-media .main-img{border-radius:28px;overflow:hidden;box-shadow:var(--sombra);aspect-ratio:4/4.6;border:7px solid #fff}
-.about-media .main-img img{width:100%;height:100%;object-fit:cover}
-.about-stamp{position:absolute;right:-18px;bottom:-18px;width:132px;height:132px;border-radius:50%;background:var(--buriti);color:#fff;display:grid;place-items:center;text-align:center;box-shadow:var(--sombra);font-weight:800;font-size:.72rem;line-height:1.35;letter-spacing:.08em;text-transform:uppercase;padding:14px}
-.about-text p{color:var(--marrom-suave);margin-top:18px;font-size:1rem}
+.menu-tip{margin-top:22px;font-size:.82rem;color:rgba(255,253,247,.82);display:flex;gap:8px;align-items:center}
+.menu-tip svg{width:16px;height:16px;flex:0 0 auto;color:#FACC15}
+.about-text{position:relative;z-index:3;margin-left:auto;width:50%;max-width:600px;padding:clamp(40px,6vw,80px);color:#FFFDF7}
+.about-text .eyebrow{color:#FACC15}
+.about-text .eyebrow::before{background:#FACC15}
+.about-text h2{color:#FFFDF7;text-shadow:0 3px 16px rgba(20,8,26,.45)}
+.about-text p{color:rgba(255,253,247,.84);margin-top:18px;font-size:1rem}
 .about-text p + p{margin-top:14px}
 .comments-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
 .comments-list{display:flex;flex-direction:column;gap:14px}
-.comment-card{background:#fff;border:1px solid rgba(46,31,24,.09);border-radius:18px;padding:20px;box-shadow:0 10px 26px rgba(46,31,24,.05)}
+.comment-card{background:var(--creme-card);border:1px solid rgba(255,253,247,.5);border-radius:18px;padding:20px;box-shadow:var(--sombra-card)}
 .comment-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-.avatar{width:42px;height:42px;border-radius:50%;background:var(--acai-claro);color:var(--acai);display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:1rem;flex:0 0 auto}
+.avatar{width:42px;height:42px;border-radius:50%;background:var(--acai-claro);color:var(--acai);display:grid;place-items:center;font-family:"Kalam",cursive;font-weight:700;font-size:1rem;flex:0 0 auto}
 .comment-top strong{display:block;font-size:.9rem;line-height:1.2}
 .comment-top span{font-size:.72rem;color:var(--marrom-suave)}
 .stars{display:flex;gap:2px;color:var(--dourado);margin-left:auto}
 .stars svg{width:14px;height:14px}
 .comment-card p{font-size:.9rem;color:var(--marrom-suave)}
-.comment-form{background:#fff;border:1px solid rgba(46,31,24,.09);border-radius:var(--raio);padding:26px;box-shadow:var(--sombra);position:sticky;top:96px}
-.comment-form h3{font-size:1.35rem;font-family:"Fraunces",serif}
+.comment-form{background:var(--creme-card);border:1px solid rgba(255,253,247,.5);border-radius:var(--raio);padding:26px;box-shadow:var(--sombra-card);position:sticky;top:96px}
+.comment-form h3{font-size:1.35rem}
 .comment-form .hint{font-size:.8rem;color:var(--marrom-suave);margin:6px 0 18px}
 .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
 .field label,.field-label{font-size:.76rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--marrom-suave)}
@@ -207,20 +222,23 @@ button{font:inherit;cursor:pointer}
 .rating label svg{width:26px;height:26px}
 .rating input:checked ~ label,.rating label:hover,.rating label:hover ~ label{color:var(--dourado)}
 .comment-form .btn{width:100%}
-.site-footer{background:var(--acai);color:var(--creme);padding:44px 0 0}
+.site-footer{background:#421c4b;color:var(--creme);padding:44px 0 0}
 .footer-grid{display:grid;grid-template-columns:1.25fr .75fr 1fr;gap:40px}
-.footer-brand{display:flex;align-items:center;gap:11px;font-family:"Nunito Sans",sans-serif;font-weight:800;font-size:1.05rem;color:var(--creme)}
-.footer-brand .brand-mark{width:38px;height:38px;font-size:1.15rem;background:rgba(250,244,234,.16);color:var(--creme);box-shadow:none}
-.footer-brand p{font-size:.82rem;font-weight:400;color:rgba(250,244,234,.8);margin-top:10px;max-width:270px}
-.footer-col h3{font-family:"Nunito Sans",sans-serif;font-size:.74rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--areia);margin-bottom:12px}
-.footer-col p,.footer-col a{font-size:.82rem;color:rgba(250,244,234,.82)}
-.footer-col a{display:block;padding:3px 0}
-.footer-col a:hover{color:#fff;text-decoration:underline}
+.footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:12px;font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:1.05rem;color:#fff}
+.footer-brand .brand-mark{width:36px;height:36px;min-width:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-family:"Plus Jakarta Sans",sans-serif;font-size:1.15rem;font-weight:800;background:rgba(255,255,255,.16);color:#fff;box-shadow:none}
+.footer-brand + p{font-size:.82rem;font-weight:400;color:rgba(250,244,234,.8);margin:0 0 10px;max-width:270px}
+.footer-assist{display:inline-flex;align-items:center;gap:6px;padding:0;border:0;background:none;color:#FACC15;font-family:"Plus Jakarta Sans",sans-serif;font-size:.82rem;font-weight:800;cursor:pointer}
+.footer-assist:hover{text-decoration:underline}
+.footer-col h3{font-family:"Plus Jakarta Sans",sans-serif;font-size:.74rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:12px}
+.footer-col p,.footer-col a,.footer-col .footer-link{font-size:.82rem;color:rgba(250,244,234,.82)}
+.footer-col a,.footer-col .footer-link{display:block;padding:3px 0}
+.footer-col a:hover,.footer-col .footer-link:hover{color:#fff;text-decoration:underline}
+.footer-col .footer-link{border:0;background:none;text-align:left;cursor:pointer;font-family:inherit}
 .footer-col .social-links{display:flex;align-items:center;gap:10px;margin-top:14px}
 .footer-col .social-links a{display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid var(--terra);border-radius:50%;background:var(--terra);color:#fff;transition:background .2s,color .2s,border-color .2s,transform .2s}
 .footer-col .social-links a:hover{background:var(--terra-esc);border-color:var(--terra-esc);color:#fff;text-decoration:none;transform:translateY(-2px)}
 .footer-col .social-links a svg{width:19px;height:19px}
-.footer-credits{background:var(--acai);color:var(--creme);margin-top:32px;padding:16px 0}
+.footer-credits{background:#421c4b;color:var(--creme);margin-top:32px;padding:16px 0;border-top:1px solid rgba(255,255,255,.12)}
 .footer-bottom{font-size:.76rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;color:var(--creme)}
 .modal-backdrop{position:fixed;inset:0;background:rgba(46,31,24,.55);opacity:0;pointer-events:none;transition:opacity .22s;z-index:110}
 .modal-backdrop.open{opacity:1;pointer-events:auto}
@@ -240,36 +258,62 @@ button{font:inherit;cursor:pointer}
 .mode-option{flex:1;display:flex;align-items:center;gap:8px;border:1px solid rgba(46,31,24,.18);border-radius:12px;padding:10px;background:#fff;font-size:.8rem;font-weight:800;cursor:pointer}
 .mode-option input{accent-color:var(--terra);width:16px;height:16px;margin:0}
 .order-total{display:flex;justify-content:space-between;align-items:center;font-size:.86rem;font-weight:800;margin:6px 0 14px}
-.order-total strong{font-family:"Fraunces",serif;font-size:1.2rem;color:var(--acai)}
+.order-total strong{font-family:"Plus Jakarta Sans",sans-serif;font-size:1.2rem;color:var(--acai)}
 .order-modal .btn{width:100%}
 .fab-anchor{position:sticky;bottom:26px;height:0;margin-bottom:12px;z-index:90;pointer-events:none}
 .chat-fab{position:absolute;right:22px;bottom:0;padding:0;line-height:0;width:60px;height:60px;border-radius:50%;border:0;background:var(--acai);color:#fff;display:grid;place-items:center;box-shadow:0 16px 34px rgba(74,29,82,.4);pointer-events:auto;transition:transform .2s}
 .chat-fab:hover{transform:scale(1.06)}
 .chat-fab svg{width:27px;height:27px;display:block;transform:translateY(-2px)}
 .chat-fab .ping{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:var(--dourado);border:2px solid var(--creme)}
-.chat-panel{position:fixed;right:22px;bottom:94px;z-index:95;width:min(370px,calc(100vw - 32px));height:min(560px,calc(100vh - 130px));background:var(--creme);border-radius:24px;box-shadow:0 30px 70px rgba(46,31,24,.32);display:flex;flex-direction:column;overflow:hidden;opacity:0;pointer-events:none;transform:translateY(16px);transition:.25s}
-.chat-panel.open{opacity:1;pointer-events:auto;transform:none}
+.assistant-dock{position:fixed;right:22px;bottom:94px;z-index:95;display:flex;align-items:flex-end;gap:12px;opacity:0;pointer-events:none;transform:translateY(16px);transition:.25s}
+.assistant-dock.open{opacity:1;pointer-events:auto;transform:none}
+.comanda-panel,.chat-panel{width:min(370px,calc(100vw - 32px));height:min(560px,calc(100vh - 130px));background:var(--creme-card);border-radius:24px;box-shadow:0 30px 70px rgba(20,8,26,.42);display:flex;flex-direction:column;overflow:hidden}
+.comanda-panel{width:min(310px,calc(100vw - 32px));border:1px solid rgba(255,253,247,.6)}
+.comanda-head{background:#F8F4EC;padding:15px 16px;border-bottom:1px solid rgba(46,31,24,.08);display:flex;align-items:flex-start;gap:8px}
+.comanda-head strong{font-family:"Kalam",cursive;font-weight:700;font-size:1.1rem;color:var(--acai)}
+.comanda-head p{font-size:.72rem;color:var(--marrom-suave);margin-top:3px}
+.comanda-count{margin-left:auto;background:var(--acai);color:#fff;border-radius:999px;padding:5px 9px;font-size:.7rem;font-weight:800;white-space:nowrap}
+.comanda-list{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px}
+.comanda-empty{margin:auto;text-align:center;font-style:italic;font-size:.82rem;color:var(--marrom-suave);line-height:1.5;padding:0 8px}
+.comanda-item{background:#fff;border:1px solid rgba(46,31,24,.08);border-radius:13px;padding:10px 11px}
+.comanda-item-top{display:flex;align-items:flex-start;gap:8px}
+.comanda-item-top strong{font-size:.82rem;color:var(--terra-esc);line-height:1.3}
+.comanda-qty{display:inline-flex;align-items:center;gap:3px;margin-left:auto;border:1px solid rgba(74,29,82,.22);border-radius:999px;padding:2px;background:var(--creme)}
+.comanda-qty button{width:22px;height:22px;padding:0;border:0;border-radius:50%;background:var(--acai);color:#fff;display:grid;place-items:center;font-size:.85rem;font-weight:800;line-height:1}
+.comanda-qty button:hover{background:#5A2464}
+.comanda-qty span{min-width:20px;text-align:center;font-size:.78rem;font-weight:800;color:var(--acai)}
+.comanda-item-bottom{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:6px}
+.comanda-item-bottom small{font-size:.72rem;color:var(--marrom-suave)}
+.comanda-remove{border:0;background:transparent;color:var(--terra);font-size:.7rem;font-weight:800;text-decoration:underline;padding:2px}
+.comanda-foot{border-top:1px solid rgba(46,31,24,.08);background:var(--creme-card);padding:13px 15px}
+.comanda-line{display:flex;justify-content:space-between;font-size:.8rem;color:var(--marrom-suave);margin-bottom:5px}
+.comanda-line.total{font-weight:800;color:var(--marrom);font-size:.92rem;margin-bottom:11px}
+.comanda-line.total strong{font-family:"Plus Jakarta Sans",sans-serif;color:var(--acai);font-size:1.15rem}
+.comanda-checkout{display:block;width:100%;text-align:center}
+.comanda-checkout.disabled{opacity:.45;pointer-events:none;filter:grayscale(.4)}
+.comanda-mobile{display:none}
 .chat-head{background:var(--acai);color:#fff;padding:16px 18px;display:flex;align-items:center;gap:12px}
 .chat-head .bot{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:0 0 auto}
 .chat-head .bot svg{width:22px;height:22px}
-.chat-head strong{display:block;font-size:.95rem;line-height:1.2}
+.chat-head strong{display:block;font-family:"Kalam",cursive;font-weight:700;font-size:1rem;line-height:1.2}
 .chat-head span{font-size:.72rem;opacity:.8;display:flex;align-items:center;gap:5px}
 .chat-head .status{width:7px;height:7px;border-radius:50%;background:#7FD18B;display:inline-block}
 .chat-close{margin-left:auto;width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;display:grid;place-items:center}
 .chat-close:hover{background:rgba(255,255,255,.24)}
 .chat-close svg{width:16px;height:16px}
-.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(var(--creme),var(--creme-2))}
+.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(var(--creme-card),#F8F4EC)}
 .msg{max-width:84%;padding:11px 14px;border-radius:16px;font-size:.86rem;line-height:1.5;animation:fadeUp .25s ease}
+.msg span{white-space:pre-line}
 .msg.bot{background:#fff;border:1px solid rgba(46,31,24,.08);border-bottom-left-radius:5px;align-self:flex-start;color:var(--marrom)}
 .msg.user{background:var(--acai);color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
 .msg a{color:var(--acai);font-weight:800;text-decoration:underline}
 .msg.user a{color:#fff}
 .msg .msg-link{display:inline-flex;align-items:center;gap:5px;margin-top:6px;font-weight:800;color:var(--acai);text-decoration:none}
 .msg .msg-link:hover{text-decoration:underline}
-.chat-quick{display:flex;gap:7px;flex-wrap:wrap;padding:10px 12px;background:var(--creme-2);border-top:1px solid rgba(46,31,24,.06)}
+.chat-quick{display:flex;gap:7px;flex-wrap:wrap;padding:10px 12px;background:#F8F4EC;border-top:1px solid rgba(46,31,24,.06)}
 .chat-quick button{border:1px solid rgba(74,29,82,.22);background:#fff;color:var(--acai);border-radius:999px;padding:6px 11px;font-size:.72rem;font-weight:800}
 .chat-quick button:hover{background:var(--acai);color:#fff}
-.chat-form{display:flex;gap:8px;padding:11px;background:#fff;border-top:1px solid rgba(46,31,24,.08)}
+.chat-form{display:flex;gap:8px;padding:11px;background:var(--creme-card);border-top:1px solid rgba(46,31,24,.08)}
 .chat-form input{flex:1;border:1px solid rgba(46,31,24,.15);border-radius:999px;padding:11px 15px;font:inherit;font-size:.86rem;background:var(--creme);color:var(--marrom);min-width:0}
 .chat-form input:focus{outline:2px solid rgba(74,29,82,.25)}
 .chat-form button{width:42px;height:42px;border-radius:50%;border:0;background:var(--acai);color:#fff;display:grid;place-items:center;flex:0 0 auto}
@@ -283,38 +327,44 @@ button{font:inherit;cursor:pointer}
 @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--marrom);color:#fff;padding:12px 20px;border-radius:999px;font-size:.84rem;font-weight:700;box-shadow:var(--sombra);opacity:0;pointer-events:none;transition:.25s;z-index:120}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
-.reveal.visible{opacity:1;transform:none}
+.reveal{opacity:0;transform:translateY(18px);filter:blur(8px);transition:opacity .7s ease,transform .7s ease,filter .7s ease}
+.reveal.visible{opacity:1;transform:none;filter:blur(0)}
 @media (max-width:1040px){
-  .hero-grid,.about-grid{grid-template-columns:1fr;gap:40px}
-  .hero-visual{max-width:620px;margin-inline:auto;width:100%}
-  .about-media{max-width:520px}
   .comments-wrap{grid-template-columns:1fr}
   .comment-form{position:static}
+}
+@media (max-width:900px){
+  #sobre::before{content:"";position:absolute;inset:0;background:rgba(12,48,22,.85);pointer-events:none}
+  .about-text{width:100%;max-width:none;margin-left:0;padding:64px 24px}
 }
 @media (max-width:820px){
   .nav{display:none}
   .hamburger{display:grid}
   .header-actions .btn{display:none}
+  .assistant-dock{right:12px;bottom:86px}
+  .comanda-panel{display:none}
+  .comanda-mobile{display:flex;align-items:center;gap:8px;padding:9px 12px;background:var(--creme-2);border-bottom:1px solid rgba(46,31,24,.08);font-size:.74rem;color:var(--marrom)}
+  .comanda-mobile strong{color:var(--acai)}
+  .comanda-mobile a{margin-left:auto;background:var(--acai);color:#fff;border-radius:999px;padding:7px 10px;font-size:.7rem;font-weight:800;text-decoration:none;white-space:nowrap}
+  .comanda-mobile a.disabled{opacity:.45;pointer-events:none}
   .section{padding:68px 0}
-  .hero{padding:48px 0 64px}
-  .hero-card{left:10px}
+  .hero{padding:calc(var(--header-h) + 64px) 0 56px}
+  .hero-bg{background-position:62% center}
   .footer-grid{grid-template-columns:1fr 1fr;gap:26px}
 }
 @media (max-width:620px){
-  .header-inner{min-height:68px}
+  :root{--header-h:68px}
   .brand-mark{width:40px;height:40px;font-size:1.2rem}
   .brand-text strong{font-size:1.05rem}
   .hero-meta{gap:14px}
-  .hero-frame{aspect-ratio:4/5;border-width:6px}
-  .hero-card{bottom:14px;padding:12px 14px;max-width:220px}
-  .chat-panel{right:12px;bottom:86px}
+  .hero h1{font-size:clamp(2.5rem,10vw,3.4rem)}
+  .hero-cta .btn{padding:12px 18px;font-size:.86rem}
   .fab-anchor{bottom:18px}
   .chat-fab{right:16px}
-  .about-stamp{width:104px;height:104px;font-size:.62rem;right:-6px;bottom:-12px}
   .comment-form{padding:20px}
-  .menu-quick{gap:7px;margin-bottom:26px}
-  .menu-quick a{padding:8px 12px;font-size:.78rem}
+  .category-tabs{gap:6px;margin-bottom:26px;padding:6px 16px}
+  .tabs-track{gap:9px}
+  .category-tab{font-size:.8rem}
   .menu-group{padding:22px 18px;border-radius:18px}
   .menu-item{gap:14px;padding:15px 0}
   .menu-info h4{font-size:1rem}
@@ -336,9 +386,18 @@ button{font:inherit;cursor:pointer}
   .bag-btn{padding:10px}
   .menu-action{min-width:100px}
 }
+@media (min-width:1024px){
+  body{overflow-x:hidden}
+  .category-tabs{width:100%;max-width:1200px;margin:0 auto 34px;justify-content:center}
+  .tabs-track{flex:0 1 auto;justify-content:safe center;overflow-x:auto}
+  #cardapio{overflow-anchor:none}
+  #cardapio > .menu-container{overflow-anchor:none;transition:max-width .3s ease,width .3s ease,margin .3s ease}
+  body.assistant-open #cardapio > .menu-container{width:calc(100% - 760px);max-width:none;margin-left:24px;margin-right:auto}
+  body.assistant-open .menu-wrap{max-width:none}
+}
 @media (prefers-reduced-motion:reduce){
   *:not(.marquee-track):not(.marquee-group):not(.marquee){scroll-behavior:auto!important;animation:none!important;transition:none!important}
-  .reveal{opacity:1;transform:none}
+  .reveal{opacity:1;transform:none;filter:none}
 }
 </style>
 </head>
@@ -366,11 +425,6 @@ button{font:inherit;cursor:pointer}
       <a class="icon-btn whatsapp" href="https://wa.me/5585997103698" target="_blank" rel="noopener noreferrer" aria-label="Falar com o Pará-Ti no WhatsApp">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
       </a>
-      <button class="bag-btn" id="bagBtn" type="button" aria-controls="orderModal" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16l-1.5 12h-13L4 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
-        <span class="bag-label">Sua Sacola</span>
-        <span class="bag-count" id="bagCount">0</span>
-      </button>
       <button class="icon-btn hamburger" id="openDrawerBtn" aria-label="Abrir menu" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
@@ -397,32 +451,19 @@ button{font:inherit;cursor:pointer}
 
 <main id="inicio">
   <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
     <div class="container hero-grid">
-      <div>
-        <h1>Um pedacinho do <em>Pará</em> na sua mesa.</h1>
+      <div class="hero-content">
+        <span class="hero-tag">Culinária paraense • Fortaleza, CE</span>
+        <h1>Um pedacinho do <span class="destaque">Pará</span> na sua mesa.</h1>
         <p class="hero-sub">Açaí artesanal, comidas do Pará, peixes, chapas e hambúrguer artesanal. Monte sua comanda aqui no site e finalize pelo WhatsApp.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#cardapio">Ver cardápio
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <button class="btn btn-outline" type="button" data-open-chat>Falar com o assistente
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-6a8 8 0 0 1 8-8h2a8 8 0 0 1 8 3z"/></svg>
-          </button>
+          <a class="btn btn-hero-primary" href="#cardapio">Ver cardápio →</a>
+          <button class="btn btn-hero-outline" type="button" data-open-chat>Falar com o assistente</button>
         </div>
         <div class="hero-meta">
           <div><strong>Seg. a sáb.</strong><span>11h às 22h</span></div>
           <div><strong>Domingo</strong><span>11h às 18h</span></div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-frame">
-          <img src="assets/hero.jpg" alt="Pará-Ti Restaurante" width="328" height="483" />
-        </div>
-        <div class="hero-card">
-          <span class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c4.4 0 8-3.4 8-7.6C20 8.9 16.5 5.6 12 3 7.5 5.6 4 8.9 4 13.4 4 17.6 7.6 21 12 21Z"/><path d="M12 21V9M12 13c1.8-.4 3-1.6 3.4-3.4M12 16c-1.8-.4-3-1.6-3.4-3.4"/></svg>
-          </span>
-          <div><strong>Açaí da casa</strong><span>Puro e fresco, do jeito paraense</span></div>
         </div>
       </div>
     </div>
@@ -444,22 +485,28 @@ button{font:inherit;cursor:pointer}
       <div class="section-head reveal">
         <span class="eyebrow">Cardápio</span>
         <h2>Escolha os seus sabores.</h2>
-        <p>Monte sua comanda: toque em “+ Adicionar” e ajuste a quantidade. No fechamento, enviamos o pedido pelo WhatsApp para retirada no balcão.</p>
+        <p>Monte sua comanda: toque em “Ver preço” e informe a quantidade ao Assistente. No fechamento, enviamos o pedido pelo WhatsApp para retirada no balcão.</p>
       </div>
 
-      <nav class="menu-quick" aria-label="Atalhos para as categorias do cardápio">
-        <a href="#cat-acai">Açaí</a>
-        <a href="#cat-produtos">Produtos do Pará</a>
-        <a href="#cat-entradas">Entradas e Petiscos</a>
-        <a href="#cat-peixes">Peixes</a>
-        <a href="#cat-chapas">Chapas</a>
-        <a href="#cat-executivos">Pratos Executivos</a>
-        <a href="#cat-bebidas">Bebidas</a>
-        <a href="#cat-sucos">Sucos</a>
-        <a href="#cat-cervejas">Cervejas</a>
-        <a href="#cat-adicionais">Adicionais</a>
-      </nav>
+    </div>
 
+    <nav class="category-tabs" aria-label="Categorias do cardápio">
+      <span class="tabs-icon" aria-hidden="true">☰</span>
+      <div class="tabs-track" id="categoryTabs">
+        <a class="category-tab is-active" href="#cat-acai" data-category="cat-acai">Açaí</a>
+        <a class="category-tab" href="#cat-produtos" data-category="cat-produtos">Produtos do Pará</a>
+        <a class="category-tab" href="#cat-entradas" data-category="cat-entradas">Entradas e Petiscos</a>
+        <a class="category-tab" href="#cat-peixes" data-category="cat-peixes">Peixes</a>
+        <a class="category-tab" href="#cat-chapas" data-category="cat-chapas">Chapas</a>
+        <a class="category-tab" href="#cat-executivos" data-category="cat-executivos">Pratos Executivos</a>
+        <a class="category-tab" href="#cat-bebidas" data-category="cat-bebidas">Bebidas</a>
+        <a class="category-tab" href="#cat-sucos" data-category="cat-sucos">Sucos</a>
+        <a class="category-tab" href="#cat-cervejas" data-category="cat-cervejas">Cervejas</a>
+        <a class="category-tab" href="#cat-adicionais" data-category="cat-adicionais">Adicionais</a>
+      </div>
+    </nav>
+
+    <div class="container menu-container">
       <div class="menu-wrap">
         <div class="menu-group reveal" id="cat-acai">
           <h3 class="menu-category">Açaí artesanal</h3>
@@ -591,17 +638,11 @@ button{font:inherit;cursor:pointer}
   </section>
 
   <section class="section" id="sobre">
-    <div class="container about-grid">
-      <div class="about-media reveal">
-        <div class="main-img"><img src="assets/sabor-5.jpg" alt="Prato do Pará-Ti Restaurante" loading="lazy" /></div>
-        <div class="about-stamp">Tempero<br />do Norte<br />em Fortaleza</div>
-      </div>
-      <div class="about-text reveal">
-        <span class="eyebrow">Sobre a casa</span>
-        <h2>A Pará-Ti.</h2>
-        <p>A Pará-Ti é um restaurante especializado na culinária paraense, trazendo para seus clientes um pouco da cultura e da gastronomia do estado do Pará. Seu principal destaque é o açaí batido e servido da maneira tradicional, assim como é consumido pelos paraenses, preservando o sabor e os costumes da região.</p>
-        <p>Além do açaí, o restaurante oferece diversas opções de comidas, incluindo outros pratos e hambúrgueres, proporcionando aos clientes um cardápio variado. Apesar da diversidade de opções, sua principal especialidade continua sendo o açaí tradicional paraense, que representa a identidade e a cultura do estabelecimento.</p>
-      </div>
+    <div class="about-text reveal">
+      <span class="eyebrow">— SOBRE A CASA</span>
+      <h2>O Pará-Ti.</h2>
+      <p>O Pará-Ti é um restaurante especializado na culinária paraense, trazendo para seus clientes um pouco da cultura e da gastronomia do estado do Pará. Seu principal destaque é o açaí batido e servido da maneira tradicional, assim como é consumido pelos paraenses, preservando o sabor e os costumes da região.</p>
+      <p>Além do açaí, o restaurante oferece diversas opções de comidas, incluindo outros pratos e hambúrgueres, proporcionando aos clientes um cardápio variado. Apesar da diversidade de opções, sua principal especialidade continua sendo o açaí tradicional paraense, que representa a identidade e a cultura do estabelecimento.</p>
     </div>
   </section>
 
@@ -643,36 +684,6 @@ button{font:inherit;cursor:pointer}
 
 </main>
 
-<div class="modal-backdrop" id="orderBackdrop"></div>
-<section class="order-modal" id="orderModal" role="dialog" aria-modal="true" aria-labelledby="orderTitle" aria-hidden="true">
-  <div class="order-head">
-    <div>
-      <h2 id="orderTitle">Fechar pedido</h2>
-      <p>Revise sua comanda e envie pelo WhatsApp.</p>
-    </div>
-    <button class="order-close" id="orderClose" type="button" aria-label="Fechar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
-    </button>
-  </div>
-  <form id="orderForm">
-    <div class="order-summary" id="orderSummary"></div>
-    <p class="mode-title">Forma de retirada</p>
-    <div class="mode-group">
-      <label class="mode-option"><input type="radio" name="mode" value="Retirada no balcão" checked /> Retirada no balcão</label>
-    </div>
-    <div class="field">
-      <label for="customerName">Seu nome</label>
-      <input id="customerName" name="customerName" type="text" maxlength="50" placeholder="Como podemos te chamar?" autocomplete="name" required />
-    </div>
-    <div class="field">
-      <label for="customerNotes">Observações (opcional)</label>
-      <textarea id="customerNotes" name="customerNotes" rows="2" maxlength="300" placeholder="Ex.: ponto da carne, sem cebola..."></textarea>
-    </div>
-    <p class="order-total"><span>Total</span><strong id="orderTotal">R$ 0,00</strong></p>
-    <button class="btn btn-primary" type="submit">Enviar pedido no WhatsApp</button>
-  </form>
-</section>
-
 <div class="fab-anchor">
   <button class="chat-fab" id="chatFab" type="button" aria-label="Abrir assistente virtual" aria-expanded="false">
     <span class="ping" aria-hidden="true"></span>
@@ -685,7 +696,8 @@ button{font:inherit;cursor:pointer}
     <div class="footer-grid">
       <div class="footer-col">
         <div class="footer-brand"><span class="brand-mark" aria-hidden="true">P</span><span>Pará-Ti Restaurante</span></div>
-        <p>Culinária paraense e açaí artesanal em Fortaleza. Feito com o sabor e os costumes do Pará.</p>
+        <p>Açaí artesanal e culinária paraense em Fortaleza.</p>
+        <button class="footer-assist" type="button" data-open-chat>Falar com o Assistente IA →</button>
       </div>
       <div class="footer-col">
         <h3>Navegação</h3>
@@ -693,6 +705,7 @@ button{font:inherit;cursor:pointer}
         <a href="#sobre">Sobre a casa</a>
         <a href="#comentarios">Comentários</a>
         <a href="#rodape">Contato</a>
+        <button class="footer-link" type="button" data-open-chat>Assistente</button>
       </div>
       <div class="footer-col">
         <h3>Contato</h3>
@@ -721,6 +734,19 @@ button{font:inherit;cursor:pointer}
   </div>
 </footer>
 
+<div class="assistant-dock" id="assistantDock" aria-hidden="true">
+<section class="comanda-panel" id="comandaPanel" aria-label="Sua Comanda">
+  <div class="comanda-head">
+    <div><strong>Sua Comanda</strong><p>Monte aqui e envie direto pro WhatsApp</p></div>
+    <span class="comanda-count" id="comandaCount">0 itens</span>
+  </div>
+  <div class="comanda-list" id="comandaList"></div>
+  <div class="comanda-foot">
+    <div class="comanda-line"><span>Subtotal</span><span id="comandaSubtotal">R$ 0,00</span></div>
+    <div class="comanda-line total"><span>Total estimado</span><strong id="comandaTotal">R$ 0,00</strong></div>
+    <a class="btn btn-primary comanda-checkout disabled" id="comandaCheckout" href="#" aria-disabled="true" target="_blank" rel="noopener noreferrer">Concluir Pedido no WhatsApp</a>
+  </div>
+</section>
 <section class="chat-panel" id="chatPanel" aria-label="Assistente virtual do Pará-Ti" aria-hidden="true">
   <div class="chat-head">
     <span class="bot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c4.4 0 8-3.4 8-7.6C20 8.9 16.5 5.6 12 3 7.5 5.6 4 8.9 4 13.4 4 17.6 7.6 21 12 21Z"/></svg></span>
@@ -731,6 +757,11 @@ button{font:inherit;cursor:pointer}
     <button class="chat-close" id="chatClose" type="button" aria-label="Fechar assistente">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
+  </div>
+  <div class="comanda-mobile">
+    <strong id="comandaMobileCount">0 itens</strong>
+    <span id="comandaMobileTotal">R$ 0,00</span>
+    <a id="comandaMobileCheckout" href="#" aria-disabled="true" class="disabled" target="_blank" rel="noopener noreferrer">WhatsApp</a>
   </div>
   <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
   <div class="chat-quick" id="chatQuick">
@@ -748,6 +779,7 @@ button{font:inherit;cursor:pointer}
     </button>
   </form>
 </section>
+</div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -760,6 +792,128 @@ document.getElementById('year').textContent = String(new Date().getFullYear());
 
 const header = document.getElementById('siteHeader');
 addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 8), {passive:true});
+
+const heroSection = document.querySelector('.hero');
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+let parallaxTarget = 0;
+let parallaxCurrent = 0;
+let parallaxRunning = false;
+function readParallaxTarget(){
+  if(!heroSection || reduceMotion.matches) return false;
+  parallaxTarget = Math.max(-80, Math.min(80, -heroSection.getBoundingClientRect().top * 0.25));
+  return true;
+}
+function tickParallax(){
+  parallaxRunning = false;
+  if(!readParallaxTarget()) return;
+  parallaxCurrent += (parallaxTarget - parallaxCurrent) * 0.12;
+  heroSection.style.setProperty('--hero-parallax', parallaxCurrent.toFixed(1) + 'px');
+  if(Math.abs(parallaxTarget - parallaxCurrent) > 0.2){
+    parallaxRunning = true;
+    requestAnimationFrame(tickParallax);
+  }
+}
+function queueParallax(){
+  if(reduceMotion.matches){
+    heroSection?.style.removeProperty('--hero-parallax');
+    return;
+  }
+  if(!parallaxRunning){
+    parallaxRunning = true;
+    requestAnimationFrame(tickParallax);
+  }
+}
+addEventListener('scroll', queueParallax, {passive:true});
+addEventListener('resize', queueParallax);
+queueParallax();
+
+const tabsTrack = document.getElementById('categoryTabs');
+const categoryTabs = tabsTrack ? [...tabsTrack.querySelectorAll('.category-tab')] : [];
+const menuGroups = [...document.querySelectorAll('.menu-group[id^="cat-"]')];
+let activeCategory = 'cat-acai';
+function setActiveCategory(id, centerTab = true){
+  activeCategory = id;
+  categoryTabs.forEach(tab => {
+    const active = tab.dataset.category === id;
+    tab.classList.toggle('is-active', active);
+    if(active) tab.setAttribute('aria-current', 'true');
+    else tab.removeAttribute('aria-current');
+  });
+  const activeTab = categoryTabs.find(tab => tab.dataset.category === id);
+  if(activeTab && centerTab) activeTab.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+}
+categoryTabs.forEach(tab => tab.addEventListener('click', e => {
+  if(tabsTrack.dataset.dragged === 'true'){
+    e.preventDefault();
+    return;
+  }
+  e.preventDefault();
+  setActiveCategory(tab.dataset.category);
+  document.getElementById(tab.dataset.category)?.scrollIntoView({behavior:'smooth', block:'start'});
+}));
+let draggingTabs = false;
+let dragStartX = 0;
+let dragStartScroll = 0;
+let tabsMoved = false;
+tabsTrack?.addEventListener('pointerdown', e => {
+  if(e.pointerType !== 'mouse') return;
+  draggingTabs = true;
+  tabsMoved = false;
+  dragStartX = e.clientX;
+  dragStartScroll = tabsTrack.scrollLeft;
+  try{ tabsTrack.setPointerCapture(e.pointerId); }catch(err){}
+});
+tabsTrack?.addEventListener('pointermove', e => {
+  if(!draggingTabs) return;
+  const dx = e.clientX - dragStartX;
+  if(Math.abs(dx) > 4) tabsMoved = true;
+  if(tabsMoved){
+    tabsTrack.classList.add('dragging');
+    tabsTrack.scrollLeft = dragStartScroll - dx;
+  }
+});
+function endTabsDrag(){
+  if(!draggingTabs) return;
+  draggingTabs = false;
+  tabsTrack.classList.remove('dragging');
+  if(tabsMoved){
+    tabsTrack.dataset.dragged = 'true';
+    setTimeout(() => {
+      tabsTrack.dataset.dragged = '';
+      tabsMoved = false;
+    }, 0);
+  }
+}
+['pointerup','pointercancel','pointerleave'].forEach(type => tabsTrack?.addEventListener(type, endTabsDrag));
+tabsTrack?.addEventListener('wheel', e => {
+  if(Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+  tabsTrack.classList.add('dragging');
+  tabsTrack.scrollLeft += e.deltaY;
+  requestAnimationFrame(() => tabsTrack.classList.remove('dragging'));
+  e.preventDefault();
+}, {passive:false});
+let spyQueued = false;
+function syncCategorySpy(){
+  spyQueued = false;
+  if(!menuGroups.length) return;
+  const barHeight = document.querySelector('.category-tabs')?.offsetHeight || 0;
+  const threshold = (header?.offsetHeight || 0) + barHeight + 24;
+  let current = menuGroups[0].id;
+  for(const group of menuGroups){
+    if(group.getBoundingClientRect().top <= threshold) current = group.id;
+    else break;
+  }
+  if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4){
+    current = menuGroups[menuGroups.length - 1].id;
+  }
+  if(current !== activeCategory) setActiveCategory(current);
+}
+addEventListener('scroll', () => {
+  if(spyQueued) return;
+  spyQueued = true;
+  requestAnimationFrame(syncCategorySpy);
+}, {passive:true});
+syncCategorySpy();
 
 function sanitizeText(value, max){
   return String(value == null ? '' : value)
@@ -897,19 +1051,45 @@ commentForm.addEventListener('submit', e => {
 });
 
 const chatPanel = document.getElementById('chatPanel');
+const assistantDock = document.getElementById('assistantDock');
 const chatFab = document.getElementById('chatFab');
 const chatMessages = document.getElementById('chatMessages');
 const chatInput = document.getElementById('chatInput');
+const PRODUCTS = Array.from(document.querySelectorAll('.menu-item')).map(el => ({
+  id: el.dataset.id,
+  name: el.dataset.name,
+  price: Number(el.dataset.price),
+  desc: el.querySelector('.menu-info p')?.textContent || ''
+}));
+const SIMPLE_IDS = new Set(['acai-100','acai-1l','bare-1l','bare-2l','refri-lata','refri-litro','refri-600','refri-2l','agua-gas','agua-sem-gas','batata-500','macaxeira-500','biscoito-cocada','embalagem','taxa-desperdicio']);
+const DETAILS = {
+  'picanha-500':'na chapa, acompanha arroz branco ou baião de dois, batata frita, macaxeira frita, vinagrete e farofa',
+  'tambaqui':'em banda, com arroz branco ou baião de dois',
+  'tucupi-1l':'tucupi tradicional da cozinha paraense, por litro',
+  'tucupi-2l':'tucupi tradicional da cozinha paraense, garrafa de 2 litros',
+  'cupuacu-kg':'polpa de cupuaçu natural, vendida por quilo'
+};
+const cart = new Map();
 let chatStarted = false;
 let chatOpen = false;
+let currentProduct = null;
 function normalize(t){
   return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w\s]/g,' ').replace(/\s+/g,' ').trim();
 }
+function has(t, ...words){ return words.some(w => t.includes(w)); }
 function addMessage(text, who, link){
   const div = document.createElement('div');
   div.className = 'msg ' + (who || 'bot');
   const span = document.createElement('span');
-  span.textContent = text;
+  text.split(/(\*\*[^*]+\*\*)/).forEach(part => {
+    if(part.startsWith('**') && part.endsWith('**')){
+      const strong = document.createElement('strong');
+      strong.textContent = part.slice(2, -2);
+      span.appendChild(strong);
+    } else if(part){
+      span.appendChild(document.createTextNode(part));
+    }
+  });
   div.appendChild(span);
   if(link){
     const a = document.createElement('a');
@@ -934,90 +1114,247 @@ function botReply(text, link){
   chatMessages.scrollTop = chatMessages.scrollHeight;
   setTimeout(() => { typing.remove(); addMessage(text, 'bot', link); }, 550);
 }
+function productText(p){
+  const d = (DETAILS[p.id] || p.desc).replace(/\.$/, '');
+  const intro = SIMPLE_IDS.has(p.id)
+    ? `O **${p.name}** ${d} e custa **${money(p.price)}**.`
+    : `O **${p.name}** ${d}. O valor é **${money(p.price)}**.`;
+  return intro + '\nQuantas unidades/porções você gostaria de adicionar à sua comanda? Se quiser só olhar outras opções, clique no **X** para voltar ao cardápio.';
+}
+function numberFrom(t){
+  const match = t.match(/\d+/);
+  if(match) return Math.max(1, Math.min(99, Number(match[0])));
+  const words = {um:1,uma:1,dois:2,duas:2,tres:3,quatro:4,cinco:5,seis:6,sete:7,oito:8,nove:9,dez:10};
+  for(const [word, value] of Object.entries(words)){
+    if(new RegExp('\\b' + word + '\\b').test(t)) return value;
+  }
+  return 0;
+}
+function cartCount(){ let count = 0; cart.forEach(item => { count += item.qty; }); return count; }
+function cartTotal(){ let total = 0; cart.forEach(item => { total += item.price * item.qty; }); return total; }
+function qtyLabel(count){ return count === 1 ? '1 item' : count + ' itens'; }
+function orderMessage(){
+  const lines = ['Olá! Gostaria de fazer um pedido no Pará-Ti.', 'Retirada no balcão', '', '*Comanda:*'];
+  cart.forEach(item => lines.push(item.qty + 'x ' + item.name + ' — ' + money(item.price * item.qty)));
+  lines.push('', '*Total: ' + money(cartTotal()) + '*');
+  return lines.join('\n');
+}
+function renderComanda(){
+  const list = document.getElementById('comandaList');
+  list.replaceChildren();
+  const count = cartCount();
+  document.getElementById('comandaCount').textContent = qtyLabel(count);
+  document.getElementById('comandaMobileCount').textContent = qtyLabel(count);
+  if(!cart.size){
+    const empty = document.createElement('p');
+    empty.className = 'comanda-empty';
+    empty.textContent = 'Nenhum prato escolhido ainda. Informe a quantidade ao Assistente ao lado.';
+    list.appendChild(empty);
+  } else {
+    cart.forEach((item, id) => {
+      const row = document.createElement('div');
+      row.className = 'comanda-item';
+      const top = document.createElement('div');
+      top.className = 'comanda-item-top';
+      const name = document.createElement('strong');
+      name.textContent = item.name;
+      const qty = document.createElement('div');
+      qty.className = 'comanda-qty';
+      const minus = document.createElement('button');
+      minus.type = 'button';
+      minus.textContent = '−';
+      minus.setAttribute('aria-label', 'Diminuir quantidade de ' + item.name);
+      minus.addEventListener('click', () => changeCartQty(id, -1));
+      const number = document.createElement('span');
+      number.textContent = String(item.qty);
+      const plus = document.createElement('button');
+      plus.type = 'button';
+      plus.textContent = '+';
+      plus.setAttribute('aria-label', 'Aumentar quantidade de ' + item.name);
+      plus.addEventListener('click', () => changeCartQty(id, 1));
+      qty.append(minus, number, plus);
+      top.append(name, qty);
+      const bottom = document.createElement('div');
+      bottom.className = 'comanda-item-bottom';
+      const values = document.createElement('small');
+      values.textContent = money(item.price) + ' / un. • ' + money(item.price * item.qty);
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'comanda-remove';
+      remove.textContent = 'Remover';
+      remove.setAttribute('aria-label', 'Remover ' + item.name);
+      remove.addEventListener('click', () => {
+        cart.delete(id);
+        renderComanda();
+        botReply('Removi **' + item.name + '** da sua comanda. Total atual: **' + money(cartTotal()) + '**.');
+      });
+      bottom.append(values, remove);
+      row.append(top, bottom);
+      list.appendChild(row);
+    });
+  }
+  const total = money(cartTotal());
+  document.getElementById('comandaSubtotal').textContent = total;
+  document.getElementById('comandaTotal').textContent = total;
+  document.getElementById('comandaMobileTotal').textContent = total;
+  const href = count ? WHATSAPP + encodeURIComponent(orderMessage()) : '#';
+  ['comandaCheckout', 'comandaMobileCheckout'].forEach(id => {
+    const el = document.getElementById(id);
+    el.href = href;
+    el.classList.toggle('disabled', !count);
+    if(count) el.removeAttribute('aria-disabled');
+    else el.setAttribute('aria-disabled', 'true');
+  });
+}
+function changeCartQty(id, delta){
+  const item = cart.get(id);
+  if(!item) return;
+  const next = Math.max(0, Math.min(99, item.qty + delta));
+  if(next) item.qty = next;
+  else cart.delete(id);
+  renderComanda();
+}
+function setQty(product, amount, mode){
+  const prev = cart.get(product.id)?.qty || 0;
+  const next = Math.max(0, Math.min(99, mode === 'add' ? prev + amount : mode === 'sub' ? prev - amount : amount));
+  if(next) cart.set(product.id, {name:product.name, price:product.price, qty:next});
+  else cart.delete(product.id);
+  renderComanda();
+  return next;
+}
+function findProduct(t){
+  return PRODUCTS.find(p => t.includes(normalize(p.name))) ||
+    PRODUCTS.find(p => has(t, 'preco', 'valor', 'quanto', 'custa') && t.includes(normalize(p.name).split(' ')[0]));
+}
+function handleOrderIntent(raw){
+  const t = normalize(raw);
+  const removing = has(t, 'remove', 'remover', 'tira', 'tirar', 'retira', 'retirar', 'exclui', 'cancela');
+  const amount = numberFrom(t);
+  const mentioned = PRODUCTS.find(p => t.includes(normalize(p.name))) ||
+    PRODUCTS.find(p => { const first = normalize(p.name).split(' ')[0]; return first.length > 4 && t.includes(first); });
+  const product = mentioned || currentProduct;
+  if(!product || (!removing && !amount)) return false;
+  currentProduct = product;
+  if(removing){
+    const next = setQty(product, amount || 99, amount ? 'sub' : 'set');
+    botReply(next
+      ? `Ajustei **${product.name}** para **${next}x** na sua comanda. Total estimado: **${money(cartTotal())}**. Quer clicar em **Concluir Pedido no WhatsApp** ou fechar no **X** para ver outros pratos?`
+      : `Removi **${product.name}** da sua comanda. Total estimado: **${money(cartTotal())}**.`);
+    return true;
+  }
+  const adding = has(t, 'adiciona', 'adicionar', 'acrescenta', 'mais', 'quero', 'coloca');
+  const next = setQty(product, amount, adding && cart.has(product.id) ? 'add' : 'set');
+  botReply(`Pronto! **${next}x ${product.name}** na sua comanda (subtotal **${money(product.price * next)}**). Quer clicar em **Concluir Pedido no WhatsApp** ali na comanda ou fechar no **X** para consultar mais pratos?`);
+  return true;
+}
 function answer(raw){
   const t = normalize(raw);
-  const has = (...words) => words.some(w => t.includes(w));
-  if(has('oi','ola','bom dia','boa tarde','boa noite','hey','tudo bem')){
+  const product = findProduct(t);
+  if(product && has(t, 'preco', 'valor', 'quanto', 'custa', 'prato', 'comanda', 'adiciona', 'quero')){
+    currentProduct = product;
+    return {text:productText(product), link:null};
+  }
+  if(has(t,'oi','ola','bom dia','boa tarde','boa noite','hey','tudo bem')){
     return {text:'Oi! Bem-vindo ao Pará-Ti. Posso ajudar com cardápio, preços, pedidos, horário e endereço. O que você quer saber?', link:{url:INSTAGRAM,label:'Ver Instagram'}};
   }
-  if(has('horario','hora','abre','fecha','funciona','funcionamento','aberto')){
+  if(has(t,'horario','hora','abre','fecha','funciona','funcionamento','aberto')){
     return {text:'Funcionamos de segunda a sábado, das 11h às 22h, e domingo das 11h às 18h.', link:null};
   }
-  if(has('endereco','onde','local','localizacao','fica','chegar','mapa')){
+  if(has(t,'endereco','onde','local','localizacao','fica','chegar','mapa')){
     return {text:'Estamos na Av. Central, 34 — Cidade 2000, Fortaleza/CE.', link:{url:MAPS,label:'Abrir no Google Maps'}};
   }
-  if(has('acai','açaí')){
-    return {text:'O açaí é artesanal, no estilo paraense: R$ 5,50 (100g) e R$ 55,00 (1 litro).', link:{url:'#cardapio',label:'Ver cardápio'}};
+  if(has(t,'pedido','pedir','comanda','finalizar','fazer o pedido','enviar pedido')){
+    return {text:'Toque em “Ver preço” no prato, informe a quantidade aqui e clique em **Concluir Pedido no WhatsApp** na sua comanda. A retirada é no balcão.', link:null};
   }
-  if(has('pedido','pedir','comanda','finalizar','fazer o pedido','enviar pedido')){
-    return {text:'Escolha os itens no cardápio e toque em “Sua Sacola” para revisar e enviar o pedido pelo WhatsApp. A retirada é feita no balcão.', link:{url:'#cardapio',label:'Ir para o cardápio'}};
+  if(has(t,'entrega','delivery','ifood')){
+    return {text:'Não trabalhamos com entrega. Monte sua comanda aqui e finalize pelo WhatsApp para retirada no balcão.', link:null};
   }
-  if(has('entrega','delivery','ifood')){
-    return {text:'Não trabalhamos com entrega. Monte sua sacola no cardápio e finalize o pedido pelo WhatsApp para retirada no balcão.', link:{url:'#cardapio',label:'Ver cardápio'}};
+  if(has(t,'cardapio','menu','opcoes','comida','o que tem','prato')){
+    return {text:'Temos açaí artesanal, produtos do Pará, entradas e petiscos, peixes, chapas, pratos executivos, bebidas e adicionais. Toque em “Ver preço” em qualquer item para começar.', link:null};
   }
-  if(has('cardapio','menu','opcoes','comida','o que tem','prato')){
-    return {text:'Temos açaí artesanal, produtos do Pará, entradas e petiscos, peixes, chapas, pratos executivos, bebidas e adicionais. Monte sua comanda aqui no site.', link:{url:'#cardapio',label:'Ver cardápio'}};
+  if(has(t,'peixe','pirarucu','tambaqui','filhote')){
+    return {text:'No cardápio tem tambaqui em banda, pirarucu e filhote. Toque em “Ver preço” no item desejado para saber o valor.', link:null};
   }
-  if(has('peixe','pirarucu','tambaqui','filhote')){
-    return {text:'No cardápio tem tambaqui em banda, pirarucu e filhote. Os valores e a disponibilidade estão no cardápio do site.', link:{url:'#cardapio',label:'Ver peixes'}};
+  if(has(t,'chapa','picanha','carne','churrasco')){
+    return {text:'As chapas são de picanha, contra filé, maminha e fraldinha, com acompanhamentos. Toque em “Ver preço” para detalhes.', link:null};
   }
-  if(has('chapa','picanha','carne','churrasco')){
-    return {text:'As chapas são de picanha, contra filé, maminha e fraldinha, com acompanhamentos. Confira os valores no cardápio.', link:{url:'#cardapio',label:'Ver chapas'}};
+  if(has(t,'hamburguer','lanche','burger')){
+    return {text:'Temos hambúrguer artesanal de 200g, com batata frita ou com queijo e batata frita. Toque em “Ver preço” no cardápio.', link:null};
   }
-  if(has('hamburguer','lanche','burger')){
-    return {text:'Temos hambúrguer artesanal de 200g, com batata frita ou com queijo e batata frita. Veja o cardápio.', link:{url:'#cardapio',label:'Ver cardápio'}};
+  if(has(t,'suco','bebida','refrigerante','cerveja')){
+    return {text:'Temos refrigerantes, águas, caipirosca, sucos e cervejas. Toque em “Ver preço” no cardápio para consultar.', link:null};
   }
-  if(has('suco','bebida','refrigerante','cerveja')){
-    return {text:'Temos refrigerantes, águas, caipirosca, sucos de vários sabores e cervejas. Veja valores e opções no cardápio.', link:{url:'#cardapio',label:'Ver bebidas'}};
+  if(has(t,'sobre','historia','origem','restaurante')){
+    return {text:'O Pará-Ti é especializada na culinária paraense e tem no açaí artesanal sua principal especialidade.', link:{url:'#sobre',label:'Conheça a casa'}};
   }
-  if(has('sobre','historia','origem','restaurante')){
-    return {text:'A Pará-Ti é especializada na culinária paraense e tem no açaí artesanal sua principal especialidade.', link:{url:'#sobre',label:'Conheça a casa'}};
-  }
-  if(has('reserva','mesa','evento','aniversario','grupo')){
+  if(has(t,'reserva','mesa','evento','aniversario','grupo')){
     return {text:'Para reservas, grupos e eventos, fale com a equipe pelo Instagram.', link:{url:INSTAGRAM,label:'Falar no Instagram'}};
   }
-  if(has('instagram','insta','perfil','rede','social')){
+  if(has(t,'instagram','insta','perfil','rede','social')){
     return {text:'Nosso Instagram é @paratifortaleza. Lá você vê novidades e fala direto com a equipe.', link:{url:INSTAGRAM,label:'Abrir Instagram'}};
   }
-  if(has('preco','valor','quanto custa','quanto e','barato','caro')){
-    return {text:'O açaí custa R$ 5,50 (100g) e R$ 55,00 (1 litro). Os demais valores estão no cardápio do site.', link:{url:'#cardapio',label:'Ver preços'}};
+  if(has(t,'preco','valor','quanto custa','quanto e','barato','caro')){
+    return {text:'Toque em “Ver preço” no prato que eu trago a descrição, o valor e já pergunto a quantidade.', link:null};
   }
-  if(has('obrigado','obrigada','valeu','vlw','tchau')){
+  if(has(t,'obrigado','obrigada','valeu','vlw','tchau')){
     return {text:'Por nada! Esperamos você no Pará-Ti. Até breve.', link:null};
   }
   return {text:'Ainda não tenho essa informação por aqui. A equipe do Pará-Ti pode te ajudar pelo Instagram.', link:{url:INSTAGRAM,label:'Falar no Instagram'}};
 }
-function startChat(){
-  if(chatStarted) return;
+function startChat(product){
   chatStarted = true;
-  addMessage('Olá! Eu sou o assistente do Pará-Ti. Posso ajudar com o cardápio, preços, pedidos, horário e endereço. Como posso ajudar?', 'bot');
+  if(product){
+    chatMessages.replaceChildren();
+    currentProduct = product;
+    addMessage(productText(product), 'bot');
+  } else if(!chatMessages.children.length){
+    addMessage('Olá! Eu sou o assistente do Pará-Ti. Toque em “Ver preço” em um prato ou me diga o que deseja.', 'bot');
+  }
 }
-function openChat(){
+function openChat(product){
   chatOpen = true;
-  closeOrder();
+  setDrawer(false);
+  document.body.classList.add('assistant-open');
+  assistantDock.classList.add('open');
+  assistantDock.setAttribute('aria-hidden','false');
   chatPanel.classList.add('open');
   chatPanel.setAttribute('aria-hidden','false');
   chatFab.setAttribute('aria-expanded','true');
-  startChat();
-  setTimeout(() => chatInput.focus(), 250);
+  startChat(product);
+  setTimeout(() => chatInput.focus({preventScroll:true}), 250);
 }
 function closeChat(){
   chatOpen = false;
+  document.body.classList.remove('assistant-open');
+  assistantDock.classList.remove('open');
+  assistantDock.setAttribute('aria-hidden','true');
   chatPanel.classList.remove('open');
   chatPanel.setAttribute('aria-hidden','true');
   chatFab.setAttribute('aria-expanded','false');
 }
+function replyTo(text){
+  addMessage(text, 'user');
+  if(!handleOrderIntent(text)){
+    const r = answer(text);
+    botReply(r.text, r.link);
+  }
+}
 chatFab.addEventListener('click', () => chatOpen ? closeChat() : openChat());
 document.getElementById('chatClose').addEventListener('click', closeChat);
 document.querySelectorAll('[data-open-chat]').forEach(b => b.addEventListener('click', () => { setDrawer(false); openChat(); }));
+const heroMenuLink = document.querySelector('.hero-cta a[href="#cardapio"]');
+if(heroMenuLink){
+  heroMenuLink.addEventListener('click', e => {
+    e.preventDefault();
+    document.getElementById('cardapio').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+}
 document.getElementById('chatForm').addEventListener('submit', e => {
   e.preventDefault();
   const text = sanitizeText(chatInput.value, 200);
   if(!text) return;
-  addMessage(text, 'user');
   chatInput.value = '';
-  const r = answer(text);
-  botReply(r.text, r.link);
+  replyTo(text);
 });
 document.querySelectorAll('#chatQuick button').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1028,126 +1365,36 @@ document.querySelectorAll('#chatQuick button').forEach(btn => {
   });
 });
 
-const cart = new Map();
-const menuItems = Array.from(document.querySelectorAll('.menu-item'));
-function makeAddButton(item){
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = 'add-btn';
-  btn.textContent = '+ Adicionar';
-  btn.setAttribute('aria-label','Adicionar ' + item.dataset.name);
-  btn.addEventListener('click', () => changeQty(item, 1));
-  return btn;
-}
-function makeStepper(item, qty){
-  const wrap = document.createElement('div');
-  wrap.className = 'qty';
-  const minus = document.createElement('button');
-  minus.type = 'button';
-  minus.className = 'qty-btn';
-  minus.textContent = '−';
-  minus.setAttribute('aria-label','Diminuir quantidade de ' + item.dataset.name);
-  minus.addEventListener('click', () => changeQty(item, -1));
-  const number = document.createElement('span');
-  number.className = 'qty-num';
-  number.textContent = String(qty);
-  number.setAttribute('aria-label','Quantidade: ' + qty);
-  const plus = document.createElement('button');
-  plus.type = 'button';
-  plus.className = 'qty-btn';
-  plus.textContent = '+';
-  plus.setAttribute('aria-label','Aumentar quantidade de ' + item.dataset.name);
-  plus.addEventListener('click', () => changeQty(item, 1));
-  wrap.append(minus, number, plus);
-  return wrap;
-}
 function renderMenuControls(){
-  menuItems.forEach(item => {
-    const holder = item.querySelector('.add-holder');
-    const qty = cart.get(item.dataset.id)?.qty || 0;
-    holder.replaceChildren(qty ? makeStepper(item, qty) : makeAddButton(item));
+  PRODUCTS.forEach(product => {
+    const holder = document.querySelector('.menu-item[data-id="' + product.id + '"] .add-holder');
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'add-btn';
+    btn.textContent = 'Ver preço';
+    btn.setAttribute('aria-label', 'Consultar preço de ' + product.name);
+    btn.addEventListener('click', () => {
+      const scrollYBefore = window.scrollY;
+      const row = btn.closest('.menu-item');
+      openChat(product);
+      requestAnimationFrame(() => {
+        window.scrollTo(0, scrollYBefore);
+        row.scrollIntoView({behavior:'smooth', block:'nearest'});
+      });
+    });
+    holder.replaceChildren(btn);
   });
-}
-function changeQty(item, delta){
-  const id = item.dataset.id;
-  const current = cart.get(id) || {name:item.dataset.name, price:Number(item.dataset.price), qty:0};
-  current.qty = Math.min(99, current.qty + delta);
-  if(current.qty <= 0) cart.delete(id);
-  else cart.set(id, current);
-  renderMenuControls();
-  updateBag();
-}
-function cartTotal(){
-  let total = 0;
-  cart.forEach(item => { total += item.price * item.qty; });
-  return total;
-}
-function updateBag(){
-  let count = 0;
-  cart.forEach(item => { count += item.qty; });
-  document.getElementById('bagCount').textContent = String(count);
 }
 renderMenuControls();
-updateBag();
+renderComanda();
 
-const bagBtn = document.getElementById('bagBtn');
-
-const orderModal = document.getElementById('orderModal');
-const orderBackdrop = document.getElementById('orderBackdrop');
-function openOrder(){
-  if(cart.size === 0){ toast('Adicione itens ao cardápio antes de fechar o pedido.'); return; }
-  closeChat();
-  setDrawer(false);
-  const summary = document.getElementById('orderSummary');
-  summary.replaceChildren();
-  cart.forEach(item => {
-    const line = document.createElement('div');
-    const strong = document.createElement('strong');
-    strong.textContent = item.qty + 'x ';
-    line.append(strong, document.createTextNode(item.name + ' — ' + money(item.price * item.qty)));
-    summary.appendChild(line);
-  });
-  document.getElementById('orderTotal').textContent = money(cartTotal());
-  orderModal.classList.add('open');
-  orderModal.setAttribute('aria-hidden','false');
-  orderBackdrop.classList.add('open');
-  bagBtn.setAttribute('aria-expanded','true');
-  setTimeout(() => document.getElementById('customerName').focus(), 200);
-}
-function closeOrder(){
-  orderModal.classList.remove('open');
-  orderModal.setAttribute('aria-hidden','true');
-  orderBackdrop.classList.remove('open');
-  bagBtn.setAttribute('aria-expanded','false');
-}
-bagBtn.addEventListener('click', openOrder);
-document.getElementById('orderClose').addEventListener('click', closeOrder);
-orderBackdrop.addEventListener('click', closeOrder);
 addEventListener('keydown', e => {
   if(e.key !== 'Escape') return;
   setDrawer(false);
   closeChat();
-  closeOrder();
 });
-
-document.getElementById('orderForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const name = sanitizeText(document.getElementById('customerName').value, 50);
-  const notes = sanitizeText(document.getElementById('customerNotes').value, 300);
-  if(!name || cart.size === 0) return;
-  const mode = sanitizeText(document.querySelector('input[name="mode"]:checked')?.value || 'Retirada no balcão', 40);
-  const lines = ['Olá! Gostaria de fazer um pedido no Pará-Ti.', mode, '', '*Comanda:*'];
-  cart.forEach(item => lines.push(item.qty + 'x ' + item.name + ' — ' + money(item.price * item.qty)));
-  lines.push('', '*Total: ' + money(cartTotal()) + '*', '', 'Nome: ' + name);
-  if(notes) lines.push('Observações: ' + notes);
-  closeOrder();
-  cart.clear();
-  renderMenuControls();
-  updateBag();
-  document.getElementById('orderForm').reset();
-  window.open(WHATSAPP + encodeURIComponent(lines.join('\n')), '_blank', 'noopener,noreferrer');
-  toast('Pedido pronto! Confira a mensagem no WhatsApp.');
-});
+document.getElementById('comandaCheckout').addEventListener('click', () => toast('Pedido pronto! Confira a mensagem no WhatsApp.'));
+document.getElementById('comandaMobileCheckout').addEventListener('click', () => toast('Pedido pronto! Confira a mensagem no WhatsApp.'));
 </script>
 </body>
 </html>
