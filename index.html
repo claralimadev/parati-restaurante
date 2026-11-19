@@ -292,6 +292,10 @@ button{font:inherit;cursor:pointer}
 .comanda-checkout{display:block;width:100%;text-align:center}
 .comanda-checkout.disabled{opacity:.45;pointer-events:none;filter:grayscale(.4)}
 .comanda-mobile{display:none}
+.comanda-close{display:none;width:28px;height:28px;margin-left:2px;border:0;border-radius:50%;background:rgba(74,29,82,.1);color:var(--acai);place-items:center;cursor:pointer}
+.comanda-close svg{width:15px;height:15px}
+.comanda-mobile-open{display:flex;align-items:center;gap:8px;padding:0;border:0;background:none;color:var(--marrom);font:inherit;text-align:left;cursor:pointer}
+.comanda-mobile-label{color:var(--acai);font-weight:800;white-space:nowrap}
 .chat-head{background:var(--acai);color:#fff;padding:16px 18px;display:flex;align-items:center;gap:12px}
 .chat-head .bot{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:0 0 auto}
 .chat-head .bot svg{width:22px;height:22px}
@@ -342,7 +346,9 @@ button{font:inherit;cursor:pointer}
   .hamburger{display:grid}
   .header-actions .btn{display:none}
   .assistant-dock{right:12px;bottom:86px}
-  .comanda-panel{display:none}
+  .comanda-panel{display:flex;position:fixed;left:12px;right:12px;top:50%;width:auto;height:min(560px,calc(100vh - 40px));z-index:100;opacity:0;pointer-events:none;transform:translateY(-46%) scale(.98);transition:opacity .22s,transform .22s}
+  .assistant-dock.comanda-open .comanda-panel{opacity:1;pointer-events:auto;transform:translateY(-50%) scale(1)}
+  .comanda-close{display:grid}
   .comanda-mobile{display:flex;align-items:center;gap:8px;padding:9px 12px;background:var(--creme-2);border-bottom:1px solid rgba(46,31,24,.08);font-size:.74rem;color:var(--marrom)}
   .comanda-mobile strong{color:var(--acai)}
   .comanda-mobile a{margin-left:auto;background:var(--acai);color:#fff;border-radius:999px;padding:7px 10px;font-size:.7rem;font-weight:800;text-decoration:none;white-space:nowrap}
@@ -744,6 +750,9 @@ button{font:inherit;cursor:pointer}
   <div class="comanda-head">
     <div><strong>Sua Comanda</strong><p>Monte aqui e envie direto pro WhatsApp</p></div>
     <span class="comanda-count" id="comandaCount">0 itens</span>
+    <button class="comanda-close" id="comandaClose" type="button" aria-label="Fechar comanda">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
   </div>
   <div class="comanda-list" id="comandaList"></div>
   <div class="comanda-foot">
@@ -764,8 +773,11 @@ button{font:inherit;cursor:pointer}
     </button>
   </div>
   <div class="comanda-mobile">
-    <strong id="comandaMobileCount">0 itens</strong>
-    <span id="comandaMobileTotal">R$ 0,00</span>
+    <button class="comanda-mobile-open" id="comandaMobileOpen" type="button">
+      <strong id="comandaMobileCount">0 itens</strong>
+      <span id="comandaMobileTotal">R$ 0,00</span>
+      <span class="comanda-mobile-label">Ver comanda →</span>
+    </button>
     <a id="comandaMobileCheckout" href="#" aria-disabled="true" class="disabled" target="_blank" rel="noopener noreferrer">WhatsApp</a>
   </div>
   <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
@@ -1331,7 +1343,7 @@ function openChat(product){
 function closeChat(){
   chatOpen = false;
   document.body.classList.remove('assistant-open');
-  assistantDock.classList.remove('open');
+  assistantDock.classList.remove('open','comanda-open');
   assistantDock.setAttribute('aria-hidden','true');
   chatPanel.classList.remove('open');
   chatPanel.setAttribute('aria-hidden','true');
@@ -1346,6 +1358,8 @@ function replyTo(text){
 }
 chatFab.addEventListener('click', () => chatOpen ? closeChat() : openChat());
 document.getElementById('chatClose').addEventListener('click', closeChat);
+document.getElementById('comandaMobileOpen').addEventListener('click', () => assistantDock.classList.add('comanda-open'));
+document.getElementById('comandaClose').addEventListener('click', () => assistantDock.classList.remove('comanda-open'));
 document.querySelectorAll('[data-open-chat]').forEach(b => b.addEventListener('click', () => { setDrawer(false); openChat(); }));
 const heroMenuLink = document.querySelector('.hero-cta a[href="#cardapio"]');
 if(heroMenuLink){
@@ -1396,6 +1410,7 @@ renderComanda();
 addEventListener('keydown', e => {
   if(e.key !== 'Escape') return;
   setDrawer(false);
+  assistantDock.classList.remove('comanda-open');
   closeChat();
 });
 document.getElementById('comandaCheckout').addEventListener('click', () => toast('Pedido pronto! Confira a mensagem no WhatsApp.'));
