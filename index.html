@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
 <title>Pará-Ti Restaurante • Açaí artesanal e sabores do Pará em Fortaleza</title>
 <meta name="description" content="Pará-Ti Restaurante na Cidade 2000, Fortaleza. Cardápio com açaí artesanal, produtos do Pará, peixes, chapas e bebidas. Monte sua comanda e finalize pelo WhatsApp." />
 <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -166,15 +166,15 @@ button{font:inherit;cursor:pointer}
 .section-head .eyebrow{color:#FACC15}
 .section-head .eyebrow::before{background:#FACC15}
 #cardapio,#sobre,#comentarios,#rodape{scroll-margin-top:94px}
-.category-tabs{position:sticky;top:var(--header-h);z-index:40;display:flex;align-items:center;gap:10px;margin:0 0 34px;padding:8px clamp(16px,5.5vw,84px);background:#230d2b;border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 12px 30px rgba(20,8,26,.28)}
-.tabs-track{flex:1;min-width:0;display:flex;flex-wrap:nowrap;gap:12px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;padding:4px 0 6px}
+.category-tabs{position:sticky;top:var(--header-h);z-index:50;pointer-events:auto;display:flex;align-items:center;gap:10px;margin:0 0 34px;padding:8px clamp(16px,5.5vw,84px);background:#230d2b;border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 12px 30px rgba(20,8,26,.28)}
+.tabs-track{flex:1;min-width:0;display:flex;flex-wrap:nowrap;gap:12px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;padding:4px 0 6px;pointer-events:auto}
 .tabs-track::-webkit-scrollbar{display:none}
 .tabs-track.dragging{cursor:grabbing;scroll-behavior:auto;user-select:none}
 .category-tab{flex:0 0 auto;white-space:nowrap;border:0;border-bottom:3px solid transparent;background:transparent;color:rgba(255,255,255,.72);padding:7px 3px 8px;font-size:.88rem;font-weight:800;text-decoration:none;transition:color .18s,border-color .18s}
 .category-tab:hover{color:#fff}
 .category-tab.is-active{color:#FACC15;border-bottom-color:#FACC15}
 .menu-wrap{display:flex;flex-direction:column;gap:26px;max-width:860px;margin-inline:auto}
-.menu-group{width:100%;background:var(--creme-card);border:1px solid rgba(255,253,247,.5);border-radius:22px;padding:28px 32px;box-shadow:var(--sombra-card);scroll-margin-top:140px}
+.menu-group{width:100%;background:var(--creme-card);border:1px solid rgba(255,253,247,.5);border-radius:22px;padding:28px 32px;box-shadow:var(--sombra-card);scroll-margin-top:80px}
 .menu-category{font-family:"Kalam",cursive;font-size:1.02rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--acai);padding-bottom:12px;border-bottom:2px solid var(--acai);margin-bottom:8px}
 .menu-note{font-size:.88rem;color:var(--marrom-suave);margin:10px 0 4px}
 .menu-list{list-style:none;margin:0;padding:0}
@@ -265,10 +265,10 @@ button{font:inherit;cursor:pointer}
 .chat-fab:hover{transform:scale(1.06)}
 .chat-fab svg{width:27px;height:27px;display:block;transform:translateY(-2px)}
 .chat-fab .ping{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:var(--dourado);border:2px solid var(--creme)}
-.assistant-dock{position:fixed;right:22px;bottom:94px;z-index:95;display:flex;align-items:flex-end;gap:12px;opacity:0;pointer-events:none;transform:translateY(16px);transition:.25s}
+.assistant-dock{position:fixed;right:20px;bottom:20px;z-index:1000;display:flex;align-items:flex-end;gap:16px;max-width:calc(100vw - 40px);max-height:calc(100vh - 40px);opacity:0;pointer-events:none;transform:translateY(16px);transition:.25s}
 .assistant-dock.open{opacity:1;pointer-events:auto;transform:none}
-.comanda-panel,.chat-panel{width:min(370px,calc(100vw - 32px));height:min(560px,calc(100vh - 130px));background:var(--creme-card);border-radius:24px;box-shadow:0 30px 70px rgba(20,8,26,.42);display:flex;flex-direction:column;overflow:hidden}
-.comanda-panel{width:min(310px,calc(100vw - 32px));border:1px solid rgba(255,253,247,.6)}
+.comanda-panel,.chat-panel{width:min(370px,calc(100vw - 40px));height:min(560px,calc(100vh - 40px));max-width:calc(100vw - 40px);max-height:calc(100vh - 40px);background:var(--creme-card);border-radius:24px;box-shadow:0 30px 70px rgba(20,8,26,.42);display:flex;flex-direction:column;overflow:hidden}
+.comanda-panel{width:min(310px,calc(100vw - 40px));border:1px solid rgba(255,253,247,.6)}
 .comanda-head{background:#F8F4EC;padding:15px 16px;border-bottom:1px solid rgba(46,31,24,.08);display:flex;align-items:flex-start;gap:8px}
 .comanda-head strong{font-family:"Kalam",cursive;font-weight:700;font-size:1.1rem;color:var(--acai)}
 .comanda-head p{font-size:.72rem;color:var(--marrom-suave);margin-top:3px}
@@ -295,7 +295,10 @@ button{font:inherit;cursor:pointer}
 .comanda-close{display:none;width:28px;height:28px;margin-left:2px;border:0;border-radius:50%;background:rgba(74,29,82,.1);color:var(--acai);place-items:center;cursor:pointer}
 .comanda-close svg{width:15px;height:15px}
 .comanda-mobile-info{display:flex;align-items:center;gap:8px;min-width:0}
-.comanda-mobile-open{margin-left:auto;background:var(--acai);color:#fff;border:0;border-radius:999px;padding:7px 12px;font-size:.72rem;font-weight:800;white-space:nowrap;cursor:pointer}
+.comanda-mobile-open{margin-left:auto;background:var(--acai);color:#fff;border:0;border-radius:999px;padding:7px 12px;font-size:.72rem;font-weight:800;white-space:nowrap;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.comanda-mobile-open.disabled{opacity:.45;pointer-events:none;filter:grayscale(.4)}
+.comanda-mobile-info + .comanda-mobile-open{margin-left:auto}
+.comanda-mobile-open + .comanda-mobile-open{margin-left:0}
 .chat-head{background:var(--acai);color:#fff;padding:16px 18px;display:flex;align-items:center;gap:12px}
 .chat-head .bot{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:0 0 auto}
 .chat-head .bot svg{width:22px;height:22px}
@@ -345,16 +348,24 @@ button{font:inherit;cursor:pointer}
   .nav{display:none}
   .hamburger{display:grid}
   .header-actions .btn{display:none}
-  .assistant-dock{right:12px;bottom:86px}
-  .comanda-panel{display:flex;position:fixed;left:12px;right:12px;top:50%;width:auto;height:min(560px,calc(100vh - 40px));z-index:100;opacity:0;pointer-events:none;transform:translateY(-46%) scale(.98);transition:opacity .22s,transform .22s}
-  .assistant-dock.comanda-open .comanda-panel{opacity:1;pointer-events:auto;transform:translateY(-50%) scale(1)}
-  .comanda-close{display:grid}
-  .comanda-mobile{display:flex;align-items:center;gap:8px;padding:9px 12px;background:var(--creme-2);border-bottom:1px solid rgba(46,31,24,.08);font-size:.74rem;color:var(--marrom)}
-  .comanda-mobile strong{color:var(--acai)}
   .section{padding:68px 0}
   .hero{padding:calc(var(--header-h) + 64px) 0 56px}
   .hero-bg{background-position:62% center}
   .footer-grid{grid-template-columns:1fr 1fr;gap:26px}
+}
+@media (max-width:768px){
+  .assistant-dock{inset:0;right:0;bottom:0;max-width:none;max-height:none;display:block;z-index:1100}
+  .assistant-dock.open{pointer-events:auto}
+  .chat-panel,.comanda-panel{position:fixed;inset:0;width:100%;height:100dvh;max-height:100dvh;max-width:none;border-radius:0}
+  .chat-panel{display:none;z-index:1101}
+  .assistant-dock.open .chat-panel{display:flex}
+  .comanda-panel{display:none;z-index:1102;border:0}
+  .assistant-dock.comanda-open .comanda-panel{display:flex}
+  .comanda-mobile{display:flex;align-items:center;gap:8px;padding:9px 12px;background:var(--creme-2);border-bottom:1px solid rgba(46,31,24,.08);font-size:.74rem;color:var(--marrom);flex-shrink:0}
+  .comanda-mobile strong{color:var(--acai)}
+  .chat-head,.chat-quick,.chat-form,.comanda-head,.comanda-foot{flex-shrink:0}
+  .chat-messages,.comanda-list{flex:1;overflow-y:auto;min-height:0}
+  .comanda-close{display:grid}
 }
 @media (max-width:620px){
   :root{--header-h:68px}
@@ -396,7 +407,7 @@ button{font:inherit;cursor:pointer}
   .tabs-track{flex:0 1 auto;justify-content:safe center;overflow-x:auto}
   #cardapio{overflow-anchor:none}
   #cardapio > .menu-container{overflow-anchor:none;transition:max-width .3s ease,width .3s ease,margin .3s ease}
-  body.assistant-open #cardapio > .menu-container{width:calc(100% - 760px);max-width:none;margin-left:24px;margin-right:auto}
+  body.assistant-open #cardapio > .menu-container{width:calc(100% - 760px);max-width:none;margin-left:32px;margin-right:auto}
   body.assistant-open .menu-wrap{max-width:none}
 }
 @media (prefers-reduced-motion:reduce){
@@ -775,7 +786,8 @@ button{font:inherit;cursor:pointer}
       <strong id="comandaMobileCount">0 itens</strong>
       <span id="comandaMobileTotal">R$ 0,00</span>
     </div>
-    <button class="comanda-mobile-open" id="comandaMobileOpen" type="button">Ver comanda</button>
+    <button class="comanda-mobile-open" id="comandaMobileOpen" type="button">Ver itens</button>
+    <a class="comanda-mobile-open disabled" id="comandaMobileCheckout" href="#" aria-disabled="true" target="_blank" rel="noopener noreferrer">WhatsApp</a>
   </div>
   <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
   <div class="chat-quick" id="chatQuick">
@@ -801,6 +813,7 @@ button{font:inherit;cursor:pointer}
 const INSTAGRAM = 'https://www.instagram.com/paratifortaleza/';
 const MAPS = 'https://www.google.com/maps/search/?api=1&query=Av.+Central,+34+-+Cidade+2000,+Fortaleza+-+CE';
 const WHATSAPP = 'https://wa.me/5585997103698?text=';
+const WHATSAPP_CHAT = 'https://wa.me/5585997103698?text=' + encodeURIComponent('Olá! Gostaria de falar com a equipe do Pará-Ti.');
 
 document.getElementById('year').textContent = String(new Date().getFullYear());
 
@@ -859,11 +872,13 @@ function setActiveCategory(id, centerTab = true){
 categoryTabs.forEach(tab => tab.addEventListener('click', e => {
   if(tabsTrack.dataset.dragged === 'true'){
     e.preventDefault();
+    tabsTrack.dataset.dragged = '';
     return;
   }
   e.preventDefault();
   setActiveCategory(tab.dataset.category);
-  document.getElementById(tab.dataset.category)?.scrollIntoView({behavior:'smooth', block:'start'});
+  const target = document.getElementById(tab.dataset.category);
+  if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
 }));
 let draggingTabs = false;
 let dragStartX = 0;
@@ -895,7 +910,7 @@ function endTabsDrag(){
     setTimeout(() => {
       tabsTrack.dataset.dragged = '';
       tabsMoved = false;
-    }, 0);
+    }, 120);
   }
 }
 ['pointerup','pointercancel','pointerleave'].forEach(type => tabsTrack?.addEventListener(type, endTabsDrag));
@@ -1128,21 +1143,66 @@ function botReply(text, link){
   chatMessages.scrollTop = chatMessages.scrollHeight;
   setTimeout(() => { typing.remove(); addMessage(text, 'bot', link); }, 550);
 }
+function fmtQty(n){
+  const v = Math.round(n * 1000) / 1000;
+  return Number.isInteger(v) ? String(v) : String(v).replace('.', ',');
+}
+function fmtMeasure(v, unit){
+  if(unit === 'g' && v >= 1000 && Math.abs(v % 1000) < 1e-9) return fmtQty(v/1000) + 'kg';
+  if(unit === 'ml' && v >= 1000 && Math.abs(v % 1000) < 1e-9) return fmtQty(v/1000) + 'L';
+  const rounded = Math.round(v * 100) / 100;
+  const txt = Number.isInteger(rounded) ? String(rounded) : String(rounded).replace('.', ',');
+  return txt + unit;
+}
+function productBase(product){
+  const name = String(product && product.name || '');
+  if(/\bkg\b/i.test(name)) return {value:1000, unit:'g', label:'1kg'};
+  const m = name.match(/(\d+(?:[.,]\d+)?)\s*(ml|l|litros?|litro|g|gr|gramas?)/i);
+  if(!m) return null;
+  const num = parseFloat(m[1].replace(',', '.'));
+  if(!isFinite(num) || num <= 0) return null;
+  const u = m[2].toLowerCase();
+  if(u === 'ml') return {value:num, unit:'ml', label:fmtMeasure(num,'ml')};
+  if(u === 'g' || u === 'gr' || u.indexOf('gram') === 0) return {value:num, unit:'g', label:fmtMeasure(num,'g')};
+  return {value:num * 1000, unit:'ml', label:fmtMeasure(num,'L')};
+}
+function parseRequested(raw, t){
+  const text = normalize(raw || '');
+  const hasPortionWord = /\b(porc(?:ao|oes)?|unidade?s?|x)\b/.test(text);
+  const m = text.match(/(\d+(?:[.,]\d+)?)\s*(kg|kilo|kilos|quilograma?s?|ml|l|litros?|litro|g|gr|gramas?)/);
+  if(m){
+    const num = parseFloat(m[1].replace(',', '.'));
+    if(!isFinite(num) || num <= 0) return null;
+    const u = m[2];
+    let value, unit, label;
+    if(u === 'kg' || u === 'kilo' || u === 'kilos' || u.indexOf('quilogram') === 0){ value = num * 1000; unit = 'g'; label = fmtMeasure(num,'kg'); }
+    else if(u === 'ml'){ value = num; unit = 'ml'; label = fmtMeasure(num,'ml'); }
+    else if(u === 'g' || u === 'gr' || u.indexOf('gram') === 0){ value = num; unit = 'g'; label = fmtMeasure(num,'g'); }
+    else { value = num * 1000; unit = 'ml'; label = fmtMeasure(num,'L'); }
+    return {kind:'measure', value, unit, label, hasPortionWord};
+  }
+  const mx = text.match(/\b(\d+)\s*x\b|\bx\s*(\d+)\b/);
+  if(mx){ const n = Number(mx[1] || mx[2]); if(n > 0) return {kind:'count', count:Math.max(1, Math.min(99, Math.trunc(n)))}; }
+  const words = {um:1,uma:1,dois:2,duas:2,tres:3,quatro:4,cinco:5,seis:6,sete:7,oito:8,nove:9,dez:10};
+  for(const [word, value] of Object.entries(words)){
+    if(new RegExp('\\b' + word + '\\b').test(text)) return {kind:'count', count:value};
+  }
+  const plain = text.match(/\b\d+\b/);
+  if(plain) return {kind:'count', count:Math.max(1, Math.min(99, Number(plain[0])))};
+  return null;
+}
+function comandaResumo(){
+  const c = cartCount();
+  return c ? `Comanda atual: **${qtyLabel(c)} • ${money(cartTotal())}**.` : 'Sua comanda está vazia no momento.';
+}
 function productText(p){
   const d = (DETAILS[p.id] || p.desc).replace(/\.$/, '');
   const intro = SIMPLE_IDS.has(p.id)
     ? `O **${p.name}** ${d} e custa **${money(p.price)}**.`
     : `O **${p.name}** ${d}. O valor é **${money(p.price)}**.`;
-  return intro + '\nQuantas unidades/porções você gostaria de adicionar à sua comanda? Se quiser só olhar outras opções, clique no **X** para voltar ao cardápio.';
-}
-function numberFrom(t){
-  const match = t.match(/\d+/);
-  if(match) return Math.max(1, Math.min(99, Number(match[0])));
-  const words = {um:1,uma:1,dois:2,duas:2,tres:3,quatro:4,cinco:5,seis:6,sete:7,oito:8,nove:9,dez:10};
-  for(const [word, value] of Object.entries(words)){
-    if(new RegExp('\\b' + word + '\\b').test(t)) return value;
-  }
-  return 0;
+  const base = productBase(p);
+  const hint = base ? `Você pode pedir por porções/unidades ou por medida (ex: ${base.label}).` : 'Me diga quantas porções/unidades você quer.';
+  return intro + '\n' + hint + '\nSe quiser ver outros pratos, clique no **X**. Quando terminar, conclua pelo **WhatsApp** na comanda.\n' + comandaResumo();
 }
 function cartCount(){ let count = 0; cart.forEach(item => { count += item.qty; }); return count; }
 function cartTotal(){ let total = 0; cart.forEach(item => { total += item.price * item.qty; }); return total; }
@@ -1216,6 +1276,12 @@ function renderComanda(){
   checkout.classList.toggle('disabled', !count);
   if(count) checkout.removeAttribute('aria-disabled');
   else checkout.setAttribute('aria-disabled', 'true');
+  const mCheckout = document.getElementById('comandaMobileCheckout');
+  if(mCheckout){
+    mCheckout.href = checkout.href;
+    mCheckout.classList.toggle('disabled', !count);
+    if(count) mCheckout.removeAttribute('aria-disabled'); else mCheckout.setAttribute('aria-disabled','true');
+  }
 }
 function changeCartQty(id, delta){
   const item = cart.get(id);
@@ -1240,77 +1306,116 @@ function findProduct(t){
 function handleOrderIntent(raw){
   const t = normalize(raw);
   const removing = has(t, 'remove', 'remover', 'tira', 'tirar', 'retira', 'retirar', 'exclui', 'cancela');
-  const amount = numberFrom(t);
   const mentioned = PRODUCTS.find(p => t.includes(normalize(p.name))) ||
     PRODUCTS.find(p => { const first = normalize(p.name).split(' ')[0]; return first.length > 4 && t.includes(first); });
   const product = mentioned || currentProduct;
-  if(!product || (!removing && !amount)) return false;
+  if(!product) return false;
   currentProduct = product;
+  const requested = parseRequested(raw, t);
+
   if(removing){
-    const next = setQty(product, amount || 99, amount ? 'sub' : 'set');
+    if(!requested || requested.kind !== 'count'){
+      const had = cart.has(product.id);
+      if(had) setQty(product, 99, 'sub');
+      botReply(had
+        ? `Removi **${product.name}** da sua comanda. ${comandaResumo()}\nQuer ver outros pratos no **X** ou concluir pelo **WhatsApp**?`
+        : `**${product.name}** já não está na sua comanda. ${comandaResumo()}`);
+      return true;
+    }
+    const prev = cart.get(product.id)?.qty || 0;
+    const next = setQty(product, requested.count, 'sub');
     botReply(next
-      ? `Ajustei **${product.name}** para **${next}x** na sua comanda. Total estimado: **${money(cartTotal())}**. Quer clicar em **Concluir Pedido no WhatsApp** ou fechar no **X** para ver outros pratos?`
-      : `Removi **${product.name}** da sua comanda. Total estimado: **${money(cartTotal())}**.`);
+      ? `Ajustei **${product.name}** para **${next}x** na sua comanda. ${comandaResumo()}\nSe precisar, conclua pelo **WhatsApp** ou feche no **X** para ver mais pratos.`
+      : `Removi **${product.name}** da sua comanda. ${comandaResumo()}`);
     return true;
   }
-  const adding = has(t, 'adiciona', 'adicionar', 'acrescenta', 'mais', 'quero', 'coloca');
-  const next = setQty(product, amount, adding && cart.has(product.id) ? 'add' : 'set');
-  botReply(`Pronto! **${next}x ${product.name}** na sua comanda (subtotal **${money(product.price * next)}**). Quer clicar em **Concluir Pedido no WhatsApp** ali na comanda ou fechar no **X** para consultar mais pratos?`);
+
+  if(!requested) return false;
+
+  if(requested.kind === 'count'){
+    const adding = has(t, 'adiciona', 'adicionar', 'acrescenta', 'mais', 'coloca');
+    const mode = adding && cart.has(product.id) ? 'add' : 'set';
+    const next = setQty(product, requested.count, mode);
+    botReply(`Pronto! **${next}x ${product.name}** na sua comanda (subtotal **${money(product.price * next)}**). ${comandaResumo()}\nQuer concluir pelo **WhatsApp** ou fechar no **X** para ver outros pratos?`);
+    return true;
+  }
+
+  const base = productBase(product);
+  if(!base){
+    botReply(`Consigo adicionar **${product.name}** por unidades/porções. Me diga quantas você quer (ex: 1, 2 ou 3 porções). ${comandaResumo()}`);
+    return true;
+  }
+  if(base.unit !== requested.unit){
+    const unidadeTxt = base.unit === 'g' ? 'gramas/kg' : 'ml/litros';
+    botReply(`Esse item é vendido em porções de **${base.label}** (${money(product.price)}). Informe a medida em ${unidadeTxt} ou a quantidade de porções. ${comandaResumo()}`);
+    return true;
+  }
+  const ratio = requested.value / base.value;
+  const nearest = Math.round(ratio);
+  const isInteger = Math.abs(ratio - nearest) < 1e-9 && nearest >= 1;
+  if(!isInteger){
+    if(requested.value < base.value){
+      botReply(`Esse item é vendido em porções inteiras de **${base.label}** (${money(product.price)}). Para **${requested.label}**, você prefere **1 porção (${base.label})**? ${comandaResumo()}`);
+      return true;
+    }
+    const low = Math.max(1, Math.floor(ratio));
+    const high = Math.ceil(ratio);
+    const lowLabel = fmtMeasure(low * base.value, base.unit);
+    const highLabel = fmtMeasure(high * base.value, base.unit);
+    botReply(`Esse item é vendido em porções inteiras de **${base.label}** (${money(product.price)}). Para chegar perto de **${requested.label}**, você prefere **${low} porções (${lowLabel})** ou **${high} porções (${highLabel})**? ${comandaResumo()}`);
+    return true;
+  }
+  const qty = Math.max(1, Math.min(99, nearest));
+  const addingMeasure = has(t, 'adiciona', 'adicionar', 'acrescenta', 'mais', 'coloca');
+  const mode = addingMeasure && cart.has(product.id) ? 'add' : 'set';
+  const next = setQty(product, qty, mode);
+  botReply(`Entendi: **${requested.label}** de **${product.name}** corresponde a **${qty} ${qty === 1 ? 'porção' : 'porções'}** de ${base.label}. Adicionei **${next}x** na comanda (subtotal **${money(product.price * next)}**). ${comandaResumo()}\nQuer concluir pelo **WhatsApp** ou fechar no **X** para ver outros pratos?`);
   return true;
 }
 function answer(raw){
   const t = normalize(raw);
   const product = findProduct(t);
-  if(product && has(t, 'preco', 'valor', 'quanto', 'custa', 'prato', 'comanda', 'adiciona', 'quero')){
+  if(product && has(t, 'preco', 'valor', 'quanto', 'custa', 'prato', 'comanda', 'adiciona', 'quero', 'porcao', 'porcoes', 'unidade', 'grama', 'gramas', 'kg', 'kilo', 'litro', 'litros', 'ml')){
     currentProduct = product;
     return {text:productText(product), link:null};
   }
   if(has(t,'oi','ola','bom dia','boa tarde','boa noite','hey','tudo bem')){
-    return {text:'Oi! Bem-vindo ao Pará-Ti. Posso ajudar com cardápio, preços, pedidos, horário e endereço. O que você quer saber?', link:{url:INSTAGRAM,label:'Ver Instagram'}};
+    return {text:'Oi! Bem-vindo ao Pará-Ti. Posso ajudar com cardápio, preços e sua comanda. ' + comandaResumo(), link:null};
   }
   if(has(t,'horario','hora','abre','fecha','funciona','funcionamento','aberto')){
-    return {text:'Funcionamos de segunda a sábado, das 11h às 22h, e domingo das 11h às 18h.', link:null};
+    return {text:'Funcionamos de segunda a sábado, das 11h às 22h, e domingo das 11h às 18h. ' + comandaResumo(), link:null};
   }
   if(has(t,'endereco','onde','local','localizacao','fica','chegar','mapa')){
     return {text:'Estamos na Av. Central, 34 — Cidade 2000, Fortaleza/CE.', link:{url:MAPS,label:'Abrir no Google Maps'}};
   }
   if(has(t,'pedido','pedir','comanda','finalizar','fazer o pedido','enviar pedido')){
-    return {text:'Toque em “Ver preço” no prato, informe a quantidade aqui e clique em **Concluir Pedido no WhatsApp** na sua comanda. A retirada é no balcão.', link:null};
+    return {text:'Toque em “Ver preço”, informe a quantidade ou a medida (ex: 200g, 1kg) e eu adiciono na comanda. Para concluir, clique em **Concluir Pedido no WhatsApp**. ' + comandaResumo(), link:null};
   }
-  if(has(t,'entrega','delivery','ifood')){
-    return {text:'Não trabalhamos com entrega. Monte sua comanda aqui e finalize pelo WhatsApp para retirada no balcão.', link:null};
+  if(has(t,'entrega','delivery','ifood','taxa','frete','personalizado','atendente','humano','duvida','dúvida','ajuda')){
+    return {text:'Para dúvidas, pedidos personalizados, taxas/entrega ou atendimento com a equipe, fale conosco pelo WhatsApp.', link:{url:WHATSAPP_CHAT,label:'Falar no WhatsApp'}};
   }
   if(has(t,'cardapio','menu','opcoes','comida','o que tem','prato')){
-    return {text:'Temos açaí artesanal, produtos do Pará, entradas e petiscos, peixes, chapas, pratos executivos, bebidas e adicionais. Toque em “Ver preço” em qualquer item para começar.', link:null};
+    return {text:'Temos açaí artesanal, produtos do Pará, entradas e petiscos, peixes, chapas, pratos executivos, bebidas e adicionais. Toque em “Ver preço” no item desejado para eu calcular por porção ou medida. ' + comandaResumo(), link:null};
   }
-  if(has(t,'peixe','pirarucu','tambaqui','filhote')){
-    return {text:'No cardápio tem tambaqui em banda, pirarucu e filhote. Toque em “Ver preço” no item desejado para saber o valor.', link:null};
-  }
-  if(has(t,'chapa','picanha','carne','churrasco')){
-    return {text:'As chapas são de picanha, contra filé, maminha e fraldinha, com acompanhamentos. Toque em “Ver preço” para detalhes.', link:null};
-  }
-  if(has(t,'hamburguer','lanche','burger')){
-    return {text:'Temos hambúrguer artesanal de 200g, com batata frita ou com queijo e batata frita. Toque em “Ver preço” no cardápio.', link:null};
-  }
-  if(has(t,'suco','bebida','refrigerante','cerveja')){
-    return {text:'Temos refrigerantes, águas, caipirosca, sucos e cervejas. Toque em “Ver preço” no cardápio para consultar.', link:null};
+  if(has(t,'peixe','pirarucu','tambaqui','filhote','chapa','picanha','carne','churrasco','hamburguer','lanche','burger','suco','bebida','refrigerante','cerveja','acai','açaí')){
+    return {text:'Esse item está no nosso cardápio. Toque em “Ver preço” nele para eu informar o valor e calcular a quantidade por porções ou medidas (ex: 200g, 1kg). ' + comandaResumo(), link:null};
   }
   if(has(t,'sobre','historia','origem','restaurante')){
-    return {text:'O Pará-Ti é especializada na culinária paraense e tem no açaí artesanal sua principal especialidade.', link:{url:'#sobre',label:'Conheça a casa'}};
+    return {text:'O Pará-Ti é especializado na culinária paraense e tem no açaí artesanal sua principal especialidade.', link:{url:'#sobre',label:'Conheça a casa'}};
   }
   if(has(t,'reserva','mesa','evento','aniversario','grupo')){
-    return {text:'Para reservas, grupos e eventos, fale com a equipe pelo Instagram.', link:{url:INSTAGRAM,label:'Falar no Instagram'}};
+    return {text:'Para reservas, grupos e eventos, fale com a equipe pelo WhatsApp.', link:{url:WHATSAPP_CHAT,label:'Falar no WhatsApp'}};
   }
   if(has(t,'instagram','insta','perfil','rede','social')){
-    return {text:'Nosso Instagram é @paratifortaleza. Lá você vê novidades e fala direto com a equipe.', link:{url:INSTAGRAM,label:'Abrir Instagram'}};
+    return {text:'Nosso Instagram é @paratifortaleza. Se precisar de atendimento ou tirar dúvidas, fale pelo WhatsApp.', link:{url:INSTAGRAM,label:'Abrir Instagram'}};
   }
   if(has(t,'preco','valor','quanto custa','quanto e','barato','caro')){
-    return {text:'Toque em “Ver preço” no prato que eu trago a descrição, o valor e já pergunto a quantidade.', link:null};
+    return {text:'Toque em “Ver preço” no prato que eu informo o valor e calculo a quantidade por porções ou medidas. ' + comandaResumo(), link:null};
   }
   if(has(t,'obrigado','obrigada','valeu','vlw','tchau')){
-    return {text:'Por nada! Esperamos você no Pará-Ti. Até breve.', link:null};
+    return {text:'Por nada! Quando quiser, conclua sua comanda pelo **WhatsApp**. Até breve.', link:null};
   }
-  return {text:'Ainda não tenho essa informação por aqui. A equipe do Pará-Ti pode te ajudar pelo Instagram.', link:{url:INSTAGRAM,label:'Falar no Instagram'}};
+  return {text:'Posso ajudar com cardápio, preços e sua comanda. Para outras dúvidas ou atendimento com a equipe, fale pelo WhatsApp. ' + comandaResumo(), link:{url:WHATSAPP_CHAT,label:'Falar no WhatsApp'}};
 }
 function startChat(product){
   chatStarted = true;
@@ -1319,7 +1424,7 @@ function startChat(product){
     currentProduct = product;
     addMessage(productText(product), 'bot');
   } else if(!chatMessages.children.length){
-    addMessage('Olá! Eu sou o assistente do Pará-Ti. Toque em “Ver preço” em um prato ou me diga o que deseja.', 'bot');
+    addMessage('Olá! Eu sou o assistente do Pará-Ti. Toque em “Ver preço” em um prato ou me diga o que deseja. Para atendimento com a equipe, você também pode falar pelo WhatsApp.', 'bot', {url:WHATSAPP_CHAT,label:'Falar no WhatsApp'});
   }
 }
 function openChat(product){
