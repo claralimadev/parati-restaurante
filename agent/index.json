@@ -1,0 +1,10 @@
+{
+  "name": "Paratizinho",
+  "type": "site-assistant",
+  "repo": "parati-restaurante",
+  "runtime": "index.html",
+  "knowledge": ["index.html#menuData", "agent/knowledge.md"],
+  "core": ["agent/persona.md", "agent/goal.md", "agent/rules.md", "agent/workflow.md"],
+  "evals": ["agent/evals/EVAL_01_peso.md", "agent/evals/EVAL_02_duvidas.md"],
+  "commands": ["/paratizinho"]
+}

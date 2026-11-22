@@ -774,11 +774,11 @@ button{font:inherit;cursor:pointer}
     <a class="btn btn-primary comanda-checkout disabled" id="comandaCheckout" href="#" aria-disabled="true" target="_blank" rel="noopener noreferrer">Concluir Pedido no WhatsApp</a>
   </div>
 </section>
-<section class="chat-panel" id="chatPanel" aria-label="Assistente virtual do Pará-Ti" aria-hidden="true">
+<section class="chat-panel" id="chatPanel" aria-label="Paratizinho — assistente virtual do Pará-Ti" aria-hidden="true">
   <div class="chat-head">
     <span class="bot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c4.4 0 8-3.4 8-7.6C20 8.9 16.5 5.6 12 3 7.5 5.6 4 8.9 4 13.4 4 17.6 7.6 21 12 21Z"/></svg></span>
     <div>
-      <strong>Assistente Pará-Ti</strong>
+      <strong>Paratizinho</strong>
       <span><span class="status"></span> Online agora</span>
     </div>
     <button class="chat-close" id="chatClose" type="button" aria-label="Fechar assistente">
@@ -1530,7 +1530,7 @@ function startChat(product){
     currentProduct = product;
     addMessage(productText(product), 'bot');
   } else if(!chatMessages.children.length){
-    addMessage('Olá! Eu sou o assistente do Pará-Ti. Toque em “Ver preço” em um prato ou me diga o que deseja. Para atendimento com a equipe, você também pode falar pelo WhatsApp.', 'bot', {url:WHATSAPP_CHAT,label:'Falar no WhatsApp'});
+    addMessage('Olá! Eu sou o Paratizinho. Tiro dúvidas sobre a loja, preços e comanda. Toque em “Ver preço” em um prato ou me diga o que deseja. Para atendimento com a equipe, você também pode falar pelo WhatsApp.', 'bot', {url:WHATSAPP_CHAT,label:'Falar no WhatsApp'});
   }
 }
 function openChat(product){
