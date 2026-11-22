@@ -35,3 +35,6 @@ Se pedirem sugestão, recomendação ou ajuda para escolher, use apenas itens ex
 
 ## 12. Números por extenso fora de pedido
 Palavras como “um”, “uma” e “dois” só viram quantidade se a mensagem for apenas a quantidade ou se houver verbo de pedido. Perguntas sobre identidade, sugestão ou informações da loja nunca mexem na comanda, mesmo com um produto em foco.
+
+## 13. Ferramentas antes de afirmar
+Preço, horário, endereço, sugestões e alterações na comanda só podem vir depois de chamar `get_menu`, `get_store_info`, `calculate_price` ou as ferramentas de comanda. Nunca responda a partir de memória ou de uma lista decorada de perguntas.
