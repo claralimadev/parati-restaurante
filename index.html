@@ -1199,6 +1199,8 @@ function normalize(t){
   return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w\s]/g,' ').replace(/\s+/g,' ').trim();
 }
 function has(t, ...words){ return words.some(w => t.includes(w)); }
+function isIdentityQuestion(t){ return /\b(ia|bot|robo|inteligencia|artificial|assistente|humano)\b/.test(t) || has(t,'quem e voce'); }
+function isSuggestionQuestion(t){ return has(t,'sugestao','sugestoes','sugira','sugere','sugerir','recomenda','recomende','indica','indique','o que pedir','o que tem de bom','algo bom','me ajuda a escolher','escolher','surpreenda'); }
 function addMessage(text, who, link){
   const div = document.createElement('div');
   div.className = 'msg ' + (who || 'bot');
@@ -1277,8 +1279,10 @@ function parseRequested(raw, t, product){
   const mx = text.match(/\b(\d+)\s*x\b|\bx\s*(\d+)\b/);
   if(mx){ const n = Number(mx[1] || mx[2]); if(n > 0) return {kind:'count', count:Math.max(1, Math.min(99, Math.trunc(n)))}; }
   const words = {um:1,uma:1,dois:2,duas:2,tres:3,quatro:4,cinco:5,seis:6,sete:7,oito:8,nove:9,dez:10};
+  const orderCue = /\b(quero|adiciona|adicionar|acrescenta|coloca|pede|pedir|porcao|porcoes|unidade|unidades|mais|remove|remover|troca|trocar)\b/.test(text) || /\bx\b/.test(text);
   for(const [word, value] of Object.entries(words)){
-    if(new RegExp('\\b' + word + '\\b').test(text)) return {kind:'count', count:value};
+    const wordOnly = new RegExp('^' + word + '$').test(text);
+    if((wordOnly || orderCue) && new RegExp('\\b' + word + '\\b').test(text)) return {kind:'count', count:value};
   }
   const plain = text.match(/\b\d+(?:[.,]\d+)?\b/);
   if(plain && !hasPortionWord && product && product.sale === 'measure'){
@@ -1499,10 +1503,10 @@ function handleOrderIntent(raw){
 function answer(raw){
   const t = normalize(raw);
   const product = findProduct(t);
-  if(/\b(ia|bot|robo|inteligencia|artificial|assistente|humano)\b/.test(t) || has(t,'quem e voce')){
+  if(isIdentityQuestion(t)){
     return {text:'Olá! Sou o **Paratizinho**, assistente virtual do Pará-Ti. Não sou atendente humano: respondo com base no cardápio e nas informações da loja. Se precisar falar com a equipe, encaminho pelo WhatsApp.', link:{url:WHATSAPP_CHAT,label:'Falar no WhatsApp'}};
   }
-  if(has(t,'sugestao','sugestoes','sugira','sugere','sugerir','recomenda','recomende','indica','indique','o que pedir','o que tem de bom','algo bom','me ajuda a escolher','escolher','surpreenda')){
+  if(isSuggestionQuestion(t)){
     return {text:suggestText(t), link:null};
   }
   if(product && has(t, 'preco', 'valor', 'quanto', 'custa', 'prato', 'comanda', 'adiciona', 'quero', 'porcao', 'porcoes', 'unidade', 'grama', 'gramas', 'kg', 'kilo', 'litro', 'litros', 'ml')){
@@ -1580,6 +1584,12 @@ function closeChat(){
 }
 function replyTo(text){
   addMessage(text, 'user');
+  const t = normalize(text);
+  if(isIdentityQuestion(t) || isSuggestionQuestion(t)){
+    const r = answer(text);
+    botReply(r.text, r.link);
+    return;
+  }
   if(!handleOrderIntent(text)){
     const r = answer(text);
     botReply(r.text, r.link);
