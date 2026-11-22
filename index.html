@@ -813,6 +813,78 @@ button{font:inherit;cursor:pointer}
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script type="application/json" id="menuData">
+{
+  "store": {
+    "name": "Pará-Ti",
+    "city": "Fortaleza/CE",
+    "instagram": "@paratifortaleza",
+    "hours": "Seg. a sáb., 11h às 22h; domingo, 11h às 18h",
+    "address": "Av. Central, 34 — Cidade 2000, Fortaleza/CE"
+  },
+  "products": [
+    {"id":"acai-100","name":"Açaí Natural 100g","category":"Açaí artesanal","description":"Açaí puro e cremoso, em porção individual.","price":5.5,"sale":"unit","simple":true},
+    {"id":"acai-1l","name":"Açaí Natural 1 litro","category":"Açaí artesanal","description":"Açaí puro e cremoso, para compartilhar.","price":55.0,"sale":"unit","simple":true},
+    {"id":"cupuacu-kg","name":"Cupuaçu Kg","category":"Produtos do Pará","description":"Polpa de cupuaçu vendida por quilo.","price":30.0,"sale":"measure","unit":"g","portion":100,"baseLabel":"1 kg","label":"100 g","pricePerPortion":3.0,"allowFraction":false},
+    {"id":"farinha-tapioca","name":"Farinha de Tapioca Litro","category":"Produtos do Pará","description":"Farinha de tapioca tradicional, por litro.","price":7.5,"sale":"unit","simple":false},
+    {"id":"farinha-amarela","name":"Farinha Amarela Litro","category":"Produtos do Pará","description":"Farinha amarela da casa, por litro.","price":15.0,"sale":"unit","simple":false},
+    {"id":"pimenta-330","name":"Pimenta 330ml","category":"Produtos do Pará","description":"Pimenta da casa, frasco de 330 ml.","price":13.0,"sale":"unit","simple":false},
+    {"id":"bare-1l","name":"Refrigerante Baré 1 Litro","category":"Produtos do Pará","description":"Refrigerante Baré, garrafa de 1 litro.","price":15.0,"sale":"unit","simple":true},
+    {"id":"bare-2l","name":"Refrigerante Baré 2 Litros","category":"Produtos do Pará","description":"Refrigerante Baré, garrafa de 2 litros.","price":20.0,"sale":"unit","simple":true},
+    {"id":"tucupi-1l","name":"Tucupi 1 Litro","category":"Produtos do Pará","description":"Tucupi tradicional, por litro.","price":14.0,"sale":"unit","simple":false},
+    {"id":"tucupi-2l","name":"Tucupi 2 Litros","category":"Produtos do Pará","description":"Tucupi tradicional, por 2 litros.","price":25.0,"sale":"unit","simple":false},
+    {"id":"pirarucu-cru","name":"Pirarucu Cru Kg","category":"Produtos do Pará","description":"Pirarucu cru, vendido por quilo.","price":90.0,"sale":"measure","unit":"g","portion":100,"baseLabel":"1 kg","label":"100 g","pricePerPortion":9.0,"allowFraction":false},
+    {"id":"filhote-cru","name":"Pirarucu Filhote Cru Kg","category":"Produtos do Pará","description":"Filhote de pirarucu cru, vendido por quilo.","price":80.0,"sale":"measure","unit":"g","portion":100,"baseLabel":"1 kg","label":"100 g","pricePerPortion":8.0,"allowFraction":false},
+    {"id":"batata-500","name":"Batata Frita 500g","category":"Entrada e petiscos","description":"Porção de batata frita crocante, 500 g.","price":25.0,"sale":"unit","simple":true},
+    {"id":"macaxeira-500","name":"Macaxeira Frita 500g","category":"Entrada e petiscos","description":"Macaxeira frita dourada, porção de 500 g.","price":25.0,"sale":"unit","simple":true},
+    {"id":"frango-passarinho","name":"Frango a Passarinho 500g","category":"Entrada e petiscos","description":"Frango a passarinho, porção de 500 g.","price":25.0,"sale":"unit","simple":false},
+    {"id":"calabresa","name":"Calabresa","category":"Entrada e petiscos","description":"Calabresa grelhada, porção da casa.","price":45.0,"sale":"unit","simple":false},
+    {"id":"isca-peixe","name":"Isca de Peixe 300g","category":"Entrada e petiscos","description":"Isca de peixe frita, porção de 300 g.","price":40.0,"sale":"unit","simple":false},
+    {"id":"pastel","name":"Pastel de camarão/Arraia/Queijo","category":"Entrada e petiscos","description":"Pastel frito de camarão, arraia ou queijo.","price":35.0,"sale":"unit","simple":false},
+    {"id":"camarao-alho","name":"Camarão ao Alho e Óleo 500g","category":"Entrada e petiscos","description":"Camarão ao alho e óleo, porção de 500 g.","price":45.0,"sale":"unit","simple":false},
+    {"id":"camarao-empanado","name":"Camarão Empanado 500g","category":"Entrada e petiscos","description":"Camarão empanado crocante, porção de 500 g.","price":60.0,"sale":"unit","simple":false},
+    {"id":"baiao","name":"Baião de dois","category":"Entrada e petiscos","description":"Baião de dois cremoso, porção individual.","price":15.0,"sale":"unit","simple":false},
+    {"id":"feijao","name":"Feijão","category":"Entrada e petiscos","description":"Feijão da casa, porção individual.","price":12.0,"sale":"unit","simple":false},
+    {"id":"arroz","name":"Arroz","category":"Entrada e petiscos","description":"Arroz branco soltinho, porção individual.","price":12.0,"sale":"unit","simple":false},
+    {"id":"bisteca","name":"Bisteca unid.","category":"Entrada e petiscos","description":"Bisteca frita, por unidade.","price":12.0,"sale":"unit","simple":false},
+    {"id":"burger-batata","name":"Hambúrguer Artesanal 200g (batata frita)","category":"Entrada e petiscos","description":"Hambúrguer artesanal de 200 g com batata frita.","price":33.0,"sale":"unit","simple":false},
+    {"id":"burger-queijo","name":"Hambúrguer Artesanal 200g (Só queijo e batata frita)","category":"Entrada e petiscos","description":"Hambúrguer artesanal de 200 g com queijo e batata frita.","price":30.0,"sale":"unit","simple":false},
+    {"id":"tambaqui","name":"Tambaqui em Banda (Acompanha arroz branco ou baião de dois)","category":"Peixes","description":"Tambaqui em banda, com arroz branco ou baião de dois.","price":150.0,"sale":"unit","simple":false},
+    {"id":"pirarucu-200","name":"Pirarucu 200g (Acompanha arroz branco e batata fritas)","category":"Peixes","description":"Pirarucu de 200 g com arroz branco e batata frita.","price":35.0,"sale":"unit","simple":false},
+    {"id":"filhote-200","name":"Filhote 200g (Acompanha arroz branco e batata fritas)","category":"Peixes","description":"Filhote de 200 g com arroz branco e batata frita.","price":35.0,"sale":"unit","simple":false},
+    {"id":"filhote-pirarucu-200","name":"Filhote ou Pirarucu 200g","category":"Peixes","description":"Filhote ou pirarucu em porção de 200 g.","price":28.0,"sale":"unit","simple":false},
+    {"id":"picanha-500","name":"Picanha 500g","category":"Chapas","description":"Picanha na chapa, porção de 500 g.","price":140.0,"sale":"unit","simple":false},
+    {"id":"contra-500","name":"Contra Filé 500g","category":"Chapas","description":"Contra filé na chapa, porção de 500 g.","price":120.0,"sale":"unit","simple":false},
+    {"id":"maminha-500","name":"Maminha 500g","category":"Chapas","description":"Maminha na chapa, porção de 500 g.","price":110.0,"sale":"unit","simple":false},
+    {"id":"fraldinha-500","name":"Fraldinha 500g","category":"Chapas","description":"Fraldinha na chapa, porção de 500 g.","price":110.0,"sale":"unit","simple":false},
+    {"id":"maminha-200","name":"Maminha 200g","category":"Pratos executivos","description":"Maminha grelhada, porção de 200 g.","price":35.0,"sale":"unit","simple":false},
+    {"id":"fraldinha-200","name":"Fraldinha 200g","category":"Pratos executivos","description":"Fraldinha grelhada, porção de 200 g.","price":35.0,"sale":"unit","simple":false},
+    {"id":"contra-200","name":"Contra Filé 200g","category":"Pratos executivos","description":"Contra filé grelhado, porção de 200 g.","price":50.0,"sale":"unit","simple":false},
+    {"id":"picanha-200","name":"Picanha 200g","category":"Pratos executivos","description":"Picanha grelhada, porção de 200 g.","price":55.0,"sale":"unit","simple":false},
+    {"id":"frango-parmegiana","name":"Frango à Parmegiana 200g","category":"Pratos executivos","description":"Frango à parmegiana, porção de 200 g.","price":38.0,"sale":"unit","simple":false},
+    {"id":"bife-parmegiana","name":"Bife à Parmegiana 200g","category":"Pratos executivos","description":"Bife à parmegiana, porção de 200 g.","price":50.0,"sale":"unit","simple":false},
+    {"id":"file-frango","name":"Filé de Frango","category":"Pratos executivos","description":"Filé de frango grelhado da casa.","price":28.0,"sale":"unit","simple":false},
+    {"id":"refri-lata","name":"Refrigerante Lata","category":"Bebidas · Refrigerantes e outros","description":"Refrigerante gelado em lata.","price":7.0,"sale":"unit","simple":true},
+    {"id":"refri-litro","name":"Refrigerante Litro","category":"Bebidas · Refrigerantes e outros","description":"Refrigerante gelado, garrafa de 1 litro.","price":12.0,"sale":"unit","simple":true},
+    {"id":"refri-600","name":"Refrigerante 600ml","category":"Bebidas · Refrigerantes e outros","description":"Refrigerante gelado, garrafa de 600 ml.","price":9.0,"sale":"unit","simple":true},
+    {"id":"refri-2l","name":"Refrigerante 2 litros","category":"Bebidas · Refrigerantes e outros","description":"Refrigerante gelado, garrafa de 2 litros.","price":15.0,"sale":"unit","simple":true},
+    {"id":"agua-gas","name":"Água c/ gás","category":"Bebidas · Refrigerantes e outros","description":"Água com gás, gelada.","price":4.0,"sale":"unit","simple":true},
+    {"id":"agua-sem-gas","name":"Água s/ gás","category":"Bebidas · Refrigerantes e outros","description":"Água sem gás, gelada.","price":3.5,"sale":"unit","simple":true},
+    {"id":"caipirosca","name":"Caipirosca","category":"Bebidas · Refrigerantes e outros","description":"Caipirosca da casa, dose única.","price":15.0,"sale":"unit","simple":false},
+    {"id":"suco-copo","name":"Suco Copo","category":"Bebidas · Sucos","description":"Suco natural gelado, em copo.","price":10.0,"sale":"unit","simple":false},
+    {"id":"suco-jarra","name":"Suco Jarra","category":"Bebidas · Sucos","description":"Suco natural gelado, em jarra para compartilhar.","price":20.0,"sale":"unit","simple":false},
+    {"id":"heineken","name":"Heineken 600ml","category":"Bebidas · Cervejas","description":"Cerveja Heineken gelada, 600 ml.","price":15.0,"sale":"unit","simple":false},
+    {"id":"amstel","name":"Amstel 600ml","category":"Bebidas · Cervejas","description":"Cerveja Amstel gelada, 600 ml.","price":11.0,"sale":"unit","simple":false},
+    {"id":"skol","name":"Skol 600ml","category":"Bebidas · Cervejas","description":"Cerveja Skol gelada, 600 ml.","price":10.0,"sale":"unit","simple":false},
+    {"id":"stella","name":"Stella 600ml","category":"Bebidas · Cervejas","description":"Cerveja Stella Artois gelada, 600 ml.","price":14.0,"sale":"unit","simple":false},
+    {"id":"brahma","name":"Brahma 600ml","category":"Bebidas · Cervejas","description":"Cerveja Brahma gelada, 600 ml.","price":11.0,"sale":"unit","simple":false},
+    {"id":"embalagem","name":"Embalagem para viagem","category":"Adicionais / Outros","description":"Embalagem para levar seu pedido.","price":2.0,"sale":"unit","simple":true},
+    {"id":"taxa-desperdicio","name":"Taxa de desperdício","category":"Adicionais / Outros","description":"Contribuição informada pela casa.","price":5.0,"sale":"unit","simple":true},
+    {"id":"biscoito-cocada","name":"Biscoito caseiro cocada (cada)","category":"Adicionais / Outros","description":"Biscoito caseiro de cocada, por unidade.","price":1.5,"sale":"unit","simple":true}
+  ]
+}
+</script>
+
 <script>
 const INSTAGRAM = 'https://www.instagram.com/paratifortaleza/';
 const MAPS = 'https://www.google.com/maps/search/?api=1&query=Av.+Central,+34+-+Cidade+2000,+Fortaleza+-+CE';
@@ -1111,20 +1183,14 @@ const assistantDock = document.getElementById('assistantDock');
 const chatFab = document.getElementById('chatFab');
 const chatMessages = document.getElementById('chatMessages');
 const chatInput = document.getElementById('chatInput');
-const PRODUCTS = Array.from(document.querySelectorAll('.menu-item')).map(el => ({
-  id: el.dataset.id,
-  name: el.dataset.name,
-  price: Number(el.dataset.price),
-  desc: el.querySelector('.menu-info p')?.textContent || ''
+const MENU_DATA = JSON.parse(document.getElementById('menuData')?.textContent || '{"products":[]}');
+const STORE = MENU_DATA.store || {};
+const PRODUCTS = (MENU_DATA.products || []).map(p => ({
+  ...p,
+  price: p.sale === 'measure'
+    ? Number(p.pricePerPortion || (p.price * p.portion / 1000).toFixed(2))
+    : Number(p.price)
 }));
-const SIMPLE_IDS = new Set(['acai-100','acai-1l','bare-1l','bare-2l','refri-lata','refri-litro','refri-600','refri-2l','agua-gas','agua-sem-gas','batata-500','macaxeira-500','biscoito-cocada','embalagem','taxa-desperdicio']);
-const DETAILS = {
-  'picanha-500':'na chapa, acompanha arroz branco ou baião de dois, batata frita, macaxeira frita, vinagrete e farofa',
-  'tambaqui':'em banda, com arroz branco ou baião de dois',
-  'tucupi-1l':'tucupi tradicional da cozinha paraense, por litro',
-  'tucupi-2l':'tucupi tradicional da cozinha paraense, garrafa de 2 litros',
-  'cupuacu-kg':'polpa de cupuaçu natural, vendida por quilo'
-};
 const cart = new Map();
 let chatStarted = false;
 let chatOpen = false;
@@ -1182,20 +1248,20 @@ function fmtMeasure(v, unit){
   return txt + unit;
 }
 function productBase(product){
-  const name = String(product && product.name || '');
-  if(/\bkg\b/i.test(name)) return {value:1000, unit:'g', label:'1kg'};
-  const m = name.match(/(\d+(?:[.,]\d+)?)\s*(ml|l|litros?|litro|g|gr|gramas?)/i);
-  if(!m) return null;
-  const num = parseFloat(m[1].replace(',', '.'));
-  if(!isFinite(num) || num <= 0) return null;
-  const u = m[2].toLowerCase();
-  if(u === 'ml') return {value:num, unit:'ml', label:fmtMeasure(num,'ml')};
-  if(u === 'g' || u === 'gr' || u.indexOf('gram') === 0) return {value:num, unit:'g', label:fmtMeasure(num,'g')};
-  return {value:num * 1000, unit:'ml', label:fmtMeasure(num,'L')};
+  if(!product || product.sale !== 'measure') return null;
+  return {
+    value: Number(product.portion),
+    unit: product.unit || 'g',
+    label: product.label || fmtMeasure(product.portion, product.unit || 'g'),
+    baseLabel: product.baseLabel || '',
+    basePrice: Number(product.price * 1000 / product.portion),
+    allowFraction: product.allowFraction !== false
+  };
 }
-function parseRequested(raw, t){
+function parseRequested(raw, t, product){
   const text = normalize(raw || '');
   const hasPortionWord = /\b(porc(?:ao|oes)?|unidade?s?|x)\b/.test(text);
+  if(/\bmeio\s+(quilo|kg|kilo)\b/.test(text)) return {kind:'measure', value:500, unit:'g', label:'500 g', hasPortionWord:false};
   const m = text.match(/(\d+(?:[.,]\d+)?)\s*(kg|kilo|kilos|quilograma?s?|ml|l|litros?|litro|g|gr|gramas?)/);
   if(m){
     const num = parseFloat(m[1].replace(',', '.'));
@@ -1214,7 +1280,13 @@ function parseRequested(raw, t){
   for(const [word, value] of Object.entries(words)){
     if(new RegExp('\\b' + word + '\\b').test(text)) return {kind:'count', count:value};
   }
-  const plain = text.match(/\b\d+\b/);
+  const plain = text.match(/\b\d+(?:[.,]\d+)?\b/);
+  if(plain && !hasPortionWord && product && product.sale === 'measure'){
+    const value = parseFloat(plain[0].replace(',', '.'));
+    if(isFinite(value) && value > 0 && value <= 20000){
+      return {kind:'measure', value, unit:product.unit || 'g', label:fmtMeasure(value, product.unit || 'g'), hasPortionWord:false};
+    }
+  }
   if(plain) return {kind:'count', count:Math.max(1, Math.min(99, Number(plain[0])))};
   return null;
 }
@@ -1223,12 +1295,16 @@ function comandaResumo(){
   return c ? `Comanda atual: **${qtyLabel(c)} • ${money(cartTotal())}**.` : 'Sua comanda está vazia no momento.';
 }
 function productText(p){
-  const d = (DETAILS[p.id] || p.desc).replace(/\.$/, '');
-  const intro = SIMPLE_IDS.has(p.id)
-    ? `O **${p.name}** ${d} e custa **${money(p.price)}**.`
-    : `O **${p.name}** ${d}. O valor é **${money(p.price)}**.`;
+  const d = String(p.description || '').replace(/\.$/, '');
   const base = productBase(p);
-  const hint = base ? `Você pode pedir por porções/unidades ou por medida (ex: ${base.label}).` : 'Me diga quantas porções/unidades você quer.';
+  const intro = base
+    ? `O **${p.name}** ${d}. O valor é **${money(base.basePrice)} por ${base.baseLabel}** (${money(p.price)} a porção de ${base.label}).`
+    : p.simple
+      ? `O **${p.name}** ${d} e custa **${money(p.price)}**.`
+      : `O **${p.name}** ${d}. O valor é **${money(p.price)}**.`;
+  const hint = base
+    ? `Digite quantos ${base.unit === 'g' ? 'gramas' : 'ml'} você quer (ex: 300) ou quantas porções de ${base.label}.`
+    : 'Me diga quantas porções/unidades você quer.';
   return intro + '\n' + hint + '\nSe quiser ver outros pratos, clique no **X**. Quando terminar, conclua pelo **WhatsApp** na comanda.\n' + comandaResumo();
 }
 function cartCount(){ let count = 0; cart.forEach(item => { count += item.qty; }); return count; }
@@ -1328,7 +1404,10 @@ function setQty(product, amount, mode){
 }
 function findProduct(t){
   return PRODUCTS.find(p => t.includes(normalize(p.name))) ||
-    PRODUCTS.find(p => has(t, 'preco', 'valor', 'quanto', 'custa') && t.includes(normalize(p.name).split(' ')[0]));
+    PRODUCTS.find(p => {
+      const first = normalize(p.name).split(' ')[0];
+      return first.length > 3 && t.includes(first) && (p.sale === 'measure' || has(t, 'preco', 'valor', 'quanto', 'custa', 'grama', 'gramas', 'kg', 'kilo'));
+    });
 }
 function handleOrderIntent(raw){
   const t = normalize(raw);
@@ -1338,7 +1417,7 @@ function handleOrderIntent(raw){
   const product = mentioned || currentProduct;
   if(!product) return false;
   currentProduct = product;
-  const requested = parseRequested(raw, t);
+  const requested = parseRequested(raw, t, product);
 
   if(removing){
     if(!requested || requested.kind !== 'count'){
@@ -1396,7 +1475,7 @@ function handleOrderIntent(raw){
   const addingMeasure = has(t, 'adiciona', 'adicionar', 'acrescenta', 'mais', 'coloca');
   const mode = addingMeasure && cart.has(product.id) ? 'add' : 'set';
   const next = setQty(product, qty, mode);
-  botReply(`Entendi: **${requested.label}** de **${product.name}** corresponde a **${qty} ${qty === 1 ? 'porção' : 'porções'}** de ${base.label}. Adicionei **${next}x** na comanda (subtotal **${money(product.price * next)}**). ${comandaResumo()}\nQuer concluir pelo **WhatsApp** ou fechar no **X** para ver outros pratos?`);
+  botReply(`Entendi: **${requested.label}** de **${product.name}** corresponde a **${qty} ${qty === 1 ? 'porção' : 'porções'}** de ${base.label}, a **${money(base.basePrice)}/kg**. Adicionei **${next}x** na comanda (subtotal **${money(product.price * next)}**). ${comandaResumo()}\nQuer concluir pelo **WhatsApp** ou fechar no **X** para ver outros pratos?`);
   return true;
 }
 function answer(raw){
