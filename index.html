@@ -170,11 +170,11 @@ button{font:inherit;cursor:pointer}
 .tabs-track{flex:1;min-width:0;display:flex;flex-wrap:nowrap;gap:12px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;padding:4px 0 6px;pointer-events:auto}
 .tabs-track::-webkit-scrollbar{display:none}
 .tabs-track.dragging{cursor:grabbing;scroll-behavior:auto;user-select:none}
-.category-tab{flex:0 0 auto;white-space:nowrap;border:0;border-bottom:3px solid transparent;background:transparent;color:rgba(255,255,255,.72);padding:7px 3px 8px;font-size:.88rem;font-weight:800;text-decoration:none;transition:color .18s,border-color .18s}
+.category-tab{flex:0 0 auto;white-space:nowrap;border:0;border-bottom:3px solid transparent;background:transparent;color:rgba(255,255,255,.72);padding:7px 3px 8px;font-size:.88rem;font-weight:800;text-decoration:none;transition:color .18s,border-color .18s;cursor:pointer;pointer-events:auto;position:relative;z-index:101}
 .category-tab:hover{color:#fff}
-.category-tab.is-active{color:#FACC15;border-bottom-color:#FACC15}
+.category-tab.is-active,.category-tab.active{color:#FACC15;border-bottom-color:#FACC15}
 .menu-wrap{display:flex;flex-direction:column;gap:26px;max-width:860px;margin-inline:auto}
-.menu-group{width:100%;background:var(--creme-card);border:1px solid rgba(255,253,247,.5);border-radius:22px;padding:28px 32px;box-shadow:var(--sombra-card);scroll-margin-top:80px}
+.menu-group{width:100%;background:var(--creme-card);border:1px solid rgba(255,253,247,.5);border-radius:22px;padding:28px 32px;box-shadow:var(--sombra-card);scroll-margin-top:calc(var(--header-h) + 62px)}
 .menu-category{font-family:"Kalam",cursive;font-size:1.02rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--acai);padding-bottom:12px;border-bottom:2px solid var(--acai);margin-bottom:8px}
 .menu-note{font-size:.88rem;color:var(--marrom-suave);margin:10px 0 4px}
 .menu-list{list-style:none;margin:0;padding:0}
@@ -354,18 +354,22 @@ button{font:inherit;cursor:pointer}
   .footer-grid{grid-template-columns:1fr 1fr;gap:26px}
 }
 @media (max-width:768px){
-  .assistant-dock{inset:0;right:0;bottom:0;max-width:none;max-height:none;display:block;z-index:1100}
-  .assistant-dock.open{pointer-events:auto}
-  .chat-panel,.comanda-panel{position:fixed;inset:0;width:100%;height:100dvh;max-height:100dvh;max-width:none;border-radius:0}
-  .chat-panel{display:none;z-index:1101}
+  .assistant-dock{position:fixed;inset:0;width:100%;height:100dvh;max-height:100dvh;display:none;z-index:1200;pointer-events:none}
+  .assistant-dock.open{display:block;pointer-events:auto}
+  .chat-panel,.comanda-panel{position:fixed;inset:0;width:100%;height:100dvh;max-height:100dvh;max-width:none;border-radius:0;overflow:hidden}
+  .chat-panel{display:none;z-index:1201;flex-direction:column}
   .assistant-dock.open .chat-panel{display:flex}
-  .comanda-panel{display:none;z-index:1102;border:0}
+  .comanda-panel{display:none;z-index:1202;border:0}
   .assistant-dock.comanda-open .comanda-panel{display:flex}
   .comanda-mobile{display:flex;align-items:center;gap:8px;padding:9px 12px;background:var(--creme-2);border-bottom:1px solid rgba(46,31,24,.08);font-size:.74rem;color:var(--marrom);flex-shrink:0}
   .comanda-mobile strong{color:var(--acai)}
   .chat-head,.chat-quick,.chat-form,.comanda-head,.comanda-foot{flex-shrink:0}
-  .chat-messages,.comanda-list{flex:1;overflow-y:auto;min-height:0}
-  .comanda-close{display:grid}
+  .chat-messages,.comanda-list{flex:1 1 auto;overflow-y:auto;min-height:0;-webkit-overflow-scrolling:touch}
+  .chat-close,.comanda-close{width:40px;height:40px}
+  .msg{font-size:15px}
+  .chat-form input{font-size:16px;padding:12px 14px}
+  .chat-quick{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .chat-quick button{flex:0 0 auto;font-size:13px}
 }
 @media (max-width:620px){
   :root{--header-h:68px}
@@ -858,28 +862,53 @@ const tabsTrack = document.getElementById('categoryTabs');
 const categoryTabs = tabsTrack ? [...tabsTrack.querySelectorAll('.category-tab')] : [];
 const menuGroups = [...document.querySelectorAll('.menu-group[id^="cat-"]')];
 let activeCategory = 'cat-acai';
+function normalizeCategoryText(str){
+  return String(str || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim();
+}
 function setActiveCategory(id, centerTab = true){
   activeCategory = id;
   categoryTabs.forEach(tab => {
     const active = tab.dataset.category === id;
     tab.classList.toggle('is-active', active);
+    tab.classList.toggle('active', active);
     if(active) tab.setAttribute('aria-current', 'true');
     else tab.removeAttribute('aria-current');
   });
   const activeTab = categoryTabs.find(tab => tab.dataset.category === id);
-  if(activeTab && centerTab) activeTab.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
-}
-categoryTabs.forEach(tab => tab.addEventListener('click', e => {
-  if(tabsTrack.dataset.dragged === 'true'){
-    e.preventDefault();
-    tabsTrack.dataset.dragged = '';
-    return;
+  if(activeTab && centerTab && tabsTrack){
+    const tabRect = activeTab.getBoundingClientRect();
+    const trackRect = tabsTrack.getBoundingClientRect();
+    const left = tabsTrack.scrollLeft + (tabRect.left - trackRect.left) - (trackRect.width - tabRect.width) / 2;
+    tabsTrack.scrollTo({left: Math.max(0, left), behavior:'smooth'});
   }
-  e.preventDefault();
-  setActiveCategory(tab.dataset.category);
-  const target = document.getElementById(tab.dataset.category);
-  if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
-}));
+}
+let lastTabsDragAt = 0;
+let categoryScrollLockUntil = 0;
+const tabsBar = document.querySelector('.category-tabs');
+function goToCategoryTab(tab){
+  const id = tab.dataset.category || (tab.getAttribute('href') || '').replace('#','');
+  const tabText = normalizeCategoryText(tab.textContent);
+  let target = id ? document.getElementById(id) : null;
+  if(!target){
+    target = menuGroups.find(g => {
+      const t = normalizeCategoryText(g.querySelector('.menu-category')?.textContent);
+      return t === tabText || t.includes(tabText) || tabText.includes(t);
+    });
+  }
+  if(!target) return;
+  setActiveCategory(target.id, true);
+  const offset = (header?.offsetHeight || 0) + (tabsBar?.offsetHeight || 0) + 12;
+  const y = target.getBoundingClientRect().top + window.scrollY - offset;
+  categoryScrollLockUntil = performance.now() + 900;
+  window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+}
+categoryTabs.forEach(tab => {
+  tab.addEventListener('click', (e) => {
+    e.preventDefault();
+    if(Date.now() - lastTabsDragAt < 220) return;
+    goToCategoryTab(tab);
+  });
+});
 let draggingTabs = false;
 let dragStartX = 0;
 let dragStartScroll = 0;
@@ -906,25 +935,16 @@ function endTabsDrag(){
   draggingTabs = false;
   tabsTrack.classList.remove('dragging');
   if(tabsMoved){
-    tabsTrack.dataset.dragged = 'true';
-    setTimeout(() => {
-      tabsTrack.dataset.dragged = '';
-      tabsMoved = false;
-    }, 120);
+    lastTabsDragAt = Date.now();
+    tabsMoved = false;
   }
 }
 ['pointerup','pointercancel','pointerleave'].forEach(type => tabsTrack?.addEventListener(type, endTabsDrag));
-tabsTrack?.addEventListener('wheel', e => {
-  if(Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-  tabsTrack.classList.add('dragging');
-  tabsTrack.scrollLeft += e.deltaY;
-  requestAnimationFrame(() => tabsTrack.classList.remove('dragging'));
-  e.preventDefault();
-}, {passive:false});
 let spyQueued = false;
 function syncCategorySpy(){
   spyQueued = false;
   if(!menuGroups.length) return;
+  if(performance.now() < categoryScrollLockUntil) return;
   const barHeight = document.querySelector('.category-tabs')?.offsetHeight || 0;
   const threshold = (header?.offsetHeight || 0) + barHeight + 24;
   let current = menuGroups[0].id;
@@ -942,6 +962,13 @@ addEventListener('scroll', () => {
   spyQueued = true;
   requestAnimationFrame(syncCategorySpy);
 }, {passive:true});
+addEventListener('scrollend', () => {
+  categoryScrollLockUntil = 0;
+  if(!spyQueued){
+    spyQueued = true;
+    requestAnimationFrame(syncCategorySpy);
+  }
+});
 syncCategorySpy();
 
 function sanitizeText(value, max){
