@@ -1298,14 +1298,32 @@ function productText(p){
   const d = String(p.description || '').replace(/\.$/, '');
   const base = productBase(p);
   const intro = base
-    ? `O **${p.name}** ${d}. O valor é **${money(base.basePrice)} por ${base.baseLabel}** (${money(p.price)} a porção de ${base.label}).`
+    ? `Com prazer! O **${p.name}** ${d}. O valor é **${money(base.basePrice)} por ${base.baseLabel}** (${money(p.price)} a porção de ${base.label}).`
     : p.simple
-      ? `O **${p.name}** ${d} e custa **${money(p.price)}**.`
-      : `O **${p.name}** ${d}. O valor é **${money(p.price)}**.`;
+      ? `Com prazer! O **${p.name}** ${d} e custa **${money(p.price)}**.`
+      : `Com prazer! O **${p.name}** ${d}. O valor é **${money(p.price)}**.`;
   const hint = base
-    ? `Digite quantos ${base.unit === 'g' ? 'gramas' : 'ml'} você quer (ex: 300) ou quantas porções de ${base.label}.`
-    : 'Me diga quantas porções/unidades você quer.';
-  return intro + '\n' + hint + '\nSe quiser ver outros pratos, clique no **X**. Quando terminar, conclua pelo **WhatsApp** na comanda.\n' + comandaResumo();
+    ? `Pode me dizer quantos ${base.unit === 'g' ? 'gramas' : 'ml'} você quer (ex: 300) ou quantas porções de ${base.label}.`
+    : 'Me diga quantas porções ou unidades você quer.';
+  return intro + '\n' + hint + '\nSe quiser ver outros pratos, é só clicar no **X**. Quando terminar, finalize pelo **WhatsApp**.\n' + comandaResumo();
+}
+function suggestText(t){
+  let ids;
+  if(has(t,'doce','sobremesa','acai','açaí','leve')) ids = ['acai-100','cupuacu-kg','biscoito-cocada'];
+  else if(has(t,'carne','chapa','grelhado','parrilla')) ids = ['picanha-200','contra-200','maminha-500'];
+  else if(has(t,'peixe','paraense','paraenses','tipico','típico','regional')) ids = ['tambaqui','pirarucu-200','baiao'];
+  else if(has(t,'barato','economico','econômico','rapido','rápido')) ids = ['acai-100','baiao','refri-lata'];
+  else ids = ['tambaqui','acai-100','macaxeira-500'];
+  const linhas = ids
+    .map(id => PRODUCTS.find(p => p.id === id))
+    .filter(Boolean)
+    .map(p => {
+      const base = productBase(p);
+      const preco = base ? `${money(base.basePrice)} por ${base.baseLabel}` : money(p.price);
+      return `- **${p.name}** — ${preco}`;
+    })
+    .join('\n');
+  return `Claro! Que tal começar por aqui?\n${linhas}\nMe diga qual você prefere ou toque em “Ver preço” no item. ${comandaResumo()}`;
 }
 function cartCount(){ let count = 0; cart.forEach(item => { count += item.qty; }); return count; }
 function cartTotal(){ let total = 0; cart.forEach(item => { total += item.price * item.qty; }); return total; }
@@ -1424,14 +1442,14 @@ function handleOrderIntent(raw){
       const had = cart.has(product.id);
       if(had) setQty(product, 99, 'sub');
       botReply(had
-        ? `Removi **${product.name}** da sua comanda. ${comandaResumo()}\nQuer ver outros pratos no **X** ou concluir pelo **WhatsApp**?`
-        : `**${product.name}** já não está na sua comanda. ${comandaResumo()}`);
+        ? `Combinado, removi **${product.name}** da sua comanda. ${comandaResumo()}\nSe quiser ver outros pratos, clique no **X** ou conclua pelo **WhatsApp**.`
+        : `Esse item já não está na sua comanda: **${product.name}**. ${comandaResumo()}`);
       return true;
     }
     const prev = cart.get(product.id)?.qty || 0;
     const next = setQty(product, requested.count, 'sub');
     botReply(next
-      ? `Ajustei **${product.name}** para **${next}x** na sua comanda. ${comandaResumo()}\nSe precisar, conclua pelo **WhatsApp** ou feche no **X** para ver mais pratos.`
+      ? `Combinado, ajustei **${product.name}** para **${next}x** na sua comanda. ${comandaResumo()}\nSe precisar, conclua pelo **WhatsApp** ou feche no **X** para ver mais pratos.`
       : `Removi **${product.name}** da sua comanda. ${comandaResumo()}`);
     return true;
   }
@@ -1442,13 +1460,13 @@ function handleOrderIntent(raw){
     const adding = has(t, 'adiciona', 'adicionar', 'acrescenta', 'mais', 'coloca');
     const mode = adding && cart.has(product.id) ? 'add' : 'set';
     const next = setQty(product, requested.count, mode);
-    botReply(`Pronto! **${next}x ${product.name}** na sua comanda (subtotal **${money(product.price * next)}**). ${comandaResumo()}\nQuer concluir pelo **WhatsApp** ou fechar no **X** para ver outros pratos?`);
+    botReply(`Perfeito! **${next}x ${product.name}** na sua comanda (subtotal **${money(product.price * next)}**). ${comandaResumo()}\nPode concluir pelo **WhatsApp** ou fechar no **X** para ver outros pratos.`);
     return true;
   }
 
   const base = productBase(product);
   if(!base){
-    botReply(`Consigo adicionar **${product.name}** por unidades/porções. Me diga quantas você quer (ex: 1, 2 ou 3 porções). ${comandaResumo()}`);
+    botReply(`Claro! Consigo adicionar **${product.name}** por unidades ou porções. Por favor, me diga quantas você quer (ex: 1, 2 ou 3). ${comandaResumo()}`);
     return true;
   }
   if(base.unit !== requested.unit){
@@ -1461,67 +1479,73 @@ function handleOrderIntent(raw){
   const isInteger = Math.abs(ratio - nearest) < 1e-9 && nearest >= 1;
   if(!isInteger){
     if(requested.value < base.value){
-      botReply(`Esse item é vendido em porções inteiras de **${base.label}** (${money(product.price)}). Para **${requested.label}**, você prefere **1 porção (${base.label})**? ${comandaResumo()}`);
+      botReply(`Sem problema! Esse item é vendido em porções de **${base.label}** (${money(product.price)}). Para **${requested.label}**, prefere **1 porção (${base.label})**? ${comandaResumo()}`);
       return true;
     }
     const low = Math.max(1, Math.floor(ratio));
     const high = Math.ceil(ratio);
     const lowLabel = fmtMeasure(low * base.value, base.unit);
     const highLabel = fmtMeasure(high * base.value, base.unit);
-    botReply(`Esse item é vendido em porções inteiras de **${base.label}** (${money(product.price)}). Para chegar perto de **${requested.label}**, você prefere **${low} porções (${lowLabel})** ou **${high} porções (${highLabel})**? ${comandaResumo()}`);
+    botReply(`Sem problema! Esse item é vendido em porções de **${base.label}** (${money(product.price)}). Para chegar perto de **${requested.label}**, prefere **${low} porções (${lowLabel})** ou **${high} porções (${highLabel})**? ${comandaResumo()}`);
     return true;
   }
   const qty = Math.max(1, Math.min(99, nearest));
   const addingMeasure = has(t, 'adiciona', 'adicionar', 'acrescenta', 'mais', 'coloca');
   const mode = addingMeasure && cart.has(product.id) ? 'add' : 'set';
   const next = setQty(product, qty, mode);
-  botReply(`Entendi: **${requested.label}** de **${product.name}** corresponde a **${qty} ${qty === 1 ? 'porção' : 'porções'}** de ${base.label}, a **${money(base.basePrice)}/kg**. Adicionei **${next}x** na comanda (subtotal **${money(product.price * next)}**). ${comandaResumo()}\nQuer concluir pelo **WhatsApp** ou fechar no **X** para ver outros pratos?`);
+  botReply(`Combinado! **${requested.label}** de **${product.name}** são **${qty} ${qty === 1 ? 'porção' : 'porções'}** de ${base.label}, a **${money(base.basePrice)}/kg**. Adicionei **${next}x** na comanda (subtotal **${money(product.price * next)}**). ${comandaResumo()}\nPode concluir pelo **WhatsApp** ou fechar no **X** para ver outros pratos.`);
   return true;
 }
 function answer(raw){
   const t = normalize(raw);
   const product = findProduct(t);
+  if(/\b(ia|bot|robo|inteligencia|artificial|assistente|humano)\b/.test(t) || has(t,'quem e voce')){
+    return {text:'Olá! Sou o **Paratizinho**, assistente virtual do Pará-Ti. Não sou atendente humano: respondo com base no cardápio e nas informações da loja. Se precisar falar com a equipe, encaminho pelo WhatsApp.', link:{url:WHATSAPP_CHAT,label:'Falar no WhatsApp'}};
+  }
+  if(has(t,'sugestao','sugestoes','sugira','sugere','sugerir','recomenda','recomende','indica','indique','o que pedir','o que tem de bom','algo bom','me ajuda a escolher','escolher','surpreenda')){
+    return {text:suggestText(t), link:null};
+  }
   if(product && has(t, 'preco', 'valor', 'quanto', 'custa', 'prato', 'comanda', 'adiciona', 'quero', 'porcao', 'porcoes', 'unidade', 'grama', 'gramas', 'kg', 'kilo', 'litro', 'litros', 'ml')){
     currentProduct = product;
     return {text:productText(product), link:null};
   }
   if(has(t,'oi','ola','bom dia','boa tarde','boa noite','hey','tudo bem')){
-    return {text:'Oi! Bem-vindo ao Pará-Ti. Posso ajudar com cardápio, preços e sua comanda. ' + comandaResumo(), link:null};
+    return {text:'Olá! Que bom te ver por aqui. Posso ajudar com cardápio, preços e sua comanda. ' + comandaResumo(), link:null};
   }
   if(has(t,'horario','hora','abre','fecha','funciona','funcionamento','aberto')){
-    return {text:'Funcionamos de segunda a sábado, das 11h às 22h, e domingo das 11h às 18h. ' + comandaResumo(), link:null};
+    return {text:'Claro! Funcionamos de segunda a sábado, das 11h às 22h, e domingo das 11h às 18h. ' + comandaResumo(), link:null};
   }
   if(has(t,'endereco','onde','local','localizacao','fica','chegar','mapa')){
-    return {text:'Estamos na Av. Central, 34 — Cidade 2000, Fortaleza/CE.', link:{url:MAPS,label:'Abrir no Google Maps'}};
+    return {text:'Claro! Estamos na Av. Central, 34 — Cidade 2000, Fortaleza/CE. Posso te levar até o mapa.', link:{url:MAPS,label:'Abrir no Google Maps'}};
   }
   if(has(t,'pedido','pedir','comanda','finalizar','fazer o pedido','enviar pedido')){
-    return {text:'Toque em “Ver preço”, informe a quantidade ou a medida (ex: 200g, 1kg) e eu adiciono na comanda. Para concluir, clique em **Concluir Pedido no WhatsApp**. ' + comandaResumo(), link:null};
+    return {text:'Com prazer! Toque em “Ver preço”, informe a quantidade ou a medida (ex: 200g, 1kg) e eu adiciono na comanda. Para concluir, clique em **Concluir Pedido no WhatsApp**. ' + comandaResumo(), link:null};
   }
-  if(has(t,'entrega','delivery','ifood','taxa','frete','personalizado','atendente','humano','duvida','dúvida','ajuda')){
-    return {text:'Para dúvidas, pedidos personalizados, taxas/entrega ou atendimento com a equipe, fale conosco pelo WhatsApp.', link:{url:WHATSAPP_CHAT,label:'Falar no WhatsApp'}};
+  if(has(t,'entrega','delivery','ifood','taxa','frete','personalizado','atendente','duvida','ajuda')){
+    return {text:'Entendo! Para dúvidas de entrega, taxas ou atendimento com a equipe, fale conosco pelo WhatsApp.', link:{url:WHATSAPP_CHAT,label:'Falar no WhatsApp'}};
   }
   if(has(t,'cardapio','menu','opcoes','comida','o que tem','prato')){
-    return {text:'Temos açaí artesanal, produtos do Pará, entradas e petiscos, peixes, chapas, pratos executivos, bebidas e adicionais. Toque em “Ver preço” no item desejado para eu calcular por porção ou medida. ' + comandaResumo(), link:null};
+    return {text:'Com certeza! Temos açaí artesanal, produtos do Pará, entradas e petiscos, peixes, chapas, pratos executivos, bebidas e adicionais. Toque em “Ver preço” no item desejado para eu calcular por porção ou medida. ' + comandaResumo(), link:null};
   }
   if(has(t,'peixe','pirarucu','tambaqui','filhote','chapa','picanha','carne','churrasco','hamburguer','lanche','burger','suco','bebida','refrigerante','cerveja','acai','açaí')){
-    return {text:'Esse item está no nosso cardápio. Toque em “Ver preço” nele para eu informar o valor e calcular a quantidade por porções ou medidas (ex: 200g, 1kg). ' + comandaResumo(), link:null};
+    return {text:'Ótima escolha! Esse item está no nosso cardápio. Toque em “Ver preço” nele para eu informar o valor e calcular a quantidade por porções ou medidas (ex: 200g, 1kg). ' + comandaResumo(), link:null};
   }
   if(has(t,'sobre','historia','origem','restaurante')){
-    return {text:'O Pará-Ti é especializado na culinária paraense e tem no açaí artesanal sua principal especialidade.', link:{url:'#sobre',label:'Conheça a casa'}};
+    return {text:'Com prazer! O Pará-Ti é especializado na culinária paraense e tem no açaí artesanal sua principal especialidade.', link:{url:'#sobre',label:'Conheça a casa'}};
   }
   if(has(t,'reserva','mesa','evento','aniversario','grupo')){
-    return {text:'Para reservas, grupos e eventos, fale com a equipe pelo WhatsApp.', link:{url:WHATSAPP_CHAT,label:'Falar no WhatsApp'}};
+    return {text:'Claro! Para reservas, grupos e eventos, fale com a equipe pelo WhatsApp.', link:{url:WHATSAPP_CHAT,label:'Falar no WhatsApp'}};
   }
   if(has(t,'instagram','insta','perfil','rede','social')){
-    return {text:'Nosso Instagram é @paratifortaleza. Se precisar de atendimento ou tirar dúvidas, fale pelo WhatsApp.', link:{url:INSTAGRAM,label:'Abrir Instagram'}};
+    return {text:'Claro! Nosso Instagram é @paratifortaleza. Se precisar de atendimento ou tirar dúvidas, fale pelo WhatsApp.', link:{url:INSTAGRAM,label:'Abrir Instagram'}};
   }
   if(has(t,'preco','valor','quanto custa','quanto e','barato','caro')){
-    return {text:'Toque em “Ver preço” no prato que eu informo o valor e calculo a quantidade por porções ou medidas. ' + comandaResumo(), link:null};
+    return {text:'Claro! Toque em “Ver preço” no prato que eu informo o valor e calculo a quantidade por porções ou medidas. ' + comandaResumo(), link:null};
   }
   if(has(t,'obrigado','obrigada','valeu','vlw','tchau')){
-    return {text:'Por nada! Quando quiser, conclua sua comanda pelo **WhatsApp**. Até breve.', link:null};
+    return {text:'Por nada! Foi um prazer ajudar. Quando quiser, conclua sua comanda pelo **WhatsApp**. Até breve!', link:null};
   }
-  return {text:'Posso ajudar com cardápio, preços e sua comanda. Para outras dúvidas ou atendimento com a equipe, fale pelo WhatsApp. ' + comandaResumo(), link:{url:WHATSAPP_CHAT,label:'Falar no WhatsApp'}};
+  return {text:'Olá! Posso ajudar com cardápio, preços e sua comanda. Para outras dúvidas, a equipe do Pará-Ti atende pelo WhatsApp. ' + comandaResumo(), link:{url:WHATSAPP_CHAT,label:'Falar no WhatsApp'}};
 }
 function startChat(product){
   chatStarted = true;
@@ -1530,7 +1554,7 @@ function startChat(product){
     currentProduct = product;
     addMessage(productText(product), 'bot');
   } else if(!chatMessages.children.length){
-    addMessage('Olá! Eu sou o Paratizinho. Tiro dúvidas sobre a loja, preços e comanda. Toque em “Ver preço” em um prato ou me diga o que deseja. Para atendimento com a equipe, você também pode falar pelo WhatsApp.', 'bot', {url:WHATSAPP_CHAT,label:'Falar no WhatsApp'});
+    addMessage('Olá! Aqui é o Paratizinho, prazer em te ver. Posso tirar suas dúvidas sobre a loja, preços e comanda. Toque em “Ver preço” em um prato ou me diga o que deseja. Se preferir falar com a equipe, tem o WhatsApp logo aqui.', 'bot', {url:WHATSAPP_CHAT,label:'Falar no WhatsApp'});
   }
 }
 function openChat(product){

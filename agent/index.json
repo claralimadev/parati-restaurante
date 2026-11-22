@@ -5,6 +5,6 @@
   "runtime": "index.html",
   "knowledge": ["index.html#menuData", "agent/knowledge.md"],
   "core": ["agent/persona.md", "agent/goal.md", "agent/rules.md", "agent/workflow.md"],
-  "evals": ["agent/evals/EVAL_01_peso.md", "agent/evals/EVAL_02_duvidas.md"],
+  "evals": ["agent/evals/EVAL_01_peso.md", "agent/evals/EVAL_02_duvidas.md", "agent/evals/EVAL_03_tom_identidade_sugestao.md"],
   "commands": ["/paratizinho"]
 }
