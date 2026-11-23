@@ -32,7 +32,7 @@ export default async (request) => {
     return json({ error: 'method_not_allowed' }, 405);
   }
 
-  const apiKey = process.env.OPENROUTER_API_KEY;
+  const apiKey = String(process.env.OPENROUTER_API_KEY || '').replace(/[^\x20-\x7E]/g, '').trim();
   if (!apiKey) {
     return json({ error: 'missing_key', hint: 'Defina OPENROUTER_API_KEY no painel do Netlify.' }, 503);
   }
