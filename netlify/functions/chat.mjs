@@ -62,7 +62,7 @@ export default async (request) => {
         'x-title': 'Paratizinho - Para-Ti'
       },
       body: JSON.stringify({
-        model: process.env.OPENROUTER_MODEL || 'openrouter/free',
+        model: process.env.OPENROUTER_MODEL || 'nvidia/nemotron-3.5-lightning:free',
         messages: [{ role: 'system', content: system }, ...messages],
         tools,
         tool_choice: 'auto',
