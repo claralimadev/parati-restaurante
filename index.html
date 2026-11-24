@@ -531,8 +531,8 @@ button{font:inherit;cursor:pointer}
         <div class="menu-group reveal" id="cat-acai">
           <h3 class="menu-category">Açaí artesanal</h3>
           <ul class="menu-list">
-            <li class="menu-item" data-id="acai-100" data-name="Açaí Natural 100g" data-price="5.50"><div class="menu-info"><h4>Açaí Natural 100g</h4><p>Açaí puro e cremoso, em porção individual.</p></div><div class="menu-action"><span class="menu-price">R$ 5,50</span><div class="add-holder"></div></div></li>
-            <li class="menu-item" data-id="acai-1l" data-name="Açaí Natural 1 litro" data-price="55.00"><div class="menu-info"><h4>Açaí Natural 1 litro</h4><p>Açaí puro e cremoso, para compartilhar.</p></div><div class="menu-action"><span class="menu-price">R$ 55,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="acai-100" data-name="Açaí Natural 100g" data-price="5.50"><div class="menu-info"><h4>Açaí Natural 100g</h4><p>Açaí natural do Pará, cremoso, servido com peixe e farinha.</p></div><div class="menu-action"><span class="menu-price">R$ 5,50</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="acai-1l" data-name="Açaí Natural 1 litro" data-price="55.00"><div class="menu-info"><h4>Açaí Natural 1 litro</h4><p>Açaí natural do Pará, cremoso, servido com peixe e farinha.</p></div><div class="menu-action"><span class="menu-price">R$ 55,00</span><div class="add-holder"></div></div></li>
           </ul>
         </div>
 
@@ -823,8 +823,8 @@ button{font:inherit;cursor:pointer}
     "address": "Av. Central, 34 — Cidade 2000, Fortaleza/CE"
   },
   "products": [
-    {"id":"acai-100","name":"Açaí Natural 100g","category":"Açaí artesanal","description":"Açaí puro e cremoso, em porção individual.","price":5.5,"sale":"unit","simple":true},
-    {"id":"acai-1l","name":"Açaí Natural 1 litro","category":"Açaí artesanal","description":"Açaí puro e cremoso, para compartilhar.","price":55.0,"sale":"unit","simple":true},
+    {"id":"acai-100","name":"Açaí Natural 100g","category":"Açaí artesanal","description":"Açaí natural do Pará, cremoso, servido com peixe e farinha.","price":5.5,"sale":"unit","simple":true},
+    {"id":"acai-1l","name":"Açaí Natural 1 litro","category":"Açaí artesanal","description":"Açaí natural do Pará, cremoso, servido com peixe e farinha.","price":55.0,"sale":"unit","simple":true},
     {"id":"cupuacu-kg","name":"Cupuaçu Kg","category":"Produtos do Pará","description":"Polpa de cupuaçu vendida por quilo.","price":30.0,"sale":"measure","unit":"g","portion":100,"baseLabel":"1 kg","label":"100 g","pricePerPortion":3.0,"allowFraction":false},
     {"id":"farinha-tapioca","name":"Farinha de Tapioca Litro","category":"Produtos do Pará","description":"Farinha de tapioca tradicional, por litro.","price":7.5,"sale":"unit","simple":false},
     {"id":"farinha-amarela","name":"Farinha Amarela Litro","category":"Produtos do Pará","description":"Farinha amarela da casa, por litro.","price":15.0,"sale":"unit","simple":false},
@@ -1198,7 +1198,8 @@ let currentProduct = null;
 let agentSystemPromise = null;
 let agentHistory = [];
 const queryProxy = new URLSearchParams(location.search).get('proxy');
-const AGENT_PROXY = queryProxy || (() => { try { return localStorage.getItem('paratizinho_proxy') || '/api/chat'; } catch { return '/api/chat'; } })();
+const DEFAULT_PROXY = 'https://parati-restaurante.netlify.app/api/chat';
+const AGENT_PROXY = queryProxy || (() => { try { return localStorage.getItem('paratizinho_proxy') || DEFAULT_PROXY; } catch { return DEFAULT_PROXY; } })();
 if(queryProxy){ try { localStorage.setItem('paratizinho_proxy', queryProxy); } catch {} }
 const AGENT_TOOLS = [
   {type:'function', function:{name:'get_menu', description:'Retorna categorias e itens reais do cardápio, com ids, nomes, preços e regras de medida. Use antes de falar preço ou sugerir pratos.', parameters:{type:'object', properties:{category:{type:'string', description:'Filtra por categoria. Opcional.'}}, additionalProperties:false}}},
@@ -1498,6 +1499,14 @@ function directOrder(raw){
   }
   return qty >= 1 && qty <= 99 ? {product, qty} : null;
 }
+function localSweetReply(raw){
+  const text = normalize(String(raw || ''));
+  if(!/\bdoces?\b|sobremesa/.test(text)) return null;
+  const biscoito = resolveProduct('biscoito-cocada');
+  const cupuacu = resolveProduct('cupuacu-kg');
+  if(!biscoito || !cupuacu) return null;
+  return `Aqui o açaí é natural do Pará, salgado, servido com peixe e farinha — não é sobremesa doce. Para doce, indico **${biscoito.name}** (${money(biscoito.price)} cada) e **${cupuacu.name}** (${money(cupuacu.price)} a porção). Quer que eu coloque na comanda?`;
+}
 function confirmDirectOrder(product, qty){
   setQty(product, qty, 'add');
   const message = `Combinado! ${qty}x **${product.name}** por **${money(product.price * qty)}**. ${comandaResumo()} Quer fechar agora?`;
@@ -1554,6 +1563,12 @@ async function agentSend(text, options = {}){
   if(options.context) agentHistory.push({role:'system', content:options.context});
   const raw = String(text);
   agentHistory.push({role:'user', content:raw.slice(0, 2000)});
+  const sweet = options.skipFastPath ? null : localSweetReply(raw);
+  if(sweet){
+    addMessage(sweet, 'bot');
+    agentHistory.push({role:'assistant', content:sweet.replace(/\*\*/g,'')});
+    return;
+  }
   const order = options.skipFastPath ? null : directOrder(raw);
   if(order){ confirmDirectOrder(order.product, order.qty); return; }
   const typing = showTyping();
