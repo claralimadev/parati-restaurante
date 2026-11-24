@@ -1197,6 +1197,7 @@ let chatOpen = false;
 let currentProduct = null;
 let agentSystemPromise = null;
 let agentHistory = [];
+let agentAvailable = null;
 const queryProxy = new URLSearchParams(location.search).get('proxy');
 const DEFAULT_PROXY = 'https://parati-restaurante.netlify.app/api/chat';
 const AGENT_PROXY = queryProxy || (() => { try { return localStorage.getItem('paratizinho_proxy') || DEFAULT_PROXY; } catch { return DEFAULT_PROXY; } })();
@@ -1473,6 +1474,7 @@ function directOrder(raw){
   const hasVerb = ORDER_VERBS.some(v => textWords.includes(v));
   const hasNumber = /\d/.test(text) || textWords.some(w => NUMBER_WORDS[w]);
   if(!bareQuantity && !hasVerb && !hasNumber) return null;
+  const quantityOnly = bareQuantity || /^\d{1,4}\s*(g|gramas|kg|kilos?)$/.test(text) || textWords.every(w => NUMBER_WORDS[w] || /^\d/.test(w));
   const candidates = [];
   for(const p of PRODUCTS){
     const nameWords = normalize(p.name).split(' ').filter(w => w.length > 1 && !STOP_WORDS.has(w));
@@ -1485,7 +1487,7 @@ function directOrder(raw){
   }
   candidates.sort((a,b) => b.score - a.score);
   const focused = currentProduct ? candidates.find(c => c.product.id === currentProduct.id) : null;
-  let product = focused?.product || candidates[0]?.product || ((bareQuantity || hasNumber) ? currentProduct : null);
+  let product = quantityOnly ? currentProduct : (focused?.product || candidates[0]?.product || ((bareQuantity || hasNumber) ? currentProduct : null));
   if(!product) return null;
   const gramsMatch = text.match(/\b(\d{1,4})\s*(g|gramas|kg|kilos?)\b/);
   let qty = 0;
@@ -1507,6 +1509,12 @@ function localSweetReply(raw){
   const cupuacu = resolveProduct('cupuacu-kg');
   if(!biscoito || !cupuacu) return null;
   return `Aqui o açaí é natural do Pará, salgado, servido com peixe e farinha — não é sobremesa doce. Para doce, indico **${biscoito.name}** (${money(biscoito.price)} cada) e **${cupuacu.name}** (${money(cupuacu.price)} a porção). Quer que eu coloque na comanda?`;
+}
+function quantityPrompt(product){
+  const base = productBase(product);
+  return base
+    ? `Quanto você quer de **${product.name}**? Me diga o peso, por exemplo **300g** ou **1kg** (ou quantas porções de ${base.label}).`
+    : `Quantas unidades de **${product.name}** você quer? (ex.: 2)`;
 }
 function localPriceText(product){
   const base = productBase(product);
@@ -1602,6 +1610,18 @@ async function loadAgentSystem(){
   })();
   return agentSystemPromise;
 }
+async function checkAgentAvailability(){
+  if(agentAvailable !== null) return agentAvailable;
+  try {
+    const res = await fetch(AGENT_PROXY, {
+      method:'POST',
+      headers:{'content-type':'application/json'},
+      body:JSON.stringify({system:'Responda apenas "ok".', messages:[{role:'user',content:'ok'}], tools:[]})
+    });
+    agentAvailable = res.ok;
+  } catch { agentAvailable = false; }
+  return agentAvailable;
+}
 async function callAgentProxy(system){
   const res = await fetch(AGENT_PROXY, {
     method:'POST',
@@ -1609,10 +1629,12 @@ async function callAgentProxy(system){
     body:JSON.stringify({system, messages:agentHistory.slice(-10), tools:AGENT_TOOLS})
   });
   if(!res.ok){
+    agentAvailable = false;
     let detail = '';
     try { detail = (await res.json()).error || ''; } catch {}
     throw new Error(detail || `http_${res.status}`);
   }
+  agentAvailable = true;
   const data = await res.json();
   const message = data.message || data.choices?.[0]?.message;
   if(!message) throw new Error('resposta_vazia');
@@ -1637,6 +1659,16 @@ async function agentSend(text, options = {}){
     const link = typeof local === 'string' ? null : local.link;
     addMessage(text, 'bot', link);
     agentHistory.push({role:'assistant', content:text.replace(/\*\*/g,'')});
+    return;
+  }
+  if(agentAvailable === false){
+    if(currentProduct){
+      const prompt = quantityPrompt(currentProduct);
+      addMessage(prompt, 'bot');
+      agentHistory.push({role:'assistant', content:prompt.replace(/\*\*/g,'')});
+    } else {
+      addMessage('Sem IA no momento, posso ajudar com preços, cardápio, horário e pedidos. Me diga o produto e a quantidade ou o peso (ex.: 2 cupuaçu ou 300g de cupuaçu).', 'bot', {url:WHATSAPP_CHAT,label:'Falar no WhatsApp'});
+    }
     return;
   }
   const typing = showTyping();
@@ -1675,6 +1707,7 @@ async function agentSend(text, options = {}){
     const hint = String(error?.message || error);
     const offline = hint.includes('missing_key') || hint.includes('http_404') || hint.includes('http_503');
     const limited = hint.includes('429') || /rate.?limit|free-models-per-day/i.test(hint);
+    if(limited || offline || hint.includes('sem_texto')) agentAvailable = false;
     addMessage(
       limited
         ? 'A IA atingiu o limite de perguntas de hoje, mas ainda posso ajudar com preços, cardápio, horário, endereço e pedidos diretos — é só me dizer o que precisa.'
@@ -1696,7 +1729,7 @@ function startChat(product){
     const priceText = base
       ? `${money(product.price)} por ${base.label} (${money(base.basePrice)}/kg)`
       : `${money(product.price)} a unidade`;
-    const question = `Claro! **${product.name}** sai **${priceText}**. Quantas ${base ? 'porções' : 'unidades'} você quer?`;
+    const question = `Claro! **${product.name}** sai **${priceText}**. ${quantityPrompt(product)}`;
     addMessage(question, 'bot');
     agentHistory.push({role:'assistant', content:question.replace(/\*\*/g,'')});
   } else if(!chatMessages.children.length){
@@ -1715,6 +1748,7 @@ function openChat(product){
   chatPanel.setAttribute('aria-hidden','false');
   chatFab.setAttribute('aria-expanded','true');
   startChat(product);
+  if(product) checkAgentAvailability();
   setTimeout(() => chatInput.focus({preventScroll:true}), 250);
 }
 function closeChat(){
