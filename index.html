@@ -1734,7 +1734,7 @@ function startChat(product){
     agentHistory.push({role:'assistant', content:question.replace(/\*\*/g,'')});
   } else if(!chatMessages.children.length){
     const greeting = 'Olá! Aqui é o Paratizinho, prazer em te ver. Posso tirar suas dúvidas sobre a loja, preços e comanda. Me diga o que você quer ou toque em “Ver preço” em um prato.';
-    addMessage(greeting, 'bot', {url:WHATSAPP_CHAT,label:'Falar no WhatsApp'});
+    addMessage(greeting, 'bot');
     agentHistory.push({role:'assistant', content:greeting});
   }
 }
