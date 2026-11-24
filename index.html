@@ -1663,11 +1663,11 @@ async function agentSend(text, options = {}){
   }
   if(agentAvailable === false){
     if(currentProduct){
-      const prompt = quantityPrompt(currentProduct);
+      const prompt = quantityPrompt(currentProduct) + ' Escolha uma opção no cardápio ou nos botões abaixo.';
       addMessage(prompt, 'bot');
       agentHistory.push({role:'assistant', content:prompt.replace(/\*\*/g,'')});
     } else {
-      addMessage('Sem IA no momento, posso ajudar com preços, cardápio, horário e pedidos. Me diga o produto e a quantidade ou o peso (ex.: 2 cupuaçu ou 300g de cupuaçu).', 'bot', {url:WHATSAPP_CHAT,label:'Falar no WhatsApp'});
+      addMessage('Sem IA no momento, posso ajudar com preços, cardápio, horário e pedidos. Escolha uma opção no cardápio ou nos botões abaixo, ou me diga o produto e a quantidade/peso (ex.: 2 cupuaçu ou 300g de cupuaçu).', 'bot', {url:WHATSAPP_CHAT,label:'Falar no WhatsApp'});
     }
     return;
   }
