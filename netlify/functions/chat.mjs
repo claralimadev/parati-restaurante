@@ -16,10 +16,10 @@ function cleanMessages(messages) {
   const allowed = new Set(['user', 'assistant', 'tool', 'system']);
   return messages
     .filter((m) => m && allowed.has(m.role) && typeof m.content === 'string')
-    .slice(-24)
+    .slice(-12)
     .map((m) => {
-      const item = { role: m.role, content: m.content.slice(0, 12000) };
-      if (m.role === 'assistant' && Array.isArray(m.tool_calls)) item.tool_calls = m.tool_calls.slice(0, 8);
+      const item = { role: m.role, content: m.content.slice(0, 4000) };
+      if (m.role === 'assistant' && Array.isArray(m.tool_calls)) item.tool_calls = m.tool_calls.slice(0, 4);
       if (m.role === 'tool' && m.tool_call_id) item.tool_call_id = String(m.tool_call_id).slice(0, 200);
       return item;
     });

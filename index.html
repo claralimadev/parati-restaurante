@@ -1451,6 +1451,56 @@ function executeTool(name, args){
     return {error:'erro_ao_executar', message:String(error?.message || error)};
   }
 }
+const ORDER_VERBS = ['quero','colocar','coloca','coloque','adicionar','adiciona','adicione','pegar','pego','levo','levar','inclui','incluir','anota','anote','acrescenta','troca','trocar'];
+const NUMBER_WORDS = {um:1,uma:1,dois:2,duas:2,tres:3,quatro:4,cinco:5,seis:6,sete:7,oito:8,nove:9,dez:10};
+const STOP_WORDS = new Set(['de','da','do','a','o','e','ou','com','para','por','ao','as','os','no','na','em','um','uma']);
+function orderQuantity(text){
+  const digits = text.match(/\b(\d{1,2})\b/);
+  if(digits) return Number(digits[1]);
+  for(const word of text.split(' ')) if(NUMBER_WORDS[word]) return NUMBER_WORDS[word];
+  return 0;
+}
+function directOrder(raw){
+  const text = normalize(String(raw || ''));
+  if(!text) return null;
+  const bareQuantity = /^(\d{1,2}|um|uma|dois|duas|tres|quatro|cinco|seis|sete|oito|nove|dez)$/.test(text);
+  if(!bareQuantity && !ORDER_VERBS.some(v => text.split(' ').includes(v))) return null;
+  const textWords = text.split(' ');
+  const candidates = [];
+  for(const p of PRODUCTS){
+    const nameWords = normalize(p.name).split(' ').filter(w => w.length > 1 && !STOP_WORDS.has(w));
+    const matched = nameWords.filter(w => !/\d/.test(w) && textWords.includes(w)).length;
+    const byId = normalize(p.id).split(' ').filter(w => w.length > 2 && textWords.includes(w)).length;
+    const sized = nameWords.filter(w => /\d/.test(w) && textWords.includes(w)).length * 2;
+    const focus = currentProduct && currentProduct.id === p.id && nameWords.some(w => textWords.includes(w)) ? 15 : 0;
+    const score = matched * 10 + byId + sized + focus + (text.includes(normalize(p.name)) ? 5 : 0);
+    if(score > 0) candidates.push({product:p, score});
+  }
+  candidates.sort((a,b) => b.score - a.score);
+  const top = candidates[0]?.score || 0;
+  if(candidates.filter(c => c.score === top).length > 1) return null;
+  let product = candidates[0]?.product || (bareQuantity ? currentProduct : null);
+  if(!product) return null;
+  const gramsMatch = text.match(/\b(\d{1,4})\s*(g|gramas|kg|kilos?)\b/);
+  let qty = 0;
+  if(gramsMatch){
+    const base = productBase(product);
+    if(!base) return null;
+    const grams = Number(gramsMatch[1]) * (/k/.test(gramsMatch[2]) ? 1000 : 1);
+    if(grams <= 0 || grams % base.value !== 0) return null;
+    qty = grams / base.value;
+  } else {
+    qty = orderQuantity(text);
+  }
+  return qty >= 1 && qty <= 99 ? {product, qty} : null;
+}
+function confirmDirectOrder(product, qty){
+  setQty(product, qty, 'add');
+  const message = `Combinado! ${qty}x **${product.name}** por **${money(product.price * qty)}**. ${comandaResumo()} Quer fechar agora?`;
+  addMessage(message, 'bot', {url:WHATSAPP + encodeURIComponent(orderMessage()), label:'Fechar pedido'});
+  agentHistory.push({role:'user', content:`${qty}x ${product.name}`});
+  agentHistory.push({role:'assistant', content:message.replace(/\*\*/g,'')});
+}
 const AGENT_OPERATING_RULES = `
 ## Regras de execução neste site
 - Você está rodando dentro do site do Pará-Ti e tem ferramentas. Use-as antes de responder.
@@ -1458,6 +1508,7 @@ const AGENT_OPERATING_RULES = `
 - Para sugerir pratos, chame get_menu e escolha apenas itens retornados.
 - Para calcular valor por grama ou porção, chame calculate_price. Depois, se o cliente confirmar, chame add_to_cart.
 - Se o cliente pedir para adicionar, trocar ou remover algo da comanda, use add_to_cart, remove_from_cart ou clear_cart.
+- Pedido direto (produto + quantidade) já está executado no site: não pergunte de novo, não reliste opções; confirme o total e ofereça o fechamento.
 - Não explique ferramentas, JSON, debug nem código. Fale como recepcionista: curto, educado e direto.
 - Se a ferramenta retornar erro, diga com simplicidade e ofereça o WhatsApp da loja.
 `;
@@ -1482,7 +1533,7 @@ async function callAgentProxy(system){
   const res = await fetch(AGENT_PROXY, {
     method:'POST',
     headers:{'content-type':'application/json'},
-    body:JSON.stringify({system, messages:agentHistory.slice(-24), tools:AGENT_TOOLS})
+    body:JSON.stringify({system, messages:agentHistory.slice(-10), tools:AGENT_TOOLS})
   });
   if(!res.ok){
     let detail = '';
@@ -1497,11 +1548,14 @@ async function callAgentProxy(system){
 async function agentSend(text, options = {}){
   if(options.showUser !== false) addMessage(text, 'user');
   if(options.context) agentHistory.push({role:'system', content:options.context});
-  agentHistory.push({role:'user', content:String(text).slice(0, 2000)});
+  const raw = String(text);
+  agentHistory.push({role:'user', content:raw.slice(0, 2000)});
+  const order = options.skipFastPath ? null : directOrder(raw);
+  if(order){ confirmDirectOrder(order.product, order.qty); return; }
   const typing = showTyping();
   try {
     const system = await loadAgentSystem();
-    for(let step = 0; step < 6; step++){
+    for(let step = 0; step < 4; step++){
       const message = await callAgentProxy(system);
       agentHistory.push({
         role:'assistant',
@@ -1515,7 +1569,7 @@ async function agentSend(text, options = {}){
           agentHistory.push({
             role:'tool',
             tool_call_id:call.id,
-            content:JSON.stringify(executeTool(call.function?.name, args)).slice(0, 12000)
+            content:JSON.stringify(executeTool(call.function?.name, args)).slice(0, 2000)
           });
         }
         continue;
@@ -1548,7 +1602,13 @@ function startChat(product){
     chatMessages.replaceChildren();
     agentHistory = [];
     currentProduct = product;
-    agentSend(`O cliente clicou em "Ver preço" no item ${product.name}. Use as ferramentas para confirmar o preço real e pergunte a quantidade desejada.`, {showUser:false});
+    const base = productBase(product);
+    const priceText = base
+      ? `${money(product.price)} por ${base.label} (${money(base.basePrice)}/kg)`
+      : `${money(product.price)} a unidade`;
+    const question = `Claro! **${product.name}** sai **${priceText}**. Quantas ${base ? 'porções' : 'unidades'} você quer?`;
+    addMessage(question, 'bot');
+    agentHistory.push({role:'assistant', content:question.replace(/\*\*/g,'')});
   } else if(!chatMessages.children.length){
     const greeting = 'Olá! Aqui é o Paratizinho, prazer em te ver. Posso tirar suas dúvidas sobre a loja, preços e comanda. Me diga o que você quer ou toque em “Ver preço” em um prato.';
     addMessage(greeting, 'bot', {url:WHATSAPP_CHAT,label:'Falar no WhatsApp'});
