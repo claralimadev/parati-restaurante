@@ -1388,12 +1388,16 @@ function menuPayload(category){
   const wanted = category ? normalize(String(category)) : '';
   const products = PRODUCTS
     .filter(p => !wanted || normalize(p.category || '').includes(wanted) || normalize(p.name).includes(wanted))
-    .map(p => ({
-      id:p.id, name:p.name, category:p.category, description:p.description,
-      price:p.price, sale:p.sale, unit:p.unit, portion:p.portion,
-      label:p.label, baseLabel:p.baseLabel, basePrice:productBase(p)?.basePrice || null,
-      allowFraction:p.allowFraction !== false
-    }));
+    .map(p => {
+      const base = productBase(p);
+      const item = {id:p.id, name:p.name, price:p.price, sale:p.sale};
+      if(base){
+        item.portion = base.value;
+        item.label = base.label;
+        item.pricePerKg = Math.round(base.basePrice * 100) / 100;
+      }
+      return item;
+    });
   return {total:products.length, products};
 }
 function cartPayload(){
@@ -1555,7 +1559,7 @@ async function agentSend(text, options = {}){
   const typing = showTyping();
   try {
     const system = await loadAgentSystem();
-    for(let step = 0; step < 4; step++){
+    for(let step = 0; step < 6; step++){
       const message = await callAgentProxy(system);
       agentHistory.push({
         role:'assistant',
@@ -1569,7 +1573,7 @@ async function agentSend(text, options = {}){
           agentHistory.push({
             role:'tool',
             tool_call_id:call.id,
-            content:JSON.stringify(executeTool(call.function?.name, args)).slice(0, 2000)
+            content:JSON.stringify(executeTool(call.function?.name, args)).slice(0, 6000)
           });
         }
         continue;

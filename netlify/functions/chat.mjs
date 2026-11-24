@@ -18,7 +18,7 @@ function cleanMessages(messages) {
     .filter((m) => m && allowed.has(m.role) && typeof m.content === 'string')
     .slice(-12)
     .map((m) => {
-      const item = { role: m.role, content: m.content.slice(0, 4000) };
+      const item = { role: m.role, content: m.content.slice(0, 6000) };
       if (m.role === 'assistant' && Array.isArray(m.tool_calls)) item.tool_calls = m.tool_calls.slice(0, 4);
       if (m.role === 'tool' && m.tool_call_id) item.tool_call_id = String(m.tool_call_id).slice(0, 200);
       return item;
@@ -67,7 +67,7 @@ export default async (request) => {
         tools,
         tool_choice: 'auto',
         temperature: 0.4,
-        max_tokens: 600
+        max_tokens: 900
       })
     });
 
