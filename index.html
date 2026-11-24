@@ -185,8 +185,11 @@ button{font:inherit;cursor:pointer}
 .menu-info p{font-size:.9rem;line-height:1.5;color:var(--marrom-suave);margin-top:5px}
 .menu-action{display:flex;flex-direction:column;align-items:flex-end;gap:9px;flex:0 0 auto;min-width:132px}
 .menu-price{display:none}
+.add-holder{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
 .add-btn{border:1px solid var(--terra);background:transparent;color:var(--terra);border-radius:999px;padding:8px 16px;font-size:.82rem;font-weight:800;white-space:nowrap;transition:background .18s,color .18s}
 .add-btn:hover{background:var(--terra);color:#fff}
+.add-btn.primary{background:var(--terra);color:#fff}
+.add-btn.primary:hover{background:var(--terra-esc)}
 .qty{display:inline-flex;align-items:center;border:1px solid var(--acai);border-radius:999px;overflow:hidden;background:#fff}
 .qty-btn{width:27px;height:27px;border:0;background:transparent;color:var(--acai);font-weight:800;font-size:.95rem;line-height:1}
 .qty-btn:hover{background:var(--acai-claro)}
@@ -1468,9 +1471,11 @@ function orderQuantity(text){
 function directOrder(raw){
   const text = normalize(String(raw || ''));
   if(!text) return null;
-  const bareQuantity = /^(\d{1,2}|um|uma|dois|duas|tres|quatro|cinco|seis|sete|oito|nove|dez)$/.test(text);
-  if(!bareQuantity && !ORDER_VERBS.some(v => text.split(' ').includes(v))) return null;
   const textWords = text.split(' ');
+  const bareQuantity = /^(\d{1,2}|um|uma|dois|duas|tres|quatro|cinco|seis|sete|oito|nove|dez)$/.test(text);
+  const hasVerb = ORDER_VERBS.some(v => textWords.includes(v));
+  const hasNumber = /\d/.test(text) || textWords.some(w => NUMBER_WORDS[w]);
+  if(!bareQuantity && !hasVerb && !hasNumber) return null;
   const candidates = [];
   for(const p of PRODUCTS){
     const nameWords = normalize(p.name).split(' ').filter(w => w.length > 1 && !STOP_WORDS.has(w));
@@ -1482,9 +1487,8 @@ function directOrder(raw){
     if(score > 0) candidates.push({product:p, score});
   }
   candidates.sort((a,b) => b.score - a.score);
-  const top = candidates[0]?.score || 0;
-  if(candidates.filter(c => c.score === top).length > 1) return null;
-  let product = candidates[0]?.product || (bareQuantity ? currentProduct : null);
+  const focused = currentProduct ? candidates.find(c => c.product.id === currentProduct.id) : null;
+  let product = focused?.product || candidates[0]?.product || ((bareQuantity || hasNumber) ? currentProduct : null);
   if(!product) return null;
   const gramsMatch = text.match(/\b(\d{1,4})\s*(g|gramas|kg|kilos?)\b/);
   let qty = 0;
@@ -1495,7 +1499,7 @@ function directOrder(raw){
     if(grams <= 0 || grams % base.value !== 0) return null;
     qty = grams / base.value;
   } else {
-    qty = orderQuantity(text);
+    qty = orderQuantity(text) || (hasVerb ? 1 : 0);
   }
   return qty >= 1 && qty <= 99 ? {product, qty} : null;
 }
@@ -1768,7 +1772,16 @@ function renderMenuControls(){
         row.scrollIntoView({behavior:'smooth', block:'nearest'});
       });
     });
-    holder.replaceChildren(btn);
+    const addBtn = document.createElement('button');
+    addBtn.type = 'button';
+    addBtn.className = 'add-btn primary';
+    addBtn.textContent = '+ Sacola';
+    addBtn.setAttribute('aria-label', 'Adicionar ' + product.name + ' à sacola');
+    addBtn.addEventListener('click', () => {
+      setQty(product, 1, 'add');
+      toast(product.name + ' na sacola • ' + money(cartTotal()));
+    });
+    holder.replaceChildren(btn, addBtn);
   });
 }
 renderMenuControls();
