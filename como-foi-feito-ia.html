@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como a IA do Pará-Ti foi feita</title>
+<style>
+  :root{--bg:#faf7f2;--card:#fff;--text:#2e1f18;--muted:#6b5a52;--acai:#4A1D52;--terra:#A8452A;--line:#eadfd2;--ok:#1f7a4d;}
+  *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+  .wrap{max-width:980px;margin:0 auto;padding:32px 20px 60px}
+  h1,h2,h3{line-height:1.2;margin:0 0 12px} h1{font-size:clamp(1.8rem,4vw,2.8rem);color:var(--acai)} h2{font-size:1.35rem;margin-top:28px;color:var(--terra)}
+  p,li{font-size:1rem} .lead{font-size:1.08rem;color:var(--muted);max-width:760px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin:16px 0;box-shadow:0 8px 24px rgba(46,31,24,.05)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .pill{display:inline-block;background:#f1e6f3;color:var(--acai);padding:4px 10px;border-radius:999px;font-size:.82rem;font-weight:700;margin:0 6px 6px 0}
+  code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
+  pre{background:#20151d;color:#f7efe7;padding:16px;border-radius:12px;overflow:auto;white-space:pre-wrap;word-break:break-word}
+  .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;align-items:stretch;margin-top:10px}
+  .step{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff}
+  .step b{display:block;color:var(--acai);margin-bottom:4px}
+  .arrow{text-align:center;color:var(--muted);font-weight:700;padding:6px 0}
+  table{width:100%;border-collapse:collapse} th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:.95rem}
+  th{color:var(--acai)} .ok{color:var(--ok);font-weight:700}
+  .warn{background:#fff7e8;border-left:4px solid #d59b2d;padding:12px 14px;border-radius:8px}
+  footer{margin-top:34px;color:var(--muted);font-size:.92rem}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="pill">Pará-Ti</p><p class="pill">Paratizinho</p><p class="pill">OpenRouter</p><p class="pill">Netlify</p>
+    <h1>Como a IA do site foi feita</h1>
+    <p class="lead">Resumo técnico para a equipe: como o assistente <b>Paratizinho</b> foi integrado ao site do Pará-Ti, onde a chave fica, como o pedido chega na IA e como economizamos tokens.</p>
+
+    <div class="card">
+      <h2>Visão geral</h2>
+      <div class="grid">
+        <div><h3>Front-end</h3><p>O chat fica no <code>index.html</code>. Ele monta a conversa, exibe mensagens e executa ações locais como calcular preço e alterar comanda.</p></div>
+        <div><h3>IA</h3><p>A IA responde pelo <b>OpenRouter</b>, que fornece acesso a modelos por API. A chave da API <b>não fica no HTML</b>.</p></div>
+        <div><h3>Back-end leve</h3><p>Uma função do <b>Netlify</b> (<code>netlify/functions/chat.mjs</code>) recebe a mensagem, adiciona a chave e repassa ao OpenRouter.</p></div>
+      </div>
+    </div>
+
+    <h2>Fluxo da mensagem</h2>
+    <div class="card">
+      <div class="flow">
+        <div class="step"><b>1. Cliente pergunta</b>Ex.: “quanto custa o açaí?” no chat do site.</div>
+        <div class="step"><b>2. Site prepara contexto</b>O front envia histórico curto, regras do agente e ferramentas disponíveis para <code>/api/chat</code>.</div>
+        <div class="step"><b>3. Netlify Function</b><code>chat.mjs</code> lê <code>OPENROUTER_API_KEY</code> do ambiente e chama o OpenRouter.</div>
+        <div class="step"><b>4. OpenRouter/Modelo</b>O modelo decide responder ou pedir uma ferramenta (ex.: consultar cardápio).</div>
+        <div class="step"><b>5. Ferramenta local</b>O navegador executa <code>executeTool()</code> com dados reais do <code>menuData</code>/comanda.</div>
+        <div class="step"><b>6. Resposta final</b>O modelo usa o resultado real e o chat mostra a resposta ao cliente.</div>
+      </div>
+    </div>
+
+    <h2>Onde a chave do OpenRouter entra</h2>
+    <div class="card">
+      <ol>
+        <li>Criamos/pegamos uma chave no <b>OpenRouter</b>.</li>
+        <li>No painel do <b>Netlify</b>, cadastramos a variável de ambiente <code>OPENROUTER_API_KEY</code>.</li>
+        <li>A função <code>netlify/functions/chat.mjs</code> usa essa variável no servidor:</li>
+      </ol>
+      <pre>const apiKey = process.env.OPENROUTER_API_KEY;
+fetch("https://openrouter.ai/api/v1/chat/completions", {
+  headers: { authorization: `Bearer ${apiKey}` },
+  body: JSON.stringify({ model, messages, tools, ... })
+});</pre>
+      <div class="warn"><b>Importante:</b> a chave nunca deve ser colocada no <code>index.html</code>, no JavaScript público ou no GitHub. Quem precisa dela é só a função do Netlify.</div>
+    </div>
+
+    <h2>Integração com Netlify</h2>
+    <div class="card">
+      <table>
+        <tr><th>Arquivo</th><th>Função</th></tr>
+        <tr><td><code>netlify.toml</code></td><td>Configura publicação do site e redireciona <code>/api/chat</code> para <code>/.netlify/functions/chat</code>.</td></tr>
+        <tr><td><code>netlify/functions/chat.mjs</code></td><td>Proxy seguro: valida requisição, monta payload, chama OpenRouter e devolve a resposta.</td></tr>
+        <tr><td><code>index.html</code></td><td>Chat, prompt, histórico, ferramentas e interface da comanda.</td></tr>
+        <tr><td><code>agent/*.md</code></td><td>Persona, objetivo, regras, fluxo e conhecimento do agente.</td></tr>
+      </table>
+      <p>O <code>netlify.toml</code> faz o caminho bonito da API:</p>
+      <pre>[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200</pre>
+    </div>
+
+    <h2>Como a IA “sabe” o cardápio</h2>
+    <div class="card">
+      <p>A IA não recebe um banco de dados externo. Ela usa:</p>
+      <ul>
+        <li><b>menuData</b> no <code>index.html</code>: fonte real de produtos, preços e regras.</li>
+        <li><b>Arquivos do agente</b> em <code>agent/</code>: persona, regras e conhecimento resumido.</li>
+        <li><b>Ferramentas</b>: quando precisa de dado real, o modelo chama funções como <code>get_menu</code>, <code>get_store_info</code>, <code>calculate_price</code> e <code>get_cart</code>.</li>
+      </ul>
+      <p>Isso evita “chute”: preço e conta vêm do código/dados do site.</p>
+    </div>
+
+    <h2>Economia de tokens (custo/uso)</h2>
+    <div class="card">
+      <table>
+        <tr><th>Medida</th><th>Como foi aplicada</th></tr>
+        <tr><td>Prompt curto</td><td>Arquivos do agente foram resumidos; regras de operação em texto curto.</td></tr>
+        <tr><td>Histórico limitado</td><td>Front envia só as últimas mensagens (<code>slice(-8)</code>).</td></tr>
+        <tr><td>Limite no proxy</td><td>O proxy aceita até 12 mensagens recentes e corta conteúdo grande.</td></tr>
+        <tr><td>Menos rodadas</td><td>Loop de ferramentas limitado a 4 etapas no front.</td></tr>
+        <tr><td>Resposta curta</td><td><code>max_tokens: 450</code> no proxy e instrução para responder direto.</td></tr>
+        <tr><td>Fast-path local</td><td>Pedidos diretos, preços/comandos comuns e regras simples podem ser tratados localmente antes/depois da IA.</td></tr>
+      </table>
+    </div>
+
+    <h2>Segurança e boas práticas</h2>
+    <div class="card">
+      <ul>
+        <li><span class="ok">OK</span> — Chave no ambiente do Netlify, não no front.</li>
+        <li><span class="ok">OK</span> — Proxy controla método, payload e tamanho.</li>
+        <li><span class="ok">OK</span> — Respostas de loja baseadas em dados/ferramentas.</li>
+        <li><span class="ok">OK</span> — CORS configurável por <code>ALLOWED_ORIGIN</code>.</li>
+        <li><b>Ajustar quando quiser:</b> definir <code>ALLOWED_ORIGIN</code> para o domínio oficial, monitorar uso no OpenRouter e escolher modelo conforme custo/qualidade.</li>
+      </ul>
+    </div>
+
+    <h2>Variáveis de ambiente</h2>
+    <div class="card">
+      <pre>OPENROUTER_API_KEY=...   # obrigatória (Netlify)
+OPENROUTER_MODEL=...     # opcional; padrão: nvidia/nemotron-3.5-lightning:free (conforme código)
+ALLOWED_ORIGIN=...       # opcional; restringe quem pode chamar /api/chat</pre>
+      <p><small>Observação: o modelo padrão está definido em <code>chat.mjs</code> e pode ser trocado por variável de ambiente sem alterar o front.</small></p>
+    </div>
+
+    <footer>
+      Documento gerado para apresentação interna da equipe. Arquivos principais: <code>index.html</code>, <code>netlify/functions/chat.mjs</code>, <code>netlify.toml</code>, <code>agent/*.md</code>.
+    </footer>
+  </div>
+</body>
+</html>

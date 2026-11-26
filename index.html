@@ -1203,13 +1203,13 @@ const DEFAULT_PROXY = 'https://parati-restaurante.netlify.app/api/chat';
 const AGENT_PROXY = queryProxy || (() => { try { return localStorage.getItem('paratizinho_proxy') || DEFAULT_PROXY; } catch { return DEFAULT_PROXY; } })();
 if(queryProxy){ try { localStorage.setItem('paratizinho_proxy', queryProxy); } catch {} }
 const AGENT_TOOLS = [
-  {type:'function', function:{name:'get_menu', description:'Retorna categorias e itens reais do cardápio, com ids, nomes, preços e regras de medida. Use antes de falar preço ou sugerir pratos.', parameters:{type:'object', properties:{category:{type:'string', description:'Filtra por categoria. Opcional.'}}, additionalProperties:false}}},
-  {type:'function', function:{name:'get_store_info', description:'Retorna horário, endereço, Instagram e WhatsApp da loja. Use antes de responder dados da loja.', parameters:{type:'object', properties:{}, additionalProperties:false}}},
-  {type:'function', function:{name:'calculate_price', description:'Calcula o preço real de um item. Para itens por quilo use grams ou portions; para itens por unidade use qty.', parameters:{type:'object', properties:{productId:{type:'string'}, grams:{type:'number'}, portions:{type:'number'}, qty:{type:'number'}}, required:['productId'], additionalProperties:false}}},
-  {type:'function', function:{name:'add_to_cart', description:'Adiciona ou define a quantidade de um item na comanda. Para itens por quilo, qty é o número de porções calculadas.', parameters:{type:'object', properties:{productId:{type:'string'}, qty:{type:'number'}, mode:{type:'string', enum:['set','add']}}, required:['productId','qty'], additionalProperties:false}}},
-  {type:'function', function:{name:'remove_from_cart', description:'Remove um item da comanda.', parameters:{type:'object', properties:{productId:{type:'string'}}, required:['productId'], additionalProperties:false}}},
-  {type:'function', function:{name:'get_cart', description:'Retorna os itens atuais da comanda e o total.', parameters:{type:'object', properties:{}, additionalProperties:false}}},
-  {type:'function', function:{name:'clear_cart', description:'Esvazia a comanda.', parameters:{type:'object', properties:{}, additionalProperties:false}}}
+  {type:'function', function:{name:'get_menu', description:'Lista itens reais do cardápio (id,nome,preço). Use antes de preço/sugestão.', parameters:{type:'object', properties:{category:{type:'string', description:'Filtra por categoria. Opcional.'}}, additionalProperties:false}}},
+  {type:'function', function:{name:'get_store_info', description:'Horário, endereço e contatos da loja.', parameters:{type:'object', properties:{}, additionalProperties:false}}},
+  {type:'function', function:{name:'calculate_price', description:'Calcula preço real. Peso: grams/portions; unidade: qty.', parameters:{type:'object', properties:{productId:{type:'string'}, grams:{type:'number'}, portions:{type:'number'}, qty:{type:'number'}}, required:['productId'], additionalProperties:false}}},
+  {type:'function', function:{name:'add_to_cart', description:'Adiciona/define item na comanda. qty=unidades ou porções.', parameters:{type:'object', properties:{productId:{type:'string'}, qty:{type:'number'}, mode:{type:'string', enum:['set','add']}}, required:['productId','qty'], additionalProperties:false}}},
+  {type:'function', function:{name:'remove_from_cart', description:'Remove item da comanda.', parameters:{type:'object', properties:{productId:{type:'string'}}, required:['productId'], additionalProperties:false}}},
+  {type:'function', function:{name:'get_cart', description:'Retorna comanda e total.', parameters:{type:'object', properties:{}, additionalProperties:false}}},
+  {type:'function', function:{name:'clear_cart', description:'Esvazia comanda.', parameters:{type:'object', properties:{}, additionalProperties:false}}}
 ];
 function normalize(t){
   return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w\s]/g,' ').replace(/\s+/g,' ').trim();
@@ -1508,7 +1508,7 @@ function localSweetReply(raw){
   const biscoito = resolveProduct('biscoito-cocada');
   const cupuacu = resolveProduct('cupuacu-kg');
   if(!biscoito || !cupuacu) return null;
-  return `Aqui o açaí é natural do Pará, salgado, servido com peixe e farinha — não é sobremesa doce. Para doce, indico **${biscoito.name}** (${money(biscoito.price)} cada) e **${cupuacu.name}** (${money(cupuacu.price)} a porção). Quer que eu coloque na comanda?`;
+  return `Nosso açaí é natural do Pará, cremoso e servido tradicionalmente com peixe e farinha. Para uma opção doce, indico **${biscoito.name}** (${money(biscoito.price)} cada) ou **${cupuacu.name}** (${money(cupuacu.price)} a porção). Quer que eu coloque na comanda?`;
 }
 function quantityPrompt(product){
   const base = productBase(product);
@@ -1570,7 +1570,7 @@ function localAgentReply(raw){
   }
   if(has(text,'acai')){
     const acai = resolveProduct('acai-100');
-    return {text:`Nosso açaí é **natural do Pará**, cremoso, servido com peixe e farinha — é salgado, não é sobremesa doce.${acai ? ` A porção de 100g sai **${money(acai.price)}**.` : ''}`};
+    return {text:`Nosso açaí é **natural do Pará**, cremoso e puro, servido tradicionalmente com peixe e farinha.${acai ? ` A porção de 100g sai **${money(acai.price)}**.` : ''} Quer adicionar à comanda?`};
   }
   if(has(text,'obrigad','valeu','brigad')) return {text:'Imagina! Se precisar de mais alguma coisa, é só chamar.'};
   return null;
@@ -1583,16 +1583,11 @@ function confirmDirectOrder(product, qty){
   agentHistory.push({role:'assistant', content:message.replace(/\*\*/g,'')});
 }
 const AGENT_OPERATING_RULES = `
-## Regras de execução neste site
-- Você está rodando dentro do site do Pará-Ti e tem ferramentas. Use-as antes de responder.
-- Nunca responda preço, horário, endereço, disponibilidade ou dados da loja sem chamar a ferramenta correspondente.
-- Para sugerir pratos, chame get_menu e escolha apenas itens retornados.
-- Para calcular valor por grama ou porção, chame calculate_price. Depois, se o cliente confirmar, chame add_to_cart.
-- Se o cliente pedir para adicionar, trocar ou remover algo da comanda, use add_to_cart, remove_from_cart ou clear_cart.
-- Pedido direto (produto + quantidade) já está executado no site: não pergunte de novo, não reliste opções; confirme o total e ofereça o fechamento.
-- Não explique ferramentas, JSON, debug nem código. Fale como recepcionista: curto, educado e direto.
-- Se a ferramenta retornar erro, diga com simplicidade e ofereça o WhatsApp da loja.
-`;
+## Regras
+- Use ferramentas antes de afirmar preço/horário/endereço/cardápio/comanda.
+- Sugestões: só itens do get_menu. Cálculo por peso: calculate_price. Comanda: add/remove/clear/get_cart.
+- Pedido direto já executado: confirme total e ofereça fechar; não reliste.
+- Sem jargão/debug. Curto, educado. Erro: peça desculpas e ofereça WhatsApp.`;
 async function loadAgentSystem(){
   if(agentSystemPromise) return agentSystemPromise;
   agentSystemPromise = (async () => {
@@ -1606,7 +1601,7 @@ async function loadAgentSystem(){
     const core = parts.filter(Boolean).join('\n\n---\n\n');
     return core
       ? `${core}\n\n---\n\n${AGENT_OPERATING_RULES}`
-      : `Você é o Paratizinho, assistente receptivo do Pará-Ti em Fortaleza/CE. Use ferramentas para dados reais. Seja curto, educado e nunca invente informações.${AGENT_OPERATING_RULES}`;
+      : `Você é o Paratizinho, assistente do Pará-Ti. Use ferramentas; responda curto.${AGENT_OPERATING_RULES}`;
   })();
   return agentSystemPromise;
 }
@@ -1626,7 +1621,7 @@ async function callAgentProxy(system){
   const res = await fetch(AGENT_PROXY, {
     method:'POST',
     headers:{'content-type':'application/json'},
-    body:JSON.stringify({system, messages:agentHistory.slice(-10), tools:AGENT_TOOLS})
+    body:JSON.stringify({system, messages:agentHistory.slice(-8), tools:AGENT_TOOLS})
   });
   if(!res.ok){
     agentAvailable = false;
@@ -1674,7 +1669,7 @@ async function agentSend(text, options = {}){
   const typing = showTyping();
   try {
     const system = await loadAgentSystem();
-    for(let step = 0; step < 6; step++){
+    for(let step = 0; step < 4; step++){
       const message = await callAgentProxy(system);
       agentHistory.push({
         role:'assistant',
