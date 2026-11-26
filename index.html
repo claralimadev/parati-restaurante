@@ -531,8 +531,8 @@ button{font:inherit;cursor:pointer}
         <div class="menu-group reveal" id="cat-acai">
           <h3 class="menu-category">Açaí artesanal</h3>
           <ul class="menu-list">
-            <li class="menu-item" data-id="acai-100" data-name="Açaí Natural 100g" data-price="5.50"><div class="menu-info"><h4>Açaí Natural 100g</h4><p>Açaí puro e cremoso, em porção individual.</p></div><div class="menu-action"><span class="menu-price">R$ 5,50</span><div class="add-holder"></div></div></li>
-            <li class="menu-item" data-id="acai-1l" data-name="Açaí Natural 1 litro" data-price="55.00"><div class="menu-info"><h4>Açaí Natural 1 litro</h4><p>Açaí puro e cremoso, para compartilhar.</p></div><div class="menu-action"><span class="menu-price">R$ 55,00</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="acai-100" data-name="Açaí Natural 100g" data-price="5.50"><div class="menu-info"><h4>Açaí Natural 100g</h4><p>Açaí natural do Pará, cremoso, servido com peixe e farinha.</p></div><div class="menu-action"><span class="menu-price">R$ 5,50</span><div class="add-holder"></div></div></li>
+            <li class="menu-item" data-id="acai-1l" data-name="Açaí Natural 1 litro" data-price="55.00"><div class="menu-info"><h4>Açaí Natural 1 litro</h4><p>Açaí natural do Pará, cremoso, servido com peixe e farinha.</p></div><div class="menu-action"><span class="menu-price">R$ 55,00</span><div class="add-holder"></div></div></li>
           </ul>
         </div>
 
@@ -823,8 +823,8 @@ button{font:inherit;cursor:pointer}
     "address": "Av. Central, 34 — Cidade 2000, Fortaleza/CE"
   },
   "products": [
-    {"id":"acai-100","name":"Açaí Natural 100g","category":"Açaí artesanal","description":"Açaí puro e cremoso, em porção individual.","price":5.5,"sale":"unit","simple":true},
-    {"id":"acai-1l","name":"Açaí Natural 1 litro","category":"Açaí artesanal","description":"Açaí puro e cremoso, para compartilhar.","price":55.0,"sale":"unit","simple":true},
+    {"id":"acai-100","name":"Açaí Natural 100g","category":"Açaí artesanal","description":"Açaí natural do Pará, cremoso, servido com peixe e farinha.","price":5.5,"sale":"unit","simple":true},
+    {"id":"acai-1l","name":"Açaí Natural 1 litro","category":"Açaí artesanal","description":"Açaí natural do Pará, cremoso, servido com peixe e farinha.","price":55.0,"sale":"unit","simple":true},
     {"id":"cupuacu-kg","name":"Cupuaçu Kg","category":"Produtos do Pará","description":"Polpa de cupuaçu vendida por quilo.","price":30.0,"sale":"measure","unit":"g","portion":100,"baseLabel":"1 kg","label":"100 g","pricePerPortion":3.0,"allowFraction":false},
     {"id":"farinha-tapioca","name":"Farinha de Tapioca Litro","category":"Produtos do Pará","description":"Farinha de tapioca tradicional, por litro.","price":7.5,"sale":"unit","simple":false},
     {"id":"farinha-amarela","name":"Farinha Amarela Litro","category":"Produtos do Pará","description":"Farinha amarela da casa, por litro.","price":15.0,"sale":"unit","simple":false},
@@ -1197,17 +1197,19 @@ let chatOpen = false;
 let currentProduct = null;
 let agentSystemPromise = null;
 let agentHistory = [];
+let agentAvailable = null;
 const queryProxy = new URLSearchParams(location.search).get('proxy');
-const AGENT_PROXY = queryProxy || (() => { try { return localStorage.getItem('paratizinho_proxy') || '/api/chat'; } catch { return '/api/chat'; } })();
+const DEFAULT_PROXY = 'https://parati-restaurante.netlify.app/api/chat';
+const AGENT_PROXY = queryProxy || (() => { try { return localStorage.getItem('paratizinho_proxy') || DEFAULT_PROXY; } catch { return DEFAULT_PROXY; } })();
 if(queryProxy){ try { localStorage.setItem('paratizinho_proxy', queryProxy); } catch {} }
 const AGENT_TOOLS = [
-  {type:'function', function:{name:'get_menu', description:'Retorna categorias e itens reais do cardápio, com ids, nomes, preços e regras de medida. Use antes de falar preço ou sugerir pratos.', parameters:{type:'object', properties:{category:{type:'string', description:'Filtra por categoria. Opcional.'}}, additionalProperties:false}}},
-  {type:'function', function:{name:'get_store_info', description:'Retorna horário, endereço, Instagram e WhatsApp da loja. Use antes de responder dados da loja.', parameters:{type:'object', properties:{}, additionalProperties:false}}},
-  {type:'function', function:{name:'calculate_price', description:'Calcula o preço real de um item. Para itens por quilo use grams ou portions; para itens por unidade use qty.', parameters:{type:'object', properties:{productId:{type:'string'}, grams:{type:'number'}, portions:{type:'number'}, qty:{type:'number'}}, required:['productId'], additionalProperties:false}}},
-  {type:'function', function:{name:'add_to_cart', description:'Adiciona ou define a quantidade de um item na comanda. Para itens por quilo, qty é o número de porções calculadas.', parameters:{type:'object', properties:{productId:{type:'string'}, qty:{type:'number'}, mode:{type:'string', enum:['set','add']}}, required:['productId','qty'], additionalProperties:false}}},
-  {type:'function', function:{name:'remove_from_cart', description:'Remove um item da comanda.', parameters:{type:'object', properties:{productId:{type:'string'}}, required:['productId'], additionalProperties:false}}},
-  {type:'function', function:{name:'get_cart', description:'Retorna os itens atuais da comanda e o total.', parameters:{type:'object', properties:{}, additionalProperties:false}}},
-  {type:'function', function:{name:'clear_cart', description:'Esvazia a comanda.', parameters:{type:'object', properties:{}, additionalProperties:false}}}
+  {type:'function', function:{name:'get_menu', description:'Lista itens reais do cardápio (id,nome,preço). Use antes de preço/sugestão.', parameters:{type:'object', properties:{category:{type:'string', description:'Filtra por categoria. Opcional.'}}, additionalProperties:false}}},
+  {type:'function', function:{name:'get_store_info', description:'Horário, endereço e contatos da loja.', parameters:{type:'object', properties:{}, additionalProperties:false}}},
+  {type:'function', function:{name:'calculate_price', description:'Calcula preço real. Peso: grams/portions; unidade: qty.', parameters:{type:'object', properties:{productId:{type:'string'}, grams:{type:'number'}, portions:{type:'number'}, qty:{type:'number'}}, required:['productId'], additionalProperties:false}}},
+  {type:'function', function:{name:'add_to_cart', description:'Adiciona/define item na comanda. qty=unidades ou porções.', parameters:{type:'object', properties:{productId:{type:'string'}, qty:{type:'number'}, mode:{type:'string', enum:['set','add']}}, required:['productId','qty'], additionalProperties:false}}},
+  {type:'function', function:{name:'remove_from_cart', description:'Remove item da comanda.', parameters:{type:'object', properties:{productId:{type:'string'}}, required:['productId'], additionalProperties:false}}},
+  {type:'function', function:{name:'get_cart', description:'Retorna comanda e total.', parameters:{type:'object', properties:{}, additionalProperties:false}}},
+  {type:'function', function:{name:'clear_cart', description:'Esvazia comanda.', parameters:{type:'object', properties:{}, additionalProperties:false}}}
 ];
 function normalize(t){
   return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w\s]/g,' ').replace(/\s+/g,' ').trim();
@@ -1467,9 +1469,12 @@ function orderQuantity(text){
 function directOrder(raw){
   const text = normalize(String(raw || ''));
   if(!text) return null;
-  const bareQuantity = /^(\d{1,2}|um|uma|dois|duas|tres|quatro|cinco|seis|sete|oito|nove|dez)$/.test(text);
-  if(!bareQuantity && !ORDER_VERBS.some(v => text.split(' ').includes(v))) return null;
   const textWords = text.split(' ');
+  const bareQuantity = /^(\d{1,2}|um|uma|dois|duas|tres|quatro|cinco|seis|sete|oito|nove|dez)$/.test(text);
+  const hasVerb = ORDER_VERBS.some(v => textWords.includes(v));
+  const hasNumber = /\d/.test(text) || textWords.some(w => NUMBER_WORDS[w]);
+  if(!bareQuantity && !hasVerb && !hasNumber) return null;
+  const quantityOnly = bareQuantity || /^\d{1,4}\s*(g|gramas|kg|kilos?)$/.test(text) || textWords.every(w => NUMBER_WORDS[w] || /^\d/.test(w));
   const candidates = [];
   for(const p of PRODUCTS){
     const nameWords = normalize(p.name).split(' ').filter(w => w.length > 1 && !STOP_WORDS.has(w));
@@ -1481,9 +1486,8 @@ function directOrder(raw){
     if(score > 0) candidates.push({product:p, score});
   }
   candidates.sort((a,b) => b.score - a.score);
-  const top = candidates[0]?.score || 0;
-  if(candidates.filter(c => c.score === top).length > 1) return null;
-  let product = candidates[0]?.product || (bareQuantity ? currentProduct : null);
+  const focused = currentProduct ? candidates.find(c => c.product.id === currentProduct.id) : null;
+  let product = quantityOnly ? currentProduct : (focused?.product || candidates[0]?.product || ((bareQuantity || hasNumber) ? currentProduct : null));
   if(!product) return null;
   const gramsMatch = text.match(/\b(\d{1,4})\s*(g|gramas|kg|kilos?)\b/);
   let qty = 0;
@@ -1494,9 +1498,82 @@ function directOrder(raw){
     if(grams <= 0 || grams % base.value !== 0) return null;
     qty = grams / base.value;
   } else {
-    qty = orderQuantity(text);
+    qty = orderQuantity(text) || (hasVerb ? 1 : 0);
   }
   return qty >= 1 && qty <= 99 ? {product, qty} : null;
+}
+function localSweetReply(raw){
+  const text = normalize(String(raw || ''));
+  if(!/\bdoces?\b|sobremesa/.test(text)) return null;
+  const biscoito = resolveProduct('biscoito-cocada');
+  const cupuacu = resolveProduct('cupuacu-kg');
+  if(!biscoito || !cupuacu) return null;
+  return `Nosso açaí é natural do Pará, cremoso e servido tradicionalmente com peixe e farinha. Para uma opção doce, indico **${biscoito.name}** (${money(biscoito.price)} cada) ou **${cupuacu.name}** (${money(cupuacu.price)} a porção). Quer que eu coloque na comanda?`;
+}
+function quantityPrompt(product){
+  const base = productBase(product);
+  return base
+    ? `Quanto você quer de **${product.name}**? Me diga o peso, por exemplo **300g** ou **1kg** (ou quantas porções de ${base.label}).`
+    : `Quantas unidades de **${product.name}** você quer? (ex.: 2)`;
+}
+function localPriceText(product){
+  const base = productBase(product);
+  return base
+    ? `${money(product.price)} por ${base.label} (${money(base.basePrice)}/kg)`
+    : `${money(product.price)} a unidade`;
+}
+function findAskedProduct(text){
+  const cleaned = text.replace(/\b(quanto|custa|custo|preco|valor|qto|qual|o|a|os|as|de|da|do|tem|possui|disponivel|voce|voces|gostaria|queria)\b/g,' ').replace(/\s+/g,' ').trim();
+  const words = cleaned.split(' ').filter(w => w.length > 1 && !STOP_WORDS.has(w));
+  let best = null;
+  let bestScore = 0;
+  for(const product of PRODUCTS){
+    const name = normalize(product.name);
+    let score = cleaned.includes(name) ? 10 : 0;
+    for(const word of words) if(name.includes(word)) score += word.length >= 4 ? 3 : 1;
+    if(normalize(product.id).split(' ').some(w => w.length > 3 && words.includes(w))) score += 2;
+    if(score > bestScore){ bestScore = score; best = product; }
+  }
+  return best;
+}
+function localAgentReply(raw){
+  const text = normalize(String(raw || ''));
+  if(!text) return null;
+  if(/^(oi|ola|bom dia|boa tarde|boa noite|salve|e ai)\b/.test(text)) return {text:'Olá! Aqui é o Paratizinho. Posso te ajudar com preços, cardápio, horário, endereço e comanda.'};
+  if(has(text,'horario','funcionamento','aberto','fechado','que horas')) return {text:`A loja funciona **${STORE.hours}**.`};
+  if(has(text,'endereco','onde','fica','localizacao','mapa')) return {text:`Ficamos na **${STORE.address}**.`, link:{url:MAPS,label:'Ver no mapa'}};
+  if(has(text,'whatsapp','contato','telefone','falar','instagram')) return {text:'Nossa equipe responde pelo WhatsApp e também posta no Instagram.', link:{url:WHATSAPP_CHAT,label:'Falar no WhatsApp'}};
+  if(has(text,'quanto','custa','preco','valor','qto')){
+    const product = findAskedProduct(text);
+    return product
+      ? {text:`**${product.name}** sai **${localPriceText(product)}**. Quer adicionar à comanda?`}
+      : {text:'Me diga o nome do prato ou toque em **Ver preço** no item do cardápio que eu te passo o valor.'};
+  }
+  if(has(text,'cardapio','o que tem','opcoes','pratos','sugest')){
+    const names = ['acai-100','cupuacu-kg','biscoito-cocada'].map(id => resolveProduct(id)).filter(Boolean);
+    return {text:`Temos **${names.map(p => `${p.name} (${money(p.price)})`).join(', ')}** e muito mais. Role o cardápio e toque em **Ver preço** no item que você quiser.`};
+  }
+  if(has(text,'disponivel','possui') || /\btem\b/.test(text)){
+    const product = findAskedProduct(text);
+    return product
+      ? {text:`Sim, temos **${product.name}** por **${localPriceText(product)}**. Quer adicionar?`}
+      : {text:'Sim, temos várias opções frescas. Olhe o cardápio e me diga qual você quer.'};
+  }
+  if(has(text,'como pedir','fazer pedido','fechar','finalizar','comanda') || /\bpedido\b/.test(text)){
+    return cartCount()
+      ? {text:`Sua comanda está com **${qtyLabel(cartCount())} • ${money(cartTotal())}**. Pode fechar agora!`, link:{url:WHATSAPP + encodeURIComponent(orderMessage()),label:'Fechar pedido'}}
+      : {text:'É simples: toque em **Ver preço** no prato, diga a quantidade (ou escreva “quero 2 cupuaçu”) e depois toque em **Fechar pedido**.'};
+  }
+  if(has(text,'indica','recomenda','melhor','gostoso','pedir','sugere')){
+    const names = ['acai-100','cupuacu-kg','biscoito-cocada'].map(id => resolveProduct(id)).filter(Boolean);
+    return {text:`Boas pedidas hoje: **${names.map(p => `${p.name} (${money(p.price)})`).join(', ')}**. Quer que eu coloque alguma na comanda?`};
+  }
+  if(has(text,'acai')){
+    const acai = resolveProduct('acai-100');
+    return {text:`Nosso açaí é **natural do Pará**, cremoso e puro, servido tradicionalmente com peixe e farinha.${acai ? ` A porção de 100g sai **${money(acai.price)}**.` : ''} Quer adicionar à comanda?`};
+  }
+  if(has(text,'obrigad','valeu','brigad')) return {text:'Imagina! Se precisar de mais alguma coisa, é só chamar.'};
+  return null;
 }
 function confirmDirectOrder(product, qty){
   setQty(product, qty, 'add');
@@ -1506,16 +1583,11 @@ function confirmDirectOrder(product, qty){
   agentHistory.push({role:'assistant', content:message.replace(/\*\*/g,'')});
 }
 const AGENT_OPERATING_RULES = `
-## Regras de execução neste site
-- Você está rodando dentro do site do Pará-Ti e tem ferramentas. Use-as antes de responder.
-- Nunca responda preço, horário, endereço, disponibilidade ou dados da loja sem chamar a ferramenta correspondente.
-- Para sugerir pratos, chame get_menu e escolha apenas itens retornados.
-- Para calcular valor por grama ou porção, chame calculate_price. Depois, se o cliente confirmar, chame add_to_cart.
-- Se o cliente pedir para adicionar, trocar ou remover algo da comanda, use add_to_cart, remove_from_cart ou clear_cart.
-- Pedido direto (produto + quantidade) já está executado no site: não pergunte de novo, não reliste opções; confirme o total e ofereça o fechamento.
-- Não explique ferramentas, JSON, debug nem código. Fale como recepcionista: curto, educado e direto.
-- Se a ferramenta retornar erro, diga com simplicidade e ofereça o WhatsApp da loja.
-`;
+## Regras
+- Use ferramentas antes de afirmar preço/horário/endereço/cardápio/comanda.
+- Sugestões: só itens do get_menu. Cálculo por peso: calculate_price. Comanda: add/remove/clear/get_cart.
+- Pedido direto já executado: confirme total e ofereça fechar; não reliste.
+- Sem jargão/debug. Curto, educado. Erro: peça desculpas e ofereça WhatsApp.`;
 async function loadAgentSystem(){
   if(agentSystemPromise) return agentSystemPromise;
   agentSystemPromise = (async () => {
@@ -1529,21 +1601,35 @@ async function loadAgentSystem(){
     const core = parts.filter(Boolean).join('\n\n---\n\n');
     return core
       ? `${core}\n\n---\n\n${AGENT_OPERATING_RULES}`
-      : `Você é o Paratizinho, assistente receptivo do Pará-Ti em Fortaleza/CE. Use ferramentas para dados reais. Seja curto, educado e nunca invente informações.${AGENT_OPERATING_RULES}`;
+      : `Você é o Paratizinho, assistente do Pará-Ti. Use ferramentas; responda curto.${AGENT_OPERATING_RULES}`;
   })();
   return agentSystemPromise;
+}
+async function checkAgentAvailability(){
+  if(agentAvailable !== null) return agentAvailable;
+  try {
+    const res = await fetch(AGENT_PROXY, {
+      method:'POST',
+      headers:{'content-type':'application/json'},
+      body:JSON.stringify({system:'Responda apenas "ok".', messages:[{role:'user',content:'ok'}], tools:[]})
+    });
+    agentAvailable = res.ok;
+  } catch { agentAvailable = false; }
+  return agentAvailable;
 }
 async function callAgentProxy(system){
   const res = await fetch(AGENT_PROXY, {
     method:'POST',
     headers:{'content-type':'application/json'},
-    body:JSON.stringify({system, messages:agentHistory.slice(-10), tools:AGENT_TOOLS})
+    body:JSON.stringify({system, messages:agentHistory.slice(-8), tools:AGENT_TOOLS})
   });
   if(!res.ok){
+    agentAvailable = false;
     let detail = '';
     try { detail = (await res.json()).error || ''; } catch {}
     throw new Error(detail || `http_${res.status}`);
   }
+  agentAvailable = true;
   const data = await res.json();
   const message = data.message || data.choices?.[0]?.message;
   if(!message) throw new Error('resposta_vazia');
@@ -1554,12 +1640,36 @@ async function agentSend(text, options = {}){
   if(options.context) agentHistory.push({role:'system', content:options.context});
   const raw = String(text);
   agentHistory.push({role:'user', content:raw.slice(0, 2000)});
+  const sweet = options.skipFastPath ? null : localSweetReply(raw);
+  if(sweet){
+    addMessage(sweet, 'bot');
+    agentHistory.push({role:'assistant', content:sweet.replace(/\*\*/g,'')});
+    return;
+  }
   const order = options.skipFastPath ? null : directOrder(raw);
   if(order){ confirmDirectOrder(order.product, order.qty); return; }
+  const local = options.skipFastPath ? null : localAgentReply(raw);
+  if(local){
+    const text = typeof local === 'string' ? local : local.text;
+    const link = typeof local === 'string' ? null : local.link;
+    addMessage(text, 'bot', link);
+    agentHistory.push({role:'assistant', content:text.replace(/\*\*/g,'')});
+    return;
+  }
+  if(agentAvailable === false){
+    if(currentProduct){
+      const prompt = quantityPrompt(currentProduct) + ' Escolha uma opção no cardápio ou nos botões abaixo.';
+      addMessage(prompt, 'bot');
+      agentHistory.push({role:'assistant', content:prompt.replace(/\*\*/g,'')});
+    } else {
+      addMessage('Sem IA no momento, posso ajudar com preços, cardápio, horário e pedidos. Escolha uma opção no cardápio ou nos botões abaixo, ou me diga o produto e a quantidade/peso (ex.: 2 cupuaçu ou 300g de cupuaçu).', 'bot', {url:WHATSAPP_CHAT,label:'Falar no WhatsApp'});
+    }
+    return;
+  }
   const typing = showTyping();
   try {
     const system = await loadAgentSystem();
-    for(let step = 0; step < 6; step++){
+    for(let step = 0; step < 4; step++){
       const message = await callAgentProxy(system);
       agentHistory.push({
         role:'assistant',
@@ -1591,10 +1701,14 @@ async function agentSend(text, options = {}){
     typing.remove();
     const hint = String(error?.message || error);
     const offline = hint.includes('missing_key') || hint.includes('http_404') || hint.includes('http_503');
+    const limited = hint.includes('429') || /rate.?limit|free-models-per-day/i.test(hint);
+    if(limited || offline || hint.includes('sem_texto')) agentAvailable = false;
     addMessage(
-      offline
-        ? 'Ops, o Paratizinho ainda não está conectado à IA. Enquanto isso, a equipe do Pará-Ti atende pelo WhatsApp.'
-        : 'Não consegui responder agora. Pode tentar de novo ou falar direto com a equipe pelo WhatsApp.',
+      limited
+        ? 'A IA atingiu o limite de perguntas de hoje, mas ainda posso ajudar com preços, cardápio, horário, endereço e pedidos diretos — é só me dizer o que precisa.'
+        : offline
+          ? 'Ops, o Paratizinho ainda não está conectado à IA. Enquanto isso, a equipe do Pará-Ti atende pelo WhatsApp.'
+          : 'Não consegui responder agora. Pode tentar de novo ou falar direto com a equipe pelo WhatsApp.',
       'bot',
       {url:WHATSAPP_CHAT,label:'Falar no WhatsApp'}
     );
@@ -1610,12 +1724,12 @@ function startChat(product){
     const priceText = base
       ? `${money(product.price)} por ${base.label} (${money(base.basePrice)}/kg)`
       : `${money(product.price)} a unidade`;
-    const question = `Claro! **${product.name}** sai **${priceText}**. Quantas ${base ? 'porções' : 'unidades'} você quer?`;
+    const question = `Claro! **${product.name}** sai **${priceText}**. ${quantityPrompt(product)}`;
     addMessage(question, 'bot');
     agentHistory.push({role:'assistant', content:question.replace(/\*\*/g,'')});
   } else if(!chatMessages.children.length){
     const greeting = 'Olá! Aqui é o Paratizinho, prazer em te ver. Posso tirar suas dúvidas sobre a loja, preços e comanda. Me diga o que você quer ou toque em “Ver preço” em um prato.';
-    addMessage(greeting, 'bot', {url:WHATSAPP_CHAT,label:'Falar no WhatsApp'});
+    addMessage(greeting, 'bot');
     agentHistory.push({role:'assistant', content:greeting});
   }
 }
@@ -1629,6 +1743,7 @@ function openChat(product){
   chatPanel.setAttribute('aria-hidden','false');
   chatFab.setAttribute('aria-expanded','true');
   startChat(product);
+  if(product) checkAgentAvailability();
   setTimeout(() => chatInput.focus({preventScroll:true}), 250);
 }
 function closeChat(){

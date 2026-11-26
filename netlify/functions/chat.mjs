@@ -67,7 +67,7 @@ export default async (request) => {
         tools,
         tool_choice: 'auto',
         temperature: 0.4,
-        max_tokens: 900
+        max_tokens: 450
       })
     });
 
